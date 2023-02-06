@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[JavaScript] - Trò chơi " Audition - Nơi cảm xúc thăng hoa "</title>
+
+    <style>
+        #container {
+            width: 1200px;
+            height: 50px;
+            background: green;
+            position: relative;
+            margin: 100px auto auto;
+            text-align: center;
+        }
+
+        #box {
+            width: 50px;
+            height: 50px;
+            background: red;
+            position: absolute;
+        }
+
+        #position-space {
+            width: 200px;
+            height: 50px;
+            background: #99FF00;
+            position: absolute;
+            margin-left: 750px;
+        }
+
+        body {
+            background-image: url('images/background.jpeg');
+            background-size: cover;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            width: 20%;
+            border: 5px solid red;
+            padding: 10px;
+            border-radius: 25px;
+        }
+
+        .score {
+            font-size: 400%;
+            font-weight: bold;
+            color: red;
+            margin-left: 1200px;
+            margin-right: 100px;
+            border: 5px solid red;
+            padding: 10px;
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        .reverse {
+            font-size: 250%;
+            font-weight: bold;
+            color: red;
+            margin-left: 1200px;
+            margin-right: 100px;
+            text-align: center;
+        }
+
+        .inline {
+            display: inline;
+        }
+
+        .margin-css {
+            margin-left: 100px;
+            margin-top: 50px;
+            height: 100px;
+            text-align: center;
+        }
+
+        @-webkit-keyframes snowflakes-fall {
+            0% {
+                top: -10%
+            }
+            100% {
+                top: 100%
+            }
+        }
+
+        @-webkit-keyframes snowflakes-shake {
+            0%, 100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0)
+            }
+            50% {
+                -webkit-transform: translateX(80px);
+                transform: translateX(80px)
+            }
+        }
+
+        @keyframes snowflakes-fall {
+            0% {
+                top: -10%
+            }
+            100% {
+                top: 100%
+            }
+        }
+
+        @keyframes snowflakes-shake {
+            0%, 100% {
+                transform: translateX(0)
+            }
+            50% {
+                transform: translateX(80px)
+            }
+        }
+
+        .snowflake {
+            color: #fff;
+            font-size: 1em;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 5px #000;
+            position: fixed;
+            top: -10%;
+            z-index: 9999;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: default;
+            -webkit-animation-name: snowflakes-fall, snowflakes-shake;
+            -webkit-animation-duration: 10s, 3s;
+            -webkit-animation-timing-function: linear, ease-in-out;
+            -webkit-animation-iteration-count: infinite, infinite;
+            -webkit-animation-play-state: running, running;
+            animation-name: snowflakes-fall, snowflakes-shake;
+            animation-duration: 10s, 3s;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+            animation-play-state: running, running;
+        }
+
+        .snowflake:nth-of-type(0) {
+            left: 1%;
+            -webkit-animation-delay: 0s, 0s;
+            animation-delay: 0s, 0s
+        }
+
+        .snowflake:nth-of-type(1) {
+            left: 10%;
+            -webkit-animation-delay: 1s, 1s;
+            animation-delay: 1s, 1s
+        }
+
+        .snowflake:nth-of-type(2) {
+            left: 20%;
+            -webkit-animation-delay: 6s, .5s;
+            animation-delay: 6s, .5s
+        }
+
+        .snowflake:nth-of-type(3) {
+            left: 30%;
+            -webkit-animation-delay: 4s, 2s;
+            animation-delay: 4s, 2s
+        }
+
+        .snowflake:nth-of-type(4) {
+            left: 40%;
+            -webkit-animation-delay: 2s, 2s;
+            animation-delay: 2s, 2s
+        }
+
+        .snowflake:nth-of-type(5) {
+            left: 50%;
+            -webkit-animation-delay: 8s, 3s;
+            animation-delay: 8s, 3s
+        }
+
+        .snowflake:nth-of-type(6) {
+            left: 60%;
+            -webkit-animation-delay: 6s, 2s;
+            animation-delay: 6s, 2s
+        }
+
+        .snowflake:nth-of-type(7) {
+            left: 70%;
+            -webkit-animation-delay: 2.5s, 1s;
+            animation-delay: 2.5s, 1s
+        }
+
+        .snowflake:nth-of-type(8) {
+            left: 80%;
+            -webkit-animation-delay: 1s, 0s;
+            animation-delay: 1s, 0s
+        }
+
+        .snowflake:nth-of-type(9) {
+            left: 90%;
+            -webkit-animation-delay: 3s, 1.5s;
+            animation-delay: 3s, 1.5s
+        }
+
+        .snowflake:nth-of-type(10) {
+            left: 25%;
+            -webkit-animation-delay: 2s, 0s;
+            animation-delay: 2s, 0s
+        }
+
+        .snowflake:nth-of-type(11) {
+            left: 65%;
+            -webkit-animation-delay: 4s, 2.5s;
+            animation-delay: 4s, 2.5s
+        }
+
+    </style>
+</head>
+<body>
+<div class="snowflakes" aria-hidden="true">
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+</div>
+<label for="list-music">Select music: </label><select id="list-music">
+    <option selected="selected" disabled="disabled">List</option>
+    <option value="vuon-hoa-sao-roi">Vườn Hoa Sao Rơi</option>
+    <option value="cu-tho-di">Cứ Thở đi</option>
+    <option value="chong-xa">Chồng Xa</option>
+</select>
+
+<div id="score-position">
+    <p id="score" class="score">0</p>
+</div>
+<div id="result">
+    <img id="pic" src="images/Ready.png" class="center" alt="">
+</div>
+<div id="container">
+    <div id="position-space"></div>
+    <div id="box"></div>
+</div>
+<div id="list-key" class="margin-css">
+    <img class="inline" id="1" src="" alt="">
+    <img class="inline" id="2" src="" alt="">
+    <img class="inline" id="3" src="" alt="">
+    <img class="inline" id="4" src="" alt="">
+    <img class="inline" id="5" src="" alt="">
+    <img class="inline" id="6" src="" alt="">
+    <img class="inline" id="7" src="" alt="">
+    <img class="inline" id="8" src="" alt="">
+    <img class="inline" id="9" src="" alt="">
+    <img class="inline" id="10" src="" alt="">
+    <img class="inline" id="11" src="" alt="">
+</div>
+<div id="count-reverse">
+    <p id="reverse" class="reverse"></p>
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="js/constants.js"></script>
+
+<script>
+    // Variable
+    let audio = new Audio();
+    let isReverse = false
+    let isSpaced = false
+    let increase = 1
+    let pos = 0
+    let count = 0
+    let countToIncreaseLevel = 0
+    let score = 0
+    let level = 1
+    let listKeyRandom = []
+    let listKeyPress = []
+    const boxElement = document.getElementById("box")
+    let picElement = document.getElementById("pic")
+    let scoreElement = document.getElementById("score")
+    let intervalID = setInterval(move, 0)
+
+    function show(id) {
+        document.getElementById(id).style.display = 'block'
+    }
+
+    function hide(id) {
+        document.getElementById(id).style.display = 'none'
+    }
+
+    function setKey(key, id) {
+        document.getElementById(id).src = "images/" + key + ".png"
+    }
+
+    function compareKeyPressAndRandom(key) {
+        if (listKeyPress.length === listKeyRandom.length) {
+            return
+        }
+
+        if (MAP_KEY.get(listKeyRandom[listKeyPress.length]) === key && !isReverse) {
+            listKeyPress.push(key + "-success")
+            setKey(key + "-success", listKeyPress.length)
+        } else if (MAP_KEY.get(listKeyRandom[listKeyPress.length]) === key && isReverse) {
+            listKeyPress.push(key + "-success")
+            setKey(key + "-success", listKeyPress.length)
+        } else {
+            listKeyPress = []
+            for (let i = 0; i < listKeyRandom.length; i++) {
+                setKey(listKeyRandom[i], i + 1)
+            }
+        }
+    }
+
+    function getListKey(level, listRandom) {
+        let list = []
+        Array.prototype.random = function () {
+            return this[Math.floor((Math.random() * this.length))];
+        }
+        for (let i = 0; i < level; i++) {
+            list.push(listRandom.random())
+        }
+        return list
+    }
+
+    function resetKeyRandom() {
+        for (let i = 1; i <= 11; i++) {
+            document.getElementById(i.toString()).src = ""
+        }
+    }
+
+    function resetListKeyPress() {
+        listKeyPress = []
+    }
+
+    function setScore(pos) {
+        if (listKeyPress.length !== listKeyRandom.length) {
+            picElement.src = "images/Miss.png"
+            return
+        }
+        if (840 <= pos && pos <= 860) {
+            picElement.src = "images/Perfect.png"
+            score += isReverse ? 1200 : 800
+        } else if ((790 <= pos && pos < 840) || (860 < pos && pos <= 910)) {
+            picElement.src = "images/Great.png"
+            score += isReverse ? 600 : 350
+        } else if ((760 <= pos && pos < 790) || (910 < pos && pos <= 940)) {
+            picElement.src = "images/Cool.png"
+            score += isReverse ? 350 : 150
+        } else if ((750 <= pos && pos < 760) || (940 < pos && pos <= 950)) {
+            picElement.src = "images/Bad.png"
+            score += isReverse ? 200 : 50
+        } else {
+            picElement.src = "images/Miss.png"
+        }
+        scoreElement.textContent = score
+    }
+
+    function move() {
+        if (pos > 1150) {
+            pos = 0
+            count++
+            if (count >= MIN_COUNT_TO_PLAY) {
+                resetKeyRandom()
+                setTimeout(function () {
+                    listKeyRandom = isReverse ? getListKey(level, LIST_KEY_HAS_REVERSE) : getListKey(level, LIST_KEY)
+                    console.log(listKeyRandom)
+                    for (let i = 0; i < listKeyRandom.length; i++) {
+                        setKey(listKeyRandom[i], i + 1)
+                    }
+                }, 1000)
+            }
+            if (count >= MIN_COUNT_TO_PLAY && countToIncreaseLevel % 1 === 0) {
+                level++
+            }
+            if (level > MAX_LEVEL) {
+                level = 1;
+            }
+            if (count > MIN_COUNT_TO_PLAY && !isSpaced) {
+                countToIncreaseLevel++
+                picElement.src = "images/Miss.png"
+                resetListKeyPress()
+                hide("box")
+                setTimeout(function () {
+                    show("box")
+                    pos = 0
+                }, 3000)
+            }
+        }
+
+        pos += increase
+        boxElement.style.left = pos + "px"
+    }
+
+    // Event press key
+    document.body.onkeyup = function (e) {
+        if (e.code === "Space" && count >= MIN_COUNT_TO_PLAY) {
+            isSpaced = true
+            setScore(pos)
+            hide("box")
+            resetListKeyPress()
+            setTimeout(function () {
+                show("box")
+                pos = 0
+                isSpaced = false
+            }, 3000)
+            countToIncreaseLevel++
+        }
+
+        // Key dance
+        if (e.code === "ArrowUp" || e.code === "Numpad8") {
+            compareKeyPressAndRandom("up")
+        }
+        if (e.code === "ArrowDown" || e.code === "Numpad2") {
+            compareKeyPressAndRandom("down")
+        }
+        if (e.code === "ArrowRight" || e.code === "Numpad6") {
+            compareKeyPressAndRandom("right")
+        }
+        if (e.code === "ArrowLeft" || e.code === "Numpad4") {
+            compareKeyPressAndRandom("left")
+        }
+        if (e.code === "Numpad7") {
+            compareKeyPressAndRandom("left-up")
+        }
+        if (e.code === "Numpad9") {
+            compareKeyPressAndRandom("right-up")
+        }
+        if (e.code === "Numpad1") {
+            compareKeyPressAndRandom("left-down")
+        }
+        if (e.code === "Numpad3") {
+            compareKeyPressAndRandom("right-down")
+        }
+
+        // Key turn on, turn off reverse
+        if (e.code === "NumpadDecimal") {
+            isReverse = !isReverse
+            if (isReverse) {
+                document.getElementById("reverse").textContent = "Reverse"
+                show("reverse")
+            } else {
+                hide("reverse")
+            }
+        }
+    }
+
+    function initVariable() {
+        isReverse = false
+        isSpaced = false
+        increase = 1
+        pos = 0
+        count = 0
+        countToIncreaseLevel = 0
+        score = 0
+        level = 0
+        listKeyRandom = []
+        listKeyPress = []
+        picElement = document.getElementById("pic")
+        scoreElement = document.getElementById("score")
+    }
+
+    audio.onended = function () {
+        clearInterval(intervalID)
+        alert("Chúc mừng bạn đã đạt: " + score + " điểm")
+        initVariable()
+        scoreElement.textContent = "0"
+    }
+
+    function initAudio() {
+        clearInterval(intervalID)
+        let ext, plist
+        ext = ".mp3"
+
+        plist = document.getElementById("list-music")
+        plist.addEventListener("change", changeTrack)
+
+        function changeTrack(event) {
+            audio.src = "musics/" + event.target.value + ext
+            audio.play()
+            intervalID = setInterval(move, 0)
+            initVariable()
+        }
+    }
+
+    window.addEventListener("load", initAudio)
+</script>
