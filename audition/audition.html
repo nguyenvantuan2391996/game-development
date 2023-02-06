@@ -235,6 +235,7 @@
     <option value="vuon-hoa-sao-roi">Vườn Hoa Sao Rơi</option>
     <option value="cu-tho-di">Cứ Thở đi</option>
     <option value="chong-xa">Chồng Xa</option>
+    <option value="dua-nao-lam-em-buon">Đứa nào làm em buồn?</option>
 </select>
 
 <div id="score-position">
@@ -451,6 +452,7 @@
     }
 
     function initVariable() {
+        console.log("aaa")
         isReverse = false
         isSpaced = false
         increase = 1
@@ -474,14 +476,13 @@
 
     function initAudio() {
         clearInterval(intervalID)
-        let ext, plist
-        ext = ".mp3"
+        let plist
 
         plist = document.getElementById("list-music")
         plist.addEventListener("change", changeTrack)
 
         function changeTrack(event) {
-            audio.src = "musics/" + event.target.value + ext
+            audio.src = "http://data.chiasenhac.com/down2/2274/1/2273480-77a54e64/128/dua%20nao%20lam%20em%20buon_%20-%20Phuc%20Du.mp3"
             audio.play()
             intervalID = setInterval(move, 0)
             initVariable()
