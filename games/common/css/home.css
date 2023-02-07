@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -72,74 +70,12 @@ p {
     box-shadow: 2px 4px 8px rgba(45, 87, 5, 0.247);
 }
 
-.message {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 255px;
-    height: 60px;
-    position: absolute;
-    right: -255px;
-    bottom: 90vh;
-    animation: showMessage ease-out 5s;
-}
-
-.message.success {
-    background-color: rgb(184, 255, 112);
-}
-
-.message.danger {
-    background-color: crimson;
-}
-
 select {
     border: none;
     outline: none;
     scroll-behavior: smooth;
     border-radius: 15px;
     appearance: none;
-}
-
-body {
-    background-image: url('../images/background.jpeg');
-    background-size: cover;
-}
-
-@keyframes showMessage {
-    0%, 100% {right: -255px}
-    10% {right: 0}
-    90% {right: 0;}
-}
-
-table {
-    border-collapse: collapse;
-    width: 30%;
-    margin-bottom: 50px;
-}
-
-th,
-td {
-    padding: 1rem 2rem;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    font-weight: normal;
-    font-size: .875rem;
-    color: #666;
-    background: #eee;
-    position: sticky;
-    top: 0;
-}
-
-@media(max-width: 500px) {
-    .heading {
-        display: none;
-    }
-    td {
-        display: block;
-    }
 }
 
 h1 {
