@@ -1,219 +1,10 @@
 <!DOCTYPE html>
 <html lang="vi">
+<link rel="stylesheet" href="css/audition.css">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>[JavaScript] - Trò chơi " Audition - Nơi cảm xúc thăng hoa "</title>
-
-    <style>
-        #container {
-            width: 1200px;
-            height: 50px;
-            background: green;
-            position: relative;
-            margin: 100px auto auto;
-            text-align: center;
-        }
-
-        #box {
-            width: 50px;
-            height: 50px;
-            background: red;
-            position: absolute;
-        }
-
-        #position-space {
-            width: 200px;
-            height: 50px;
-            background: #99FF00;
-            position: absolute;
-            margin-left: 750px;
-        }
-
-        body {
-            background-image: url('images/background.jpeg');
-            background-size: cover;
-        }
-
-        .center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 100px;
-            width: 20%;
-            border: 5px solid red;
-            padding: 10px;
-            border-radius: 25px;
-        }
-
-        .score {
-            font-size: 400%;
-            font-weight: bold;
-            color: red;
-            margin-left: 1200px;
-            margin-right: 100px;
-            border: 5px solid red;
-            padding: 10px;
-            border-radius: 25px;
-            text-align: center;
-        }
-
-        .reverse {
-            font-size: 250%;
-            font-weight: bold;
-            color: red;
-            margin-left: 1200px;
-            margin-right: 100px;
-            text-align: center;
-        }
-
-        .inline {
-            display: inline;
-        }
-
-        .margin-css {
-            margin-left: 100px;
-            margin-top: 50px;
-            height: 100px;
-            text-align: center;
-        }
-
-        @-webkit-keyframes snowflakes-fall {
-            0% {
-                top: -10%
-            }
-            100% {
-                top: 100%
-            }
-        }
-
-        @-webkit-keyframes snowflakes-shake {
-            0%, 100% {
-                -webkit-transform: translateX(0);
-                transform: translateX(0)
-            }
-            50% {
-                -webkit-transform: translateX(80px);
-                transform: translateX(80px)
-            }
-        }
-
-        @keyframes snowflakes-fall {
-            0% {
-                top: -10%
-            }
-            100% {
-                top: 100%
-            }
-        }
-
-        @keyframes snowflakes-shake {
-            0%, 100% {
-                transform: translateX(0)
-            }
-            50% {
-                transform: translateX(80px)
-            }
-        }
-
-        .snowflake {
-            color: #fff;
-            font-size: 1em;
-            font-family: Arial, sans-serif;
-            text-shadow: 0 0 5px #000;
-            position: fixed;
-            top: -10%;
-            z-index: 9999;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            cursor: default;
-            -webkit-animation-name: snowflakes-fall, snowflakes-shake;
-            -webkit-animation-duration: 10s, 3s;
-            -webkit-animation-timing-function: linear, ease-in-out;
-            -webkit-animation-iteration-count: infinite, infinite;
-            -webkit-animation-play-state: running, running;
-            animation-name: snowflakes-fall, snowflakes-shake;
-            animation-duration: 10s, 3s;
-            animation-timing-function: linear, ease-in-out;
-            animation-iteration-count: infinite, infinite;
-            animation-play-state: running, running;
-        }
-
-        .snowflake:nth-of-type(0) {
-            left: 1%;
-            -webkit-animation-delay: 0s, 0s;
-            animation-delay: 0s, 0s
-        }
-
-        .snowflake:nth-of-type(1) {
-            left: 10%;
-            -webkit-animation-delay: 1s, 1s;
-            animation-delay: 1s, 1s
-        }
-
-        .snowflake:nth-of-type(2) {
-            left: 20%;
-            -webkit-animation-delay: 6s, .5s;
-            animation-delay: 6s, .5s
-        }
-
-        .snowflake:nth-of-type(3) {
-            left: 30%;
-            -webkit-animation-delay: 4s, 2s;
-            animation-delay: 4s, 2s
-        }
-
-        .snowflake:nth-of-type(4) {
-            left: 40%;
-            -webkit-animation-delay: 2s, 2s;
-            animation-delay: 2s, 2s
-        }
-
-        .snowflake:nth-of-type(5) {
-            left: 50%;
-            -webkit-animation-delay: 8s, 3s;
-            animation-delay: 8s, 3s
-        }
-
-        .snowflake:nth-of-type(6) {
-            left: 60%;
-            -webkit-animation-delay: 6s, 2s;
-            animation-delay: 6s, 2s
-        }
-
-        .snowflake:nth-of-type(7) {
-            left: 70%;
-            -webkit-animation-delay: 2.5s, 1s;
-            animation-delay: 2.5s, 1s
-        }
-
-        .snowflake:nth-of-type(8) {
-            left: 80%;
-            -webkit-animation-delay: 1s, 0s;
-            animation-delay: 1s, 0s
-        }
-
-        .snowflake:nth-of-type(9) {
-            left: 90%;
-            -webkit-animation-delay: 3s, 1.5s;
-            animation-delay: 3s, 1.5s
-        }
-
-        .snowflake:nth-of-type(10) {
-            left: 25%;
-            -webkit-animation-delay: 2s, 0s;
-            animation-delay: 2s, 0s
-        }
-
-        .snowflake:nth-of-type(11) {
-            left: 65%;
-            -webkit-animation-delay: 4s, 2.5s;
-            animation-delay: 4s, 2.5s
-        }
-
-    </style>
 </head>
 <body>
 <div class="snowflakes" aria-hidden="true">
@@ -230,13 +21,6 @@
     <div class="snowflake">❅</div>
     <div class="snowflake">❆</div>
 </div>
-<label for="list-music">Select music: </label><select id="list-music">
-    <option selected="selected" disabled="disabled">List</option>
-    <option value="vuon-hoa-sao-roi">Vườn Hoa Sao Rơi</option>
-    <option value="cu-tho-di">Cứ Thở đi</option>
-    <option value="chong-xa">Chồng Xa</option>
-    <option value="dua-nao-lam-em-buon">Đứa nào làm em buồn?</option>
-</select>
 
 <div id="score-position">
     <p id="score" class="score">0</p>
@@ -279,13 +63,14 @@
     let count = 0
     let countToIncreaseLevel = 0
     let score = 0
-    let level = 1
+    let level = 6
     let listKeyRandom = []
     let listKeyPress = []
     const boxElement = document.getElementById("box")
     let picElement = document.getElementById("pic")
     let scoreElement = document.getElementById("score")
     let intervalID = setInterval(move, 0)
+    let typeDance = "4k"
 
     function show(id) {
         document.getElementById(id).style.display = 'block'
@@ -304,10 +89,11 @@
             return
         }
 
-        if (MAP_KEY.get(listKeyRandom[listKeyPress.length]) === key && !isReverse) {
+        const mapKey = typeDance === "4k" ? MAP_KEY_4K : MAP_KEY_8K
+        if (mapKey.get(listKeyRandom[listKeyPress.length]) === key && !isReverse) {
             listKeyPress.push(key + "-success")
             setKey(key + "-success", listKeyPress.length)
-        } else if (MAP_KEY.get(listKeyRandom[listKeyPress.length]) === key && isReverse) {
+        } else if (mapKey.get(listKeyRandom[listKeyPress.length]) === key && isReverse) {
             listKeyPress.push(key + "-success")
             setKey(key + "-success", listKeyPress.length)
         } else {
@@ -369,7 +155,13 @@
             if (count >= MIN_COUNT_TO_PLAY) {
                 resetKeyRandom()
                 setTimeout(function () {
-                    listKeyRandom = isReverse ? getListKey(level, LIST_KEY_HAS_REVERSE) : getListKey(level, LIST_KEY)
+                    listKeyRandom = isReverse ?
+                        (typeDance === "4k" ?
+                            getListKey(level, LIST_KEY_HAS_REVERSE_4K) : getListKey(level, LIST_KEY_HAS_REVERSE_8K)
+                        ) :
+                        (typeDance === "4k" ?
+                            getListKey(level, LIST_KEY_4K) : getListKey(level, LIST_KEY_8K)
+                        )
                     console.log(listKeyRandom)
                     for (let i = 0; i < listKeyRandom.length; i++) {
                         setKey(listKeyRandom[i], i + 1)
@@ -380,7 +172,7 @@
                 level++
             }
             if (level > MAX_LEVEL) {
-                level = 1;
+                level = 11;
             }
             if (count > MIN_COUNT_TO_PLAY && !isSpaced) {
                 countToIncreaseLevel++
@@ -452,7 +244,6 @@
     }
 
     function initVariable() {
-        console.log("aaa")
         isReverse = false
         isSpaced = false
         increase = 1
@@ -460,7 +251,7 @@
         count = 0
         countToIncreaseLevel = 0
         score = 0
-        level = 0
+        level = 6
         listKeyRandom = []
         listKeyPress = []
         picElement = document.getElementById("pic")
@@ -470,23 +261,20 @@
     audio.onended = function () {
         clearInterval(intervalID)
         alert("Chúc mừng bạn đã đạt: " + score + " điểm")
-        initVariable()
-        scoreElement.textContent = "0"
+        window.location.replace("/game-development/audition/home.html");
     }
 
     function initAudio() {
         clearInterval(intervalID)
-        let plist
 
-        plist = document.getElementById("list-music")
-        plist.addEventListener("change", changeTrack)
+        const urlParams = new URLSearchParams(window.location.search);
+        audio.src = urlParams.get('music')
+        audio.play()
 
-        function changeTrack(event) {
-            audio.src = "http://data.chiasenhac.com/down2/2274/1/2273480-77a54e64/128/dua%20nao%20lam%20em%20buon_%20-%20Phuc%20Du.mp3"
-            audio.play()
-            intervalID = setInterval(move, 0)
-            initVariable()
-        }
+        typeDance = urlParams.get('type')
+
+        intervalID = setInterval(move, 0)
+        initVariable()
     }
 
     window.addEventListener("load", initAudio)
