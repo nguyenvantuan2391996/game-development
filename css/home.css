@@ -6,7 +6,7 @@ body {
 .container{
     width: 90%;
     padding: 20px;
-    margin: 100px auto;
+    margin: 10px auto 100px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -16,7 +16,7 @@ body {
     width: 360px;
     height: 360px;
     background: orange;
-    margin: 0 50px;
+    margin: 15px;
     transition: 1s;
 }
 
@@ -25,5 +25,4 @@ body {
     background: #ff800a;
     z-index: 2;
     box-shadow: 2px 2px 2px #000;
-
 }
