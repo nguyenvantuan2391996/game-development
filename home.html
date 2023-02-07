@@ -8,11 +8,13 @@
 </head>
 <body>
   <div class="container">
-    <div class="box"><img src="images/audition-thumbnail.png" alt="audition"></div>
-    <div class="box"><img src="images/xo-thumbnail.png" alt="tic-tac-toe"></div>
-    <div class="box"><img style="object-fit: cover;" src="images/nong-trai-vui-ve-thumbnail.png" alt="nong-trai-vui-ve"></div>
-    <div class="box"><img src="images/plan-and-zombie-thumbnail.png" alt="plan-and-zombie"></div>
+    <div class="box"><img onclick={{redirectUrlGame("audition")}} src="images/audition-thumbnail.png" alt="audition"></div>
+    <div class="box"><img onclick={{notice()}} src="images/xo-thumbnail.png" alt="tic-tac-toe"></div>
+    <div class="box"><img onclick={{notice()}} src="images/nong-trai-vui-ve-thumbnail.png" alt="nong-trai-vui-ve"></div>
+    <div class="box"><img onclick={{notice()}} src="images/plan-and-zombie-thumbnail.png" alt="plan-and-zombie"></div>
   </div>
 
 </body>
 </html>
+
+<script type="text/javascript" src="js/home.js"></script>
