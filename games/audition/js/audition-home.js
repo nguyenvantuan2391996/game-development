@@ -3,10 +3,10 @@ function handleLetGo() {
     let typeDance = document.getElementById("list-type-dance").value;
 
     if (music === "" || typeDance === "") {
-        alert("Vui lòng chọn nhạc và kiểu nhảy")
+        alert("Vui lòng chọn nhạc và kiểu nhảy");
         return
     }
-    window.location.href = "/game-development/audition/audition.html?music="+ music + "&type=" + typeDance;
+    window.location.href = "/game-development/games/audition/audition.html?music="+ music + "&type=" + typeDance;
 }
 
 window.addEventListener("load", (event) => {

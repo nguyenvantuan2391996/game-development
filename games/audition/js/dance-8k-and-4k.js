@@ -205,7 +205,7 @@ function initVariable() {
 audio.onended = function () {
     clearInterval(intervalID)
     alert("Chúc mừng bạn đã đạt: " + score + " điểm")
-    window.location.href = "/game-development/audition/home.html";
+    window.location.href = "../home.html";
 }
 
 function initAudio() {
@@ -213,7 +213,7 @@ function initAudio() {
 
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('music') === null || urlParams.get('type') === null) {
-        window.location.href = "/game-development/audition/home.html";
+        window.location.href = "../home.html";
     }
 
     audio.src = urlParams.get('music')
