@@ -268,6 +268,10 @@
         clearInterval(intervalID)
 
         const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('music') === null || urlParams.get('type') !== "4k" || urlParams.get('type') !== "8k") {
+            window.location.replace("/game-development/audition/home.html");
+        }
+
         audio.src = urlParams.get('music')
         audio.play()
 
