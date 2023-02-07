@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="css/home.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+<div>
+    <div class="options" >
+        <label for="list-music"></label><select id="list-music" class="hide-option option">
+        <option selected="selected" disabled="disabled" value="">Select music</option>
+        <option value="https://data.chiasenhac.com/down2/2276/2/2275150-9f672b16/128/Waiting%20For%20You%20-%20MONO_%20Onionn.mp3">Waiting For You - Mono</option>
+        <option value="https://data.chiasenhac.com/down2/2274/2/2273480-77a54e64/128/dua%20nao%20lam%20em%20buon_%20-%20Phuc%20Du.mp3">Đứa nào làm em buồn? - Phúc Du</option>
+        <option value="https://data.chiasenhac.com/down2/2226/2/2225812-e3722baa/128/See%20Tinh%20-%20Hoang%20Thuy%20Linh.mp3">See Tình - Hoàng Thuỳ Linh</option>
+    </select>
+    </div>
+
+    <div class="options" style="margin-top: 30px">
+        <label for="list-type-dance"></label><select id="list-type-dance" class="hide-option option">
+        <option selected="selected" disabled="disabled" value="">Select type dance</option>
+        <option value="4k">4K Dance</option>
+        <option value="8k">8K Dance</option>
+    </select>
+    </div>
+</div>
+
+<div class="button" id="button" onclick="handleLetGo()">Let's go!</div>
+</body>
+</html>
+
+<script type="text/javascript" src="js/constants.js"></script>
+
+<script>
+    function handleLetGo() {
+        let music = document.getElementById("list-music").value;
+        let typeDance = document.getElementById("list-type-dance").value;
+
+        if (music === "" || typeDance === "") {
+            alert("Vui lòng chọn nhạc và kiểu nhảy")
+            return
+        }
+        window.location.replace("/game-development/audition/audition.html?music="+ music + "&type=" + typeDance);
+    }
+
+    window.addEventListener("load", (event) => {
+        let music = LIST_MUSIC[Math.floor(Math.random()*LIST_MUSIC.length)];
+        let audio = new Audio(music);
+        audio.play().catch(function (error) {
+            console.log("Chrome cannot play sound without user interaction first" + error)
+        });
+    });
+</script>
