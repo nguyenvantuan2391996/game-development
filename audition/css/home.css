@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+p {
+    width: 300px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.options {
+    cursor: pointer;
+    width: 300px;
+    min-height: 60px;
+    max-height: 300px;
+    border-radius: 15px;
+    background-color: rgb(250, 250, 250);
+    box-shadow: 2px 4px 8px #c5c5c5;
+    transition: all 300ms;
+}
+
+.options.opened {
+    overflow-y: scroll;
+}
+
+.option {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    transition: all 300ms;
+    font-size: medium;
+}
+
+.option:nth-child(1) {
+    border-radius: 15px;
+}
+
+.option:hover {
+    background-color: brown;
+    color: white;
+}
+
+.button {
+    cursor: pointer;
+    margin-top: 30px;
+    width: 300px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(184, 255, 112);
+    color: #212121;
+    font-weight: 600;
+    box-shadow: 2px 4px 8px rgba(45, 87, 5, 0.247);
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 255px;
+    height: 60px;
+    position: absolute;
+    right: -255px;
+    bottom: 90vh;
+    animation: showMessage ease-out 5s;
+}
+
+.message.success {
+    background-color: rgb(184, 255, 112);
+}
+
+.message.danger {
+    background-color: crimson;
+}
+
+select {
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    border-radius: 15px;
+    appearance: none;
+}
+
+body {
+    background-image: url('../images/background.jpeg');
+    background-size: cover;
+}
+
+@keyframes showMessage {
+    0%, 100% {right: -255px}
+    10% {right: 0}
+    90% {right: 0;}
+}
