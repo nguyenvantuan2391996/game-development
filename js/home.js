@@ -1,5 +1,5 @@
 function redirectUrlGame(name) {
-    window.location.href = "/game-development/" + name + "/home.html";
+    window.location.href = "/game-development/games/" + name + "/home.html";
 }
 
 function notice() {
