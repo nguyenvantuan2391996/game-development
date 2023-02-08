@@ -15,9 +15,10 @@ body {
 .box{
     width: 360px;
     height: 360px;
-    background: orange;
     margin: 15px;
     transition: 1s;
+    border: 1px solid orange;
+    border-radius: 100px;
 }
 
 .box:hover{
