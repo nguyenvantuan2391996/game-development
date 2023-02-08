@@ -7,5 +7,5 @@ function handleLetGo() {
         alert("Vui lòng chọn kiểu chơi");
         return
     }
-    window.location.href = "/game-development/games/tic-tac-toe/tic-tac-toe.html?type=" + typePlay + "&rows=" + rows + "&columns=" + columns;
+    window.location.href = "/game-development/games/caro/caro.html?type=" + typePlay + "&rows=" + rows + "&columns=" + columns;
 }
