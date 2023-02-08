@@ -13,4 +13,7 @@ I will be super happy if you could help me endorse some skills or knowledge on m
 
 - This is my project to develop some simple and popular games that will build with JavaScript language by me.
 - Link home : [Games](https://nguyenvantuan2391996.github.io/game-development/home.html)
+
+# Games were developed
 - Game Audition : [Audition](https://nguyenvantuan2391996.github.io/game-development/audition/home.html)
+- Game Caro : [Caro](https://nguyenvantuan2391996.github.io/game-development/caro/home.html)
