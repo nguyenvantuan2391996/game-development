@@ -128,6 +128,7 @@ function checkWinLeftDiagonal(x, y, player) {
 
 function init() {
     player = "x";
+    matrixGame = [];
     const urlParams = new URLSearchParams(window.location.search);
     let rows = urlParams.get("rows");
     let columns = urlParams.get("columns");
