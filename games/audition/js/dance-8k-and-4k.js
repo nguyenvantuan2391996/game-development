@@ -213,7 +213,7 @@ function initAudio() {
 
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('music') === null || urlParams.get('type') === null) {
-        window.location.href = "../audition/home.html";
+        window.location.href = "/game-development/games/audition/home.html";
     }
 
     audio.src = urlParams.get('music')
