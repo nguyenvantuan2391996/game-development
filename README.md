@@ -15,5 +15,5 @@ I will be super happy if you could help me endorse some skills or knowledge on m
 - Link home : [Games](https://nguyenvantuan2391996.github.io/game-development/home.html)
 
 # Games were developed
-- Game Audition : [Audition](https://nguyenvantuan2391996.github.io/game-development/audition/home.html)
-- Game Caro : [Caro](https://nguyenvantuan2391996.github.io/game-development/caro/home.html)
+- Game Audition : [Audition](https://nguyenvantuan2391996.github.io/game-development/games/audition/home.html)
+- Game Caro : [Caro](https://nguyenvantuan2391996.github.io/game-development/games/caro/home.html)

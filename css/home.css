@@ -1,24 +1,26 @@
-body {
-    background-image: url('../images/game-development-background.png');
-    background-size: cover;
-}
-
-.container{
-    width: 90%;
-    padding: 20px;
-    margin: 10px auto 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
+/*.container{*/
+/*    width: 90%;*/
+/*    padding: 20px;*/
+/*    margin: 10px auto 100px;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: center;*/
+/*}*/
 
 .box{
     width: 360px;
     height: 360px;
-    margin: 15px;
+    margin: 5px;
     transition: 1s;
     border: 1px solid orange;
     border-radius: 100px;
+}
+
+.boxes {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
 }
 
 .box:hover{
@@ -26,4 +28,28 @@ body {
     background: #ff800a;
     z-index: 2;
     box-shadow: 2px 2px 2px #000;
+}
+
+/* Screen larger than 600px? 2 column */
+@media (min-width: 600px) {
+    .boxes { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Screen larger than 900px? 3 columns */
+@media (min-width: 900px) {
+    .boxes { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Screen larger than 1200px? 3 columns */
+@media (min-width: 1200px) {
+    .boxes { grid-template-columns: repeat(4, 1fr); }
+}
+
+body {
+    background-color: rgb(32, 32, 32);
+    background-image: url("/images/black-chalk.jpg");
+    color: rgb(230, 230, 230);
+    text-align: center;
+    font-family: 'Indie Flower', 'Comic Sans', cursive;
+    font-size: 0.7em;
 }
