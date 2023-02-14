@@ -1,4 +1,4 @@
-#container {
+.container {
     width: 1200px;
     height: 50px;
     background: green;
@@ -7,7 +7,16 @@
     text-align: center;
 }
 
-#box {
+.container-beat-up {
+    width: 500px;
+    height: 50px;
+    background: green;
+    position: relative;
+    margin: 100px auto auto;
+    text-align: center;
+}
+
+.box {
     width: 50px;
     height: 50px;
     background: red;
@@ -20,6 +29,14 @@
     background: #99FF00;
     position: absolute;
     margin-left: 750px;
+}
+
+.position-space-beat-up {
+    width: 80px;
+    height: 50px;
+    background: #99FF00;
+    position: absolute;
+    margin-left: 330px;
 }
 
 body {
@@ -68,6 +85,34 @@ body {
     margin-top: 50px;
     height: 100px;
     text-align: center;
+}
+
+.col-main {
+    flex: 1;
+    height: 30px;
+}
+
+.col-complementary {
+    flex: 1;
+    height: 30px;
+}
+
+@media only screen and (min-width: 640px) {
+    .layout {
+        display: flex;
+    }
+}
+
+.bars-beat-up {
+    max-width: 80em;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.col {
+    padding: 1em;
+    margin: 0 100px 2px 0;
+    background: green;
 }
 
 @-webkit-keyframes snowflakes-fall {
