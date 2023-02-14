@@ -16,18 +16,6 @@ let scoreElement = document.getElementById("score")
 let intervalID = setInterval(move, 0)
 let typeDance = "4k"
 
-function show(id) {
-    document.getElementById(id).style.display = 'block'
-}
-
-function hide(id) {
-    document.getElementById(id).style.display = 'none'
-}
-
-function setKey(key, id) {
-    document.getElementById(id).src = "images/" + key + ".png"
-}
-
 function compareKeyPressAndRandom(key) {
     if (listKeyPress.length === listKeyRandom.length) {
         return
@@ -116,7 +104,7 @@ function move() {
             level++
         }
         if (level > MAX_LEVEL) {
-            level = 11;
+            level = 11
         }
         if (count > MIN_COUNT_TO_PLAY && !isSpaced) {
             countToIncreaseLevel++
@@ -205,26 +193,40 @@ function initVariable() {
 audio.onended = function () {
     clearInterval(intervalID)
     alert("Chúc mừng bạn đã đạt: " + score + " điểm")
-    window.location.href = "../home.html";
+    window.location.href = "../home.html"
 }
 
 function initAudio() {
     clearInterval(intervalID)
 
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search)
     if (urlParams.get('music') === null || urlParams.get('type') === null) {
-        window.location.href = "/game-development/games/audition/home.html";
+        window.location.href = "/game-development/games/audition/home.html"
     }
 
     audio.src = urlParams.get('music')
     audio.play().catch(function (error) {
         console.log("Chrome cannot play sound without user interaction first" + error)
-    });
+    })
 
     typeDance = urlParams.get('type')
 
-    intervalID = setInterval(move, 0)
-    initVariable()
+    if (typeDance !== "4k" && typeDance !== "8k") {
+        hide("4k-8k-dance")
+        intervalIDLeftUp = setInterval(moveLeftUp, 0)
+        intervalIDRightUp = setInterval(moveRightUp, 0)
+        intervalIDLeft = setInterval(moveLeft, 0)
+        intervalIDRight = setInterval(moveRight, 0)
+        intervalIDLeftDown = setInterval(moveLeftDown, 0)
+        intervalIDRightDown = setInterval(moveRightDown, 0)
+        intervalIDSpaceBeatUp = setInterval(moveSpaceBeatUp, 15)
+
+        initVariableBeatUp()
+    } else {
+        hide("beat-up-dance")
+        intervalID = setInterval(move, 0)
+        initVariable()
+    }
 }
 
 window.addEventListener("load", initAudio)
