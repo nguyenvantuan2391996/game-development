@@ -124,54 +124,96 @@ function move() {
 
 // Event press key
 document.body.onkeyup = function (e) {
-    if (e.code === "Space" && count >= MIN_COUNT_TO_PLAY) {
-        isSpaced = true
-        setScore(pos)
-        hide("box")
-        resetListKeyPress()
-        setTimeout(function () {
-            show("box")
-            pos = 0
-            isSpaced = false
-        }, 3000)
-        countToIncreaseLevel++
-    }
+    switch (typeDance) {
+        case "4k":
+        case "8k":
+            if (e.code === "Space" && count >= MIN_COUNT_TO_PLAY) {
+                isSpaced = true
+                setScore(pos)
+                hide("box")
+                resetListKeyPress()
+                setTimeout(function () {
+                    show("box")
+                    pos = 0
+                    isSpaced = false
+                }, 3000)
+                countToIncreaseLevel++
+            }
 
-    // Key dance
-    if (e.code === "ArrowUp" || e.code === "Numpad8") {
-        compareKeyPressAndRandom("up")
-    }
-    if (e.code === "ArrowDown" || e.code === "Numpad2") {
-        compareKeyPressAndRandom("down")
-    }
-    if (e.code === "ArrowRight" || e.code === "Numpad6") {
-        compareKeyPressAndRandom("right")
-    }
-    if (e.code === "ArrowLeft" || e.code === "Numpad4") {
-        compareKeyPressAndRandom("left")
-    }
-    if (e.code === "Numpad7") {
-        compareKeyPressAndRandom("left-up")
-    }
-    if (e.code === "Numpad9") {
-        compareKeyPressAndRandom("right-up")
-    }
-    if (e.code === "Numpad1") {
-        compareKeyPressAndRandom("left-down")
-    }
-    if (e.code === "Numpad3") {
-        compareKeyPressAndRandom("right-down")
-    }
+            // Key dance
+            if (e.code === "ArrowUp" || e.code === "Numpad8") {
+                console.log(e.code)
+                compareKeyPressAndRandom("up")
+            }
+            if (e.code === "ArrowDown" || e.code === "Numpad2") {
+                compareKeyPressAndRandom("down")
+            }
+            if (e.code === "ArrowRight" || e.code === "Numpad6") {
+                compareKeyPressAndRandom("right")
+            }
+            if (e.code === "ArrowLeft" || e.code === "Numpad4") {
+                compareKeyPressAndRandom("left")
+            }
+            if (e.code === "Numpad7") {
+                compareKeyPressAndRandom("left-up")
+            }
+            if (e.code === "Numpad9") {
+                compareKeyPressAndRandom("right-up")
+            }
+            if (e.code === "Numpad1") {
+                compareKeyPressAndRandom("left-down")
+            }
+            if (e.code === "Numpad3") {
+                compareKeyPressAndRandom("right-down")
+            }
 
-    // Key turn on, turn off reverse
-    if (e.code === "NumpadDecimal") {
-        isReverse = !isReverse
-        if (isReverse) {
-            document.getElementById("reverse").textContent = "Reverse"
-            show("reverse")
-        } else {
-            hide("reverse")
-        }
+            // Key turn on, turn off reverse
+            if (e.code === "NumpadDecimal") {
+                isReverse = !isReverse
+                if (isReverse) {
+                    document.getElementById("reverse").textContent = "Reverse"
+                    show("reverse")
+                } else {
+                    hide("reverse")
+                }
+            }
+            break
+        case "beat-up":
+            if (e.code === "Space" || e.code === "Numpad5") {
+                hide("box-beat-up")
+                setScoreBeatUpSpace(posSpaceBeatUp)
+                setTimeout(function () {
+                    show("box-beat-up")
+                    posSpaceBeatUp = 0
+                }, 3000)
+            }
+
+            // Key dance
+            if (e.code === "ArrowLeft" || e.code === "Numpad4") {
+                setScoreBeatUpLeft(posLeft)
+                posLeft = 0
+            }
+            if (e.code === "Numpad7") {
+                setScoreBeatUpLeft(posLeftUp)
+                posLeftUp = 0
+            }
+            if (e.code === "Numpad1") {
+                setScoreBeatUpLeft(posLeftDown)
+                posLeftDown = 0
+            }
+            if (e.code === "ArrowRight" || e.code === "Numpad6") {
+                setScoreBeatUpRight(posRight)
+                posRight = 0
+            }
+            if (e.code === "Numpad9") {
+                setScoreBeatUpRight(posRightUp)
+                posRightUp = 0
+            }
+            if (e.code === "Numpad3") {
+                setScoreBeatUpRight(posRightDown)
+                posRightDown = 0
+            }
+            break
     }
 }
 
@@ -193,7 +235,7 @@ function initVariable() {
 audio.onended = function () {
     clearInterval(intervalID)
     alert("Chúc mừng bạn đã đạt: " + score + " điểm")
-    window.location.href = "../home.html"
+    window.location.href = "/game-development/games/audition/home.html"
 }
 
 function initAudio() {
@@ -213,12 +255,12 @@ function initAudio() {
 
     if (typeDance !== "4k" && typeDance !== "8k") {
         hide("4k-8k-dance")
-        intervalIDLeftUp = setInterval(moveLeftUp, 0)
-        intervalIDRightUp = setInterval(moveRightUp, 0)
-        intervalIDLeft = setInterval(moveLeft, 0)
-        intervalIDRight = setInterval(moveRight, 0)
-        intervalIDLeftDown = setInterval(moveLeftDown, 0)
-        intervalIDRightDown = setInterval(moveRightDown, 0)
+        intervalIDLeftUp = setInterval(moveLeftUp, 15)
+        intervalIDRightUp = setInterval(moveRightUp, 15)
+        intervalIDLeft = setInterval(moveLeft, 15)
+        intervalIDRight = setInterval(moveRight, 15)
+        intervalIDLeftDown = setInterval(moveLeftDown, 15)
+        intervalIDRightDown = setInterval(moveRightDown, 15)
         intervalIDSpaceBeatUp = setInterval(moveSpaceBeatUp, 15)
 
         initVariableBeatUp()
