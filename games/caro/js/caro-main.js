@@ -182,10 +182,10 @@ function getLeftDiagonal(x, y, player) {
 }
 
 function checkWin(points) {
-    return getHorizontal(Number(points[0]), Number(points[1]), player) === 5
-    || getVertical(Number(points[0]), Number(points[1]), player) === 5
-    || getRightDiagonal(Number(points[0]), Number(points[1]), player) === 5
-    || getLeftDiagonal(Number(points[0]), Number(points[1]), player) === 5
+    return getHorizontal(Number(points[0]), Number(points[1]), player) >= 5
+    || getVertical(Number(points[0]), Number(points[1]), player) >= 5
+    || getRightDiagonal(Number(points[0]), Number(points[1]), player) >= 5
+    || getLeftDiagonal(Number(points[0]), Number(points[1]), player) >= 5
 }
 
 function checkDraw() {
@@ -203,20 +203,31 @@ function checkDraw() {
 function getPointsComputer() {
     let maxScore = -Infinity
     let pointsComputer = []
+    let listScorePoint = []
     for (let i = 0; i < matrixGame.length; i++) {
         for (let j = 0; j < matrixGame[0].length; j++) {
             if (matrixGame[i][j] === "") {
                 let score = MAP_SCORE_COMPUTER.get(Math.max(getHorizontal(i, j, O),getVertical(i, j, O),getRightDiagonal(i, j, O),getLeftDiagonal(i, j, O))) +
                     MAP_POINT_HUMAN.get(Math.max(getHorizontal(i, j, X),getVertical(i, j, X),getRightDiagonal(i, j, X),getLeftDiagonal(i, j, X)) - 1)
-                if (maxScore < score) {
+                if (maxScore <= score) {
                     maxScore = score
-                    pointsComputer = [i, j]
+                    listScorePoint.push({
+                        "score": score,
+                        "point": [i,j],
+                    })
                 }
             }
         }
     }
 
-    return pointsComputer
+    // get list max score
+    for (const element of listScorePoint) {
+        if (element.score === maxScore) {
+            pointsComputer.push(element.point)
+        }
+    }
+    console.log(pointsComputer)
+    return pointsComputer[Math.floor(Math.random()*pointsComputer.length)]
 }
 
 function init() {
