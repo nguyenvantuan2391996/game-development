@@ -2,6 +2,10 @@ let player = X;
 let matrixGame = [];
 let typeGame = TWO_PLAYER;
 
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
 function handleClick(id) {
     switch (processClick(id)) {
         case WIN:
@@ -237,7 +241,7 @@ function init() {
     let rows = urlParams.get("rows");
     let columns = urlParams.get("columns");
 
-    if (rows === "" || columns === "" || (urlParams.get("type") !== TWO_PLAYER && urlParams.get("type") !== COMPUTER)) {
+    if (rows === "" || columns === "" || (urlParams.get("type") !== TWO_PLAYER && urlParams.get("type") !== COMPUTER && urlParams.get("type") !== COMPUTER_COMPUTER)) {
         window.location.href = "/game-development/games/caro/home.html";
     }
 
@@ -265,4 +269,70 @@ function init() {
 
 window.addEventListener("load", (event) => {
     init();
+
+    if(typeGame === COMPUTER_COMPUTER) {
+        let sumPoints = matrixGame.length * matrixGame[0].length
+        ComputerAndComputer(sumPoints).then(state => {
+            switch (state) {
+                case WIN:
+                    setTimeout(function () {
+                        alert("Player: " + player + " is winner");
+
+                        // reset game
+                        init();
+                        location.reload();
+                    }, 100);
+                    break;
+                case DRAW:
+                    setTimeout(function () {
+                        alert("Draw");
+
+                        // reset game
+                        init();
+                        location.reload();
+                    }, 100);
+                    break;
+            }
+        })
+    }
 });
+
+async function ComputerAndComputer(sumPoints) {
+    for (let i = 0; i < sumPoints; i++) {
+        await delay(100);
+        // computer A
+        let pointsComputerA = getPointsComputer()
+        matrixGame[pointsComputerA[0]][pointsComputerA[1]] = X;
+        document.getElementById(pointsComputerA[0].toString() + "-" + pointsComputerA[1].toString()).innerHTML = XText;
+
+        // check win
+        if (checkWin(pointsComputerA)) {
+            return WIN;
+        }
+
+        // check draw
+        if (checkDraw()) {
+            return DRAW;
+        }
+
+        player = player === X ? O : X;
+
+        await delay(100);
+        // computer B
+        let pointsComputerB = getPointsComputer()
+        matrixGame[pointsComputerB[0]][pointsComputerB[1]] = O;
+        document.getElementById(pointsComputerB[0].toString() + "-" + pointsComputerB[1].toString()).innerHTML = OText;
+
+        // check win
+        if (checkWin(pointsComputerB)) {
+            return WIN;
+        }
+
+        // check draw
+        if (checkDraw()) {
+            return DRAW;
+        }
+
+        player = player === X ? O : X;
+    }
+}
