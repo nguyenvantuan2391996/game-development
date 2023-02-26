@@ -226,7 +226,6 @@ function getPointsComputer() {
             pointsComputer.push(element.point)
         }
     }
-    console.log(pointsComputer)
     return pointsComputer[Math.floor(Math.random()*pointsComputer.length)]
 }
 
