@@ -299,7 +299,7 @@ window.addEventListener("load", (event) => {
 
 async function ComputerAndComputer(sumPoints) {
     for (let i = 0; i < sumPoints; i++) {
-        await delay(100);
+        await delay(1000);
         // computer A
         let pointsComputerA = getPointsComputer()
         matrixGame[pointsComputerA[0]][pointsComputerA[1]] = X;
@@ -317,7 +317,7 @@ async function ComputerAndComputer(sumPoints) {
 
         player = player === X ? O : X;
 
-        await delay(100);
+        await delay(1000);
         // computer B
         let pointsComputerB = getPointsComputer()
         matrixGame[pointsComputerB[0]][pointsComputerB[1]] = O;
