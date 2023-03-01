@@ -1,7 +1,6 @@
 async function joinRoom(id) {
     let name = prompt("Please enter your name", "anonymous")
     if (name !== null) {
-        localStorage.setItem("name", name)
         let requestOptions = {
             method: 'GET',
             redirect: 'follow'
@@ -32,9 +31,7 @@ async function joinRoom(id) {
                 )
 
                 // update
-                if (update(id, gameInfo)) {
-                    console.log("hihi")
-                }
+                update(id, gameInfo, name)
             })
             .catch(error => console.log('error', error))
     } else {
@@ -42,7 +39,7 @@ async function joinRoom(id) {
     }
 }
 
-function update(id, gameInfo) {
+async function update(id, gameInfo, name) {
     let myHeaders = new Headers()
     myHeaders.append("Content-Type", "application/json")
 
@@ -54,20 +51,18 @@ function update(id, gameInfo) {
     let bodyRequest = {
         method: 'PUT',
         headers: myHeaders,
-        body: raw,
+        body: JSON.stringify(raw),
         redirect: 'follow'
     }
 
-    fetch("https://63fe1d50571200b7b7c57218.mockapi.io/api/v1/games/" + id, bodyRequest)
+    await fetch("https://63fe1d50571200b7b7c57218.mockapi.io/api/v1/games/" + id, bodyRequest)
         .then(response => response.json())
         .then(result => {
-            console.log(result)
-            return true
+            localStorage.setItem("name", name)
+            window.location.href = "/game-development/games/rock-paper-scissors/rock-paper-scissors.html";
         })
         .catch(error => {
             alert(error)
-            return false
+            return
         })
-
-    return false
 }
