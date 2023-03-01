@@ -58,11 +58,11 @@ async function update(id, gameInfo, name) {
     await fetch("https://63fe1d50571200b7b7c57218.mockapi.io/api/v1/games/" + id, bodyRequest)
         .then(response => response.json())
         .then(result => {
+            console.log(result)
             localStorage.setItem("name", name)
             window.location.href = "/game-development/games/rock-paper-scissors/rock-paper-scissors.html";
         })
         .catch(error => {
             alert(error)
-            return
         })
 }
