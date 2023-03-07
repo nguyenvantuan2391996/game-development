@@ -1,6 +1,7 @@
 let player = X;
 let matrixGame = [];
 let typeGame = TWO_PLAYER;
+let isFirst = true;
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -271,6 +272,7 @@ window.addEventListener("load", (event) => {
     init();
 
     if(typeGame === COMPUTER_COMPUTER) {
+        isFirst = true
         let sumPoints = matrixGame.length * matrixGame[0].length
         ComputerAndComputer(sumPoints).then(state => {
             switch (state) {
@@ -302,6 +304,10 @@ async function ComputerAndComputer(sumPoints) {
         await delay(1000);
         // computer A
         let pointsComputerA = getPointsComputer()
+        if (isFirst) {
+            isFirst = false
+            pointsComputerA = [matrixGame.length / 2, matrixGame[0].length / 2]
+        }
         matrixGame[pointsComputerA[0]][pointsComputerA[1]] = X;
         document.getElementById(pointsComputerA[0].toString() + "-" + pointsComputerA[1].toString()).innerHTML = XText;
 
