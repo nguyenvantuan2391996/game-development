@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="css/plan-and-zombie.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--<button onclick="handle()">aaa</button>-->
+<img id="zombie" src="images/normalzombie.gif" style="position: absolute;margin-left: 1500px;z-index: 9999" alt="zombie">
+
+    <table id="table_game"></table>
+</body>
+</html>
+
+<script>
+    let aaa = 0
+    function handle() {
+        setInterval(function (){
+            aaa += 10
+            document.getElementById("zombie").style.marginLeft = aaa + "px"
+        }, 500)
+
+    }
+
+    window.addEventListener("load", (event) => {
+        // Data table
+        let tableXO = document.getElementById("table_game");
+        let tableContent = "";
+
+        for (let row = 0; row < 10; row++) {
+            let arr = [];
+            let rowHTML = "<tr>";
+            for (let col = 0; col < 10; col++) {
+                arr.push("");
+                rowHTML +=
+                    `<td class="td_game"><div id="` +
+                    row.toString() +
+                    "-" +
+                    col.toString() +
+                    `" onclick="handleClick(this.id)" class="fixed"><img id="zombie" src="images/land.png" alt="zombie"></div></td>`;
+            }
+            rowHTML += "</tr>";
+
+            tableContent += rowHTML;
+        }
+
+        tableXO.innerHTML = tableContent;
+
+        setInterval(function (){
+            let aaa = document.getElementById("zombie").style.marginLeft.split("px")[0]
+            aaa--
+            document.getElementById("zombie").style.marginLeft = aaa + "px"
+        }, 100)
+    })
+</script>
