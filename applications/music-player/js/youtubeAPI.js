@@ -32,7 +32,9 @@ async function getInfoSong(id) {
       const video = data.items[0];
       res.artist = video.snippet.channelTitle;
       res.title = video.snippet.title;
-      res.thumbnail = video.snippet.thumbnails.standard.url;
+      res.thumbnail = video.snippet.thumbnails.standard
+        ? video.snippet.thumbnails.standard.url
+        : video.snippet.thumbnails.high.url;
     })
     .catch((error) => {
       console.error("Error:", error);
