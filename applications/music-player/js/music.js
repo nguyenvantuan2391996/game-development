@@ -23,6 +23,7 @@ document.getElementById("btn-search").addEventListener("click", (event) => {
         "?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1";
       document.getElementById("icon-play-pause").className = "fa fa-pause";
 
+      // get the song's information
       const songInfo = await getInfoSong(
         localStorage.getItem(VIDEO_YOUTUBE_ID)
       );
