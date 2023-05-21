@@ -5,13 +5,13 @@ async function searchKey(keyword) {
 async function searchYouTube(keyword, apiKey) {
   // Perform keyword search using YouTube Data API v3
   const searchResponse = await fetch(
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${encodeURIComponent(
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${encodeURIComponent(
       keyword
     )}&key=${apiKey}`
   );
   const searchResult = await searchResponse.json();
 
-  return searchResult.items[0].id.videoId;
+  return searchResult.items.map((item) => item.id.videoId);
 }
 
 async function getInfoSong(id) {
