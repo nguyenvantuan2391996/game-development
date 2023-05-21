@@ -29,7 +29,7 @@ document.getElementById("btn-search").addEventListener("click", (event) => {
       );
       document.getElementById("song-name").textContent = songInfo.title;
       document.getElementById("song-artist").textContent = songInfo.artist;
-      if (songInfo.thumbnail) {
+      if (songInfo.thumbnail || songInfo.thumbnail !== NOT_FOUND) {
         document.getElementById("album-cover").src = songInfo.thumbnail;
       }
     },
