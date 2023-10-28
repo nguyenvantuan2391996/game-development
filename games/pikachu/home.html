@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="../common/css/home.css">
+<link rel="stylesheet" href="css/pikachu.css">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home game pikachu</title>
+</head>
+<body>
+<div>
+    <div class="options" style="margin-top: 30px">
+        <label for="list-row"></label><select id="list-row" class="hide-option option">
+        <option selected="selected" disabled="disabled" value="">Select amount of rows</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+    </select>
+    </div>
+
+    <div class="options" style="margin-top: 30px">
+        <label for="list-column"></label><select id="list-column" class="hide-option option">
+        <option selected="selected" disabled="disabled" value="">Select amount of columns</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+    </select>
+    </div>
+</div>
+
+<div class="button" id="button" onclick="handleLetGo()">Let's go!</div>
+</body>
+</html>
+
+<script type="text/javascript" src="js/pikachu-home.js"></script>
