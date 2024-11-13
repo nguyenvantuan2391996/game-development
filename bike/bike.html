@@ -22,7 +22,7 @@
         <input
                 type="text"
                 placeholder="Tìm kiếm sản phẩm"
-                class="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                class="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
         />
       </label>
     </div>
@@ -55,12 +55,33 @@
 </nav>
 
 <!-- Banner Carousel -->
-<div class="relative overflow-hidden bg-gray-800">
-  <div class="h-64 w-full bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1200x300');">
-    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
-      <h2 class="text-3xl text-white font-bold">Best Bikes Collection!</h2>
+<div class="relative overflow-hidden bg-gray-800" id="slider">
+  <!-- Slide Wrapper -->
+  <div class="slides relative flex transition-transform duration-700" style="width: 500%; transform: translateX(0);">
+    <!-- Slide 1 -->
+    <div class="slide h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] w-full bg-cover bg-center" style="background-image: url('banner-1.png');">
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] w-full bg-cover bg-center" style="background-image: url('banner-2.png');">
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] w-full bg-cover bg-center" style="background-image: url('banner-3.png');">
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] w-full bg-cover bg-center" style="background-image: url('banner-4.jpg');">
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] w-full bg-cover bg-center" style="background-image: url('banner-5.png');">
     </div>
   </div>
+
+  <!-- Navigation Arrows -->
+  <button id="prev" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md">❮</button>
+  <button id="next" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md">❯</button>
 </div>
 
 <!-- Product Section -->
@@ -88,9 +109,9 @@
     <div class="mt-4 flex justify-center space-x-6">
       <!-- Phone Button -->
       <a href="tel:1234567890" class="flex items-center space-x-2">
-        <div class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h3m10 10h3M4.22 4.22l2.83 2.83m13.72 13.72l2.83-2.83M8.12 19.88L5.29 17.05m13.42-10.1l-2.83-2.83M10 14l-2-2m8-8l2 2M12 6v6m0 4v2m0 4h-2a2 2 0 01-2-2v-2m4-10h-2m0 4h2m0 4H8m0-4H6"></path>
+        <div class="w-10 h-10 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+            <path fill="#0f0" d="M13,42h22c3.866,0,7-3.134,7-7V13c0-3.866-3.134-7-7-7H13c-3.866,0-7,3.134-7,7v22	C6,38.866,9.134,42,13,42z"></path><path fill="#fff" d="M35.45,31.041l-4.612-3.051c-0.563-0.341-1.267-0.347-1.836-0.017c0,0,0,0-1.978,1.153	c-0.265,0.154-0.52,0.183-0.726,0.145c-0.262-0.048-0.442-0.191-0.454-0.201c-1.087-0.797-2.357-1.852-3.711-3.205	c-1.353-1.353-2.408-2.623-3.205-3.711c-0.009-0.013-0.153-0.193-0.201-0.454c-0.037-0.206-0.009-0.46,0.145-0.726	c1.153-1.978,1.153-1.978,1.153-1.978c0.331-0.569,0.324-1.274-0.017-1.836l-3.051-4.612c-0.378-0.571-1.151-0.722-1.714-0.332	c0,0-1.445,0.989-1.922,1.325c-0.764,0.538-1.01,1.356-1.011,2.496c-0.002,1.604,1.38,6.629,7.201,12.45l0,0l0,0l0,0l0,0	c5.822,5.822,10.846,7.203,12.45,7.201c1.14-0.001,1.958-0.248,2.496-1.011c0.336-0.477,1.325-1.922,1.325-1.922	C36.172,32.192,36.022,31.419,35.45,31.041z"></path>
           </svg>
         </div>
         <span class="hidden sm:inline">Phone</span>
@@ -98,9 +119,9 @@
 
       <!-- Chat Facebook Button -->
       <a href="https://m.me/facebookusername" target="_blank" class="flex items-center space-x-2">
-        <div class="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 21.18L7.18 16m0 0l-.5-1.5M16 5l1.5.5m-3 12.68l3.82-7.68L17 7.09A8.94 8.94 0 1117 16m0-9V5.5M16.18 16l-5-9L6.82 5m5 3l-2-1"></path>
+        <div class="w-10 h-10 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+            <radialGradient id="8O3wK6b5ASW2Wn6hRCB5xa_YFbzdUk7Q3F8_gr1" cx="11.087" cy="7.022" r="47.612" gradientTransform="matrix(1 0 0 -1 0 50)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1292ff"></stop><stop offset=".079" stop-color="#2982ff"></stop><stop offset=".23" stop-color="#4e69ff"></stop><stop offset=".351" stop-color="#6559ff"></stop><stop offset=".428" stop-color="#6d53ff"></stop><stop offset=".754" stop-color="#df47aa"></stop><stop offset=".946" stop-color="#ff6257"></stop></radialGradient><path fill="url(#8O3wK6b5ASW2Wn6hRCB5xa_YFbzdUk7Q3F8_gr1)" d="M44,23.5C44,34.27,35.05,43,24,43c-1.651,0-3.25-0.194-4.784-0.564	c-0.465-0.112-0.951-0.069-1.379,0.145L13.46,44.77C12.33,45.335,11,44.513,11,43.249v-4.025c0-0.575-0.257-1.111-0.681-1.499	C6.425,34.165,4,29.11,4,23.5C4,12.73,12.95,4,24,4S44,12.73,44,23.5z"></path><path d="M34.992,17.292c-0.428,0-0.843,0.142-1.2,0.411l-5.694,4.215	c-0.133,0.1-0.28,0.15-0.435,0.15c-0.15,0-0.291-0.047-0.41-0.136l-3.972-2.99c-0.808-0.601-1.76-0.918-2.757-0.918	c-1.576,0-3.025,0.791-3.876,2.116l-1.211,1.891l-4.12,6.695c-0.392,0.614-0.422,1.372-0.071,2.014	c0.358,0.654,1.034,1.06,1.764,1.06c0.428,0,0.843-0.142,1.2-0.411l5.694-4.215c0.133-0.1,0.28-0.15,0.435-0.15	c0.15,0,0.291,0.047,0.41,0.136l3.972,2.99c0.809,0.602,1.76,0.918,2.757,0.918c1.576,0,3.025-0.791,3.876-2.116l1.211-1.891	l4.12-6.695c0.392-0.614,0.422-1.372,0.071-2.014C36.398,17.698,35.722,17.292,34.992,17.292L34.992,17.292z" opacity=".05"></path><path d="M34.992,17.792c-0.319,0-0.63,0.107-0.899,0.31l-5.697,4.218	c-0.216,0.163-0.468,0.248-0.732,0.248c-0.259,0-0.504-0.082-0.71-0.236l-3.973-2.991c-0.719-0.535-1.568-0.817-2.457-0.817	c-1.405,0-2.696,0.705-3.455,1.887l-1.21,1.891l-4.115,6.688c-0.297,0.465-0.32,1.033-0.058,1.511c0.266,0.486,0.787,0.8,1.325,0.8	c0.319,0,0.63-0.107,0.899-0.31l5.697-4.218c0.216-0.163,0.468-0.248,0.732-0.248c0.259,0,0.504,0.082,0.71,0.236l3.973,2.991	c0.719,0.535,1.568,0.817,2.457,0.817c1.405,0,2.696-0.705,3.455-1.887l1.21-1.891l4.115-6.688c0.297-0.465,0.32-1.033,0.058-1.511	C36.051,18.106,35.531,17.792,34.992,17.792L34.992,17.792z" opacity=".07"></path><path fill="#fff" d="M34.394,18.501l-5.7,4.22c-0.61,0.46-1.44,0.46-2.04,0.01L22.68,19.74	c-1.68-1.25-4.06-0.82-5.19,0.94l-1.21,1.89l-4.11,6.68c-0.6,0.94,0.55,2.01,1.44,1.34l5.7-4.22c0.61-0.46,1.44-0.46,2.04-0.01	l3.974,2.991c1.68,1.25,4.06,0.82,5.19-0.94l1.21-1.89l4.11-6.68C36.434,18.901,35.284,17.831,34.394,18.501z"></path>
           </svg>
         </div>
         <span class="hidden sm:inline">Facebook</span>
@@ -108,9 +129,9 @@
 
       <!-- Chat Zalo Button -->
       <a href="https://zalo.me/yourzaloid" target="_blank" class="flex items-center space-x-2">
-        <div class="w-10 h-10 bg-blue-400 hover:bg-blue-500 rounded-full flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.29 14.71a2.77 2.77 0 010-3.42l2.34-2.34a1 1 0 011.41 0l1.76 1.76a1 1 0 010 1.41l-3.42 3.42a.66.66 0 01-.83.18l-1.26-.63zm9.42 2.38a3.38 3.38 0 00-.63-1.26l-3.42-3.42a.76.76 0 010-1.07l1.76-1.76a1 1 0 011.41 0l2.34 2.34a2.77 2.77 0 010 3.42l-1.46 1.46z"></path>
+        <div class="w-10 h-10 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+            <path fill="#2962ff" d="M15,36V6.827l-1.211-0.811C8.64,8.083,5,13.112,5,19v10c0,7.732,6.268,14,14,14h10	c4.722,0,8.883-2.348,11.417-5.931V36H15z"></path><path fill="#eee" d="M29,5H19c-1.845,0-3.601,0.366-5.214,1.014C10.453,9.25,8,14.528,8,19	c0,6.771,0.936,10.735,3.712,14.607c0.216,0.301,0.357,0.653,0.376,1.022c0.043,0.835-0.129,2.365-1.634,3.742	c-0.162,0.148-0.059,0.419,0.16,0.428c0.942,0.041,2.843-0.014,4.797-0.877c0.557-0.246,1.191-0.203,1.729,0.083	C20.453,39.764,24.333,40,28,40c4.676,0,9.339-1.04,12.417-2.916C42.038,34.799,43,32.014,43,29V19C43,11.268,36.732,5,29,5z"></path><path fill="#2962ff" d="M36.75,27C34.683,27,33,25.317,33,23.25s1.683-3.75,3.75-3.75s3.75,1.683,3.75,3.75	S38.817,27,36.75,27z M36.75,21c-1.24,0-2.25,1.01-2.25,2.25s1.01,2.25,2.25,2.25S39,24.49,39,23.25S37.99,21,36.75,21z"></path><path fill="#2962ff" d="M31.5,27h-1c-0.276,0-0.5-0.224-0.5-0.5V18h1.5V27z"></path><path fill="#2962ff" d="M27,19.75v0.519c-0.629-0.476-1.403-0.769-2.25-0.769c-2.067,0-3.75,1.683-3.75,3.75	S22.683,27,24.75,27c0.847,0,1.621-0.293,2.25-0.769V26.5c0,0.276,0.224,0.5,0.5,0.5h1v-7.25H27z M24.75,25.5	c-1.24,0-2.25-1.01-2.25-2.25S23.51,21,24.75,21S27,22.01,27,23.25S25.99,25.5,24.75,25.5z"></path><path fill="#2962ff" d="M21.25,18h-8v1.5h5.321L13,26h0.026c-0.163,0.211-0.276,0.463-0.276,0.75V27h7.5	c0.276,0,0.5-0.224,0.5-0.5v-1h-5.321L21,19h-0.026c0.163-0.211,0.276-0.463,0.276-0.75V18z"></path>
           </svg>
         </div>
         <span class="hidden sm:inline">Zalo</span>
@@ -118,9 +139,9 @@
 
       <!-- Google Map Button -->
       <a href="https://goo.gl/maps/example" target="_blank" class="flex items-center space-x-2">
-        <div class="w-10 h-10 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 9.172A6.012 6.012 0 0012 7a6.012 6.012 0 00-5.657 2.172m6.114 9.656a2.125 2.125 0 11-3-3.002m4.97-7.1a1.5 1.5 0 00-2.154 0l-.073.072a6.021 6.021 0 01-8.535 0L5.414 4.93"></path>
+        <div class="w-10 h-10 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+            <path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06	C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88	C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"></path><path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15	c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"></path><path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"></path><path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3	L19.83,14.92z"></path><path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74	c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"></path>
           </svg>
         </div>
         <span class="hidden sm:inline">Google Map</span>
@@ -244,6 +265,54 @@
   menuToggle.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
   });
+
+  // JavaScript to handle automatic slide functionality
+  const slides = document.querySelector('.slides');
+  const slideCount = slides.children.length;
+  let currentIndex = 0;
+  let interval;
+
+  // Function to update the slide position
+  function updateSlidePosition() {
+    slides.style.transform = `translateX(-${currentIndex * 20}%)`;
+  }
+
+  // Move to the next slide
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slideCount;
+    updateSlidePosition();
+  }
+
+  // Move to the previous slide
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+    updateSlidePosition();
+  }
+
+  // Add event listeners to the navigation buttons
+  document.getElementById('next').addEventListener('click', () => {
+    nextSlide();
+    resetAutoSlide();
+  });
+
+  document.getElementById('prev').addEventListener('click', () => {
+    prevSlide();
+    resetAutoSlide();
+  });
+
+  // Start auto-sliding every 5 seconds
+  function startAutoSlide() {
+    interval = setInterval(nextSlide, 5000); // 5000ms = 5 seconds
+  }
+
+  // Reset the auto-slide interval
+  function resetAutoSlide() {
+    clearInterval(interval);
+    startAutoSlide();
+  }
+
+  // Initialize the slider by starting auto-slide
+  startAutoSlide();
 </script>
 </body>
 </html>
