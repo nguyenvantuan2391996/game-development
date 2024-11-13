@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bike Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<!-- Navbar -->
+<nav class="bg-gray-800 text-white">
+  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo Section -->
+    <div class="flex items-center space-x-4">
+      <img src="https://via.placeholder.com/50" alt="Logo" class="w-10 h-10">
+      <h1 class="text-lg font-bold hidden md:block">XE ĐIỆN VIỆT THANH</h1>
+    </div>
+
+    <div>
+      <label>
+        <input
+                type="text"
+                placeholder="Tìm kiếm sản phẩm"
+                class="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
+        />
+      </label>
+    </div>
+
+    <!-- Hamburger Menu for Mobile -->
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menu Items -->
+    <div id="menu" class="hidden md:flex space-x-6">
+      <a href="#" class="hover:text-orange-500 block">Xe Đạp Điện</a>
+      <a href="#" class="hover:text-orange-500 block">Xe Máy Điện</a>
+      <a href="#" class="hover:text-orange-500 block">Xe Máy 50CC</a>
+      <a href="#" class="hover:text-orange-500 block">Tin Tức</a>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+    <a href="#" class="block px-4 py-2 hover:bg-gray-700">Xe Đạp Điện</a>
+    <a href="#" class="block px-4 py-2 hover:bg-gray-700">Xe Máy Điện</a>
+    <a href="#" class="block px-4 py-2 hover:bg-gray-700">Xe Máy 50CC</a>
+    <a href="#" class="block px-4 py-2 hover:bg-gray-700">Tin Tức</a>
+  </div>
+</nav>
+
+<!-- Banner Carousel -->
+<div class="relative overflow-hidden bg-gray-800">
+  <div class="h-64 w-full bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1200x300');">
+    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+      <h2 class="text-3xl text-white font-bold">Best Bikes Collection!</h2>
+    </div>
+  </div>
+</div>
+
+<!-- Product Section -->
+<section class="container mx-auto py-8">
+  <h2 class="text-2xl font-bold mb-6 text-center">Xe Đạp Điện Nổi Bật</h2>
+  <div id="bike-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <!-- Bikes will be dynamically loaded here -->
+  </div>
+</section>
+
+<!-- Load More Button -->
+<div class="flex justify-center mb-2">
+  <button class="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path fill-rule="evenodd" d="M10 5a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L11 7.414V14a1 1 0 11-2 0V7.414L7.707 9.707A1 1 0 016.293 8.293l3-3A1 1 0 0110 5z" clip-rule="evenodd" />
+    </svg>
+    Tải thêm sản phẩm
+  </button>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-6">
+  <div class="container mx-auto">
+    <p class="text-center">© 2024 XE ĐIỆN VIỆT THANH. All rights reserved.</p>
+    <div class="mt-4 flex justify-center space-x-6">
+      <!-- Phone Button -->
+      <a href="tel:1234567890" class="flex items-center space-x-2">
+        <div class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h3m10 10h3M4.22 4.22l2.83 2.83m13.72 13.72l2.83-2.83M8.12 19.88L5.29 17.05m13.42-10.1l-2.83-2.83M10 14l-2-2m8-8l2 2M12 6v6m0 4v2m0 4h-2a2 2 0 01-2-2v-2m4-10h-2m0 4h2m0 4H8m0-4H6"></path>
+          </svg>
+        </div>
+        <span class="hidden sm:inline">Phone</span>
+      </a>
+
+      <!-- Chat Facebook Button -->
+      <a href="https://m.me/facebookusername" target="_blank" class="flex items-center space-x-2">
+        <div class="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 21.18L7.18 16m0 0l-.5-1.5M16 5l1.5.5m-3 12.68l3.82-7.68L17 7.09A8.94 8.94 0 1117 16m0-9V5.5M16.18 16l-5-9L6.82 5m5 3l-2-1"></path>
+          </svg>
+        </div>
+        <span class="hidden sm:inline">Facebook</span>
+      </a>
+
+      <!-- Chat Zalo Button -->
+      <a href="https://zalo.me/yourzaloid" target="_blank" class="flex items-center space-x-2">
+        <div class="w-10 h-10 bg-blue-400 hover:bg-blue-500 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.29 14.71a2.77 2.77 0 010-3.42l2.34-2.34a1 1 0 011.41 0l1.76 1.76a1 1 0 010 1.41l-3.42 3.42a.66.66 0 01-.83.18l-1.26-.63zm9.42 2.38a3.38 3.38 0 00-.63-1.26l-3.42-3.42a.76.76 0 010-1.07l1.76-1.76a1 1 0 011.41 0l2.34 2.34a2.77 2.77 0 010 3.42l-1.46 1.46z"></path>
+          </svg>
+        </div>
+        <span class="hidden sm:inline">Zalo</span>
+      </a>
+
+      <!-- Google Map Button -->
+      <a href="https://goo.gl/maps/example" target="_blank" class="flex items-center space-x-2">
+        <div class="w-10 h-10 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 9.172A6.012 6.012 0 0012 7a6.012 6.012 0 00-5.657 2.172m6.114 9.656a2.125 2.125 0 11-3-3.002m4.97-7.1a1.5 1.5 0 00-2.154 0l-.073.072a6.021 6.021 0 01-8.535 0L5.414 4.93"></path>
+          </svg>
+        </div>
+        <span class="hidden sm:inline">Google Map</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  // Fake bike product data
+  const bikes = [
+    {
+      id: 1,
+      name: "Xe Ga SYM PRITI 50CC",
+      originalPrice: "28,000,000đ",
+      discountedPrice: "26,700,000đ",
+      image: "1.jpg",
+      features: [
+        "- Bộ quà tặng 500K",
+        "- Áp dụng giao hàng toàn quốc",
+      ],
+    },
+    {
+      id: 2,
+      name: "Xe Ga 50CC KYMCO HERMOSA 2024",
+      originalPrice: "30,000,000đ",
+      discountedPrice: "28,190,000đ",
+      image: "2.jpg",
+      features: [
+        "- Quà tặng trị giá tới 500K",
+        "- Áp dụng giao hàng toàn quốc",
+      ],
+    },
+    {
+      id: 3,
+      name: "Xe Máy Điện YADEA V002 (VFV)",
+      originalPrice: "35,000,000đ",
+      discountedPrice: "27,990,000đ",
+      image: "3.jpg",
+      features: [
+        "- Quà tặng trị giá tới 500K",
+        "- Áp dụng giao hàng toàn quốc",
+      ],
+    },
+    {
+      id: 4,
+      name: "Xe Máy Điện YADEA XMEN NEO",
+      originalPrice: "19,500,000đ",
+      discountedPrice: "17,490,000đ",
+      image: "4.jpg",
+      features: [
+        "- Quà tặng trị giá tới 500K",
+        "- Áp dụng giao hàng toàn quốc",
+      ],
+    },
+    {
+      id: 5,
+      name: "Xe Máy Điện YADEA I8 2024",
+      originalPrice: "15,500,000đ",
+      discountedPrice: "13,990,000đ",
+      image: "5.jpg",
+      features: [
+        "- Quà tặng trị giá tới 500K",
+        "- Áp dụng giao hàng toàn quốc",
+      ],
+    },
+    {
+      id: 6,
+      name: "Xe Máy Điện YADEA OCEAN 2024",
+      originalPrice: "19,990,000đ",
+      discountedPrice: "16,990,000đ",
+      image: "6.jpg",
+      features: [
+        "- Quà tặng trị giá tới 500K",
+        "- Áp dụng giao hàng toàn quốc",
+      ],
+    },
+  ];
+
+  const bikeList = document.getElementById("bike-list");
+
+  // Function to render bike cards
+  function renderBikes() {
+    bikes.forEach((bike) => {
+      const bikeCard = document.createElement("div");
+      bikeCard.className = "bg-white shadow-md rounded-lg overflow-hidden";
+
+      bikeCard.innerHTML = `
+          <img src="${bike.image}" alt="${bike.name}" class="w-full h-auto object-cover rounded-lg mb-4">
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-gray-800">${bike.name}</h3>
+            <div class="flex items-center space-x-2 my-2">
+              <span class="text-gray-500 line-through">${bike.originalPrice}</span>
+              <span class="text-orange-500 font-bold">${bike.discountedPrice}</span>
+            </div>
+            <ul class="text-gray-600 text-sm">
+              ${bike.features.map((feature) => `<li>${feature}</li>`).join("")}
+            </ul>
+            <div class="mt-4 flex space-x-2">
+              <button class="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 flex-1">
+                Mua Ngay
+              </button>
+              <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex-1">
+                Mua Trả Góp
+              </button>
+            </div>
+          </div>
+        `;
+
+      bikeList.appendChild(bikeCard);
+    });
+  }
+
+  // Initialize page with bikes
+  renderBikes();
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+</body>
+</html>
