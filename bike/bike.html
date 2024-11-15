@@ -84,79 +84,444 @@
   <button id="next" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md">❯</button>
 </div>
 
-<!-- Product Section -->
-<section class="container mx-auto py-8">
-  <h2 class="text-2xl font-bold mb-6 text-center">Xe Đạp Điện Nổi Bật</h2>
-  <div id="bike-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    <!-- Bikes will be dynamically loaded here -->
+<section class="bg-gray-100 py-4 hidden sm:block">
+  <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
+
+    <!-- Quality Assurance -->
+    <div class="p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 8v4l3 3"></path>
+      </svg>
+      <p class="text-orange-500 font-semibold mt-4">CAM KẾT CHẤT LƯỢNG<br>CHÍNH HÃNG</p>
+    </div>
+
+    <!-- Free Shipping -->
+    <div class="p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 3h18v4H3z"></path>
+        <path d="M5 7v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V7M9 22v1M15 22v1"></path>
+      </svg>
+      <p class="text-orange-500 font-semibold mt-4">GIAO HÀNG MIỄN PHÍ<br>NHANH – UY TÍN</p>
+    </div>
+
+    <!-- Installment Purchase -->
+    <div class="p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+        <path d="M16 3v4"></path>
+        <path d="M8 3v4"></path>
+      </svg>
+      <p class="text-orange-500 font-semibold mt-4">MUA HÀNG TRẢ GÓP<br>THỦ TỤC NHANH GỌN</p>
+    </div>
+
+    <!-- Repair Service -->
+    <div class="p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 13a4 4 0 0 1 0 8h-4v-2h4a2 2 0 0 0 0-4h-4v-2h4z"></path>
+        <path d="M10 11a4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4 4 4 0 0 1-4 4z"></path>
+      </svg>
+      <p class="text-orange-500 font-semibold mt-4">SỬA CHỮA TẬN NƠI<br>CỨU HỘ KHẨN CẤP</p>
+    </div>
   </div>
 </section>
 
+<!-- Product Section -->
+<div>
+  <section class="container mx-auto py-4">
+    <h2 class="text-2xl font-bold mb-6">XE ĐẠP ĐIỆN NỔI BẬT</h2>
+    <div id="bike-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Bikes will be dynamically loaded here -->
+    </div>
+  </section>
+</div>
+
 <!-- Load More Button -->
-<div class="flex justify-center mb-2">
+<div class="flex justify-center">
   <button class="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-      <path fill-rule="evenodd" d="M10 5a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L11 7.414V14a1 1 0 11-2 0V7.414L7.707 9.707A1 1 0 016.293 8.293l3-3A1 1 0 0110 5z" clip-rule="evenodd" />
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e8eaed">
+      <path d="M0 0h24v24H0z" fill="none"/>
+      <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
     </svg>
-    Tải thêm sản phẩm
+    TẢI THÊM SẢN PHẨM
   </button>
 </div>
 
-<!-- Footer -->
-<footer class="bg-gray-800 text-white py-6">
-  <div class="container mx-auto">
-    <p class="text-center">© 2024 XE ĐIỆN VIỆT THANH. All rights reserved.</p>
-    <div class="mt-4 flex justify-center space-x-6">
-      <!-- Phone Button -->
-      <a href="tel:1234567890" class="flex items-center space-x-2">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
-            <path fill="#0f0" d="M13,42h22c3.866,0,7-3.134,7-7V13c0-3.866-3.134-7-7-7H13c-3.866,0-7,3.134-7,7v22	C6,38.866,9.134,42,13,42z"></path><path fill="#fff" d="M35.45,31.041l-4.612-3.051c-0.563-0.341-1.267-0.347-1.836-0.017c0,0,0,0-1.978,1.153	c-0.265,0.154-0.52,0.183-0.726,0.145c-0.262-0.048-0.442-0.191-0.454-0.201c-1.087-0.797-2.357-1.852-3.711-3.205	c-1.353-1.353-2.408-2.623-3.205-3.711c-0.009-0.013-0.153-0.193-0.201-0.454c-0.037-0.206-0.009-0.46,0.145-0.726	c1.153-1.978,1.153-1.978,1.153-1.978c0.331-0.569,0.324-1.274-0.017-1.836l-3.051-4.612c-0.378-0.571-1.151-0.722-1.714-0.332	c0,0-1.445,0.989-1.922,1.325c-0.764,0.538-1.01,1.356-1.011,2.496c-0.002,1.604,1.38,6.629,7.201,12.45l0,0l0,0l0,0l0,0	c5.822,5.822,10.846,7.203,12.45,7.201c1.14-0.001,1.958-0.248,2.496-1.011c0.336-0.477,1.325-1.922,1.325-1.922	C36.172,32.192,36.022,31.419,35.45,31.041z"></path>
-          </svg>
-        </div>
-        <span class="hidden sm:inline">Phone</span>
-      </a>
+<!-- Product Suggest -->
+<section class="container mx-auto py-8 px-4">
+  <h2 class="text-2xl font-bold mb-6">SẢN PHẨM LIÊN QUAN</h2>
+  <div class="relative overflow-hidden">
+    <div id="bike-suggest" class="flex md:space-x-6 space-x-4 transition-transform duration-700 ease-in-out">
+      <!-- Bikes will be dynamically loaded here -->
+    </div>
+  </div>
+</section>
 
-      <!-- Chat Facebook Button -->
-      <a href="https://m.me/facebookusername" target="_blank" class="flex items-center space-x-2">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
-            <radialGradient id="8O3wK6b5ASW2Wn6hRCB5xa_YFbzdUk7Q3F8_gr1" cx="11.087" cy="7.022" r="47.612" gradientTransform="matrix(1 0 0 -1 0 50)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1292ff"></stop><stop offset=".079" stop-color="#2982ff"></stop><stop offset=".23" stop-color="#4e69ff"></stop><stop offset=".351" stop-color="#6559ff"></stop><stop offset=".428" stop-color="#6d53ff"></stop><stop offset=".754" stop-color="#df47aa"></stop><stop offset=".946" stop-color="#ff6257"></stop></radialGradient><path fill="url(#8O3wK6b5ASW2Wn6hRCB5xa_YFbzdUk7Q3F8_gr1)" d="M44,23.5C44,34.27,35.05,43,24,43c-1.651,0-3.25-0.194-4.784-0.564	c-0.465-0.112-0.951-0.069-1.379,0.145L13.46,44.77C12.33,45.335,11,44.513,11,43.249v-4.025c0-0.575-0.257-1.111-0.681-1.499	C6.425,34.165,4,29.11,4,23.5C4,12.73,12.95,4,24,4S44,12.73,44,23.5z"></path><path d="M34.992,17.292c-0.428,0-0.843,0.142-1.2,0.411l-5.694,4.215	c-0.133,0.1-0.28,0.15-0.435,0.15c-0.15,0-0.291-0.047-0.41-0.136l-3.972-2.99c-0.808-0.601-1.76-0.918-2.757-0.918	c-1.576,0-3.025,0.791-3.876,2.116l-1.211,1.891l-4.12,6.695c-0.392,0.614-0.422,1.372-0.071,2.014	c0.358,0.654,1.034,1.06,1.764,1.06c0.428,0,0.843-0.142,1.2-0.411l5.694-4.215c0.133-0.1,0.28-0.15,0.435-0.15	c0.15,0,0.291,0.047,0.41,0.136l3.972,2.99c0.809,0.602,1.76,0.918,2.757,0.918c1.576,0,3.025-0.791,3.876-2.116l1.211-1.891	l4.12-6.695c0.392-0.614,0.422-1.372,0.071-2.014C36.398,17.698,35.722,17.292,34.992,17.292L34.992,17.292z" opacity=".05"></path><path d="M34.992,17.792c-0.319,0-0.63,0.107-0.899,0.31l-5.697,4.218	c-0.216,0.163-0.468,0.248-0.732,0.248c-0.259,0-0.504-0.082-0.71-0.236l-3.973-2.991c-0.719-0.535-1.568-0.817-2.457-0.817	c-1.405,0-2.696,0.705-3.455,1.887l-1.21,1.891l-4.115,6.688c-0.297,0.465-0.32,1.033-0.058,1.511c0.266,0.486,0.787,0.8,1.325,0.8	c0.319,0,0.63-0.107,0.899-0.31l5.697-4.218c0.216-0.163,0.468-0.248,0.732-0.248c0.259,0,0.504,0.082,0.71,0.236l3.973,2.991	c0.719,0.535,1.568,0.817,2.457,0.817c1.405,0,2.696-0.705,3.455-1.887l1.21-1.891l4.115-6.688c0.297-0.465,0.32-1.033,0.058-1.511	C36.051,18.106,35.531,17.792,34.992,17.792L34.992,17.792z" opacity=".07"></path><path fill="#fff" d="M34.394,18.501l-5.7,4.22c-0.61,0.46-1.44,0.46-2.04,0.01L22.68,19.74	c-1.68-1.25-4.06-0.82-5.19,0.94l-1.21,1.89l-4.11,6.68c-0.6,0.94,0.55,2.01,1.44,1.34l5.7-4.22c0.61-0.46,1.44-0.46,2.04-0.01	l3.974,2.991c1.68,1.25,4.06,0.82,5.19-0.94l1.21-1.89l4.11-6.68C36.434,18.901,35.284,17.831,34.394,18.501z"></path>
-          </svg>
-        </div>
-        <span class="hidden sm:inline">Facebook</span>
-      </a>
+<!-- News -->
+<section class="bg-gray-100 py-8">
+  <div class="container mx-auto px-4">
 
-      <!-- Chat Zalo Button -->
-      <a href="https://zalo.me/yourzaloid" target="_blank" class="flex items-center space-x-2">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
-            <path fill="#2962ff" d="M15,36V6.827l-1.211-0.811C8.64,8.083,5,13.112,5,19v10c0,7.732,6.268,14,14,14h10	c4.722,0,8.883-2.348,11.417-5.931V36H15z"></path><path fill="#eee" d="M29,5H19c-1.845,0-3.601,0.366-5.214,1.014C10.453,9.25,8,14.528,8,19	c0,6.771,0.936,10.735,3.712,14.607c0.216,0.301,0.357,0.653,0.376,1.022c0.043,0.835-0.129,2.365-1.634,3.742	c-0.162,0.148-0.059,0.419,0.16,0.428c0.942,0.041,2.843-0.014,4.797-0.877c0.557-0.246,1.191-0.203,1.729,0.083	C20.453,39.764,24.333,40,28,40c4.676,0,9.339-1.04,12.417-2.916C42.038,34.799,43,32.014,43,29V19C43,11.268,36.732,5,29,5z"></path><path fill="#2962ff" d="M36.75,27C34.683,27,33,25.317,33,23.25s1.683-3.75,3.75-3.75s3.75,1.683,3.75,3.75	S38.817,27,36.75,27z M36.75,21c-1.24,0-2.25,1.01-2.25,2.25s1.01,2.25,2.25,2.25S39,24.49,39,23.25S37.99,21,36.75,21z"></path><path fill="#2962ff" d="M31.5,27h-1c-0.276,0-0.5-0.224-0.5-0.5V18h1.5V27z"></path><path fill="#2962ff" d="M27,19.75v0.519c-0.629-0.476-1.403-0.769-2.25-0.769c-2.067,0-3.75,1.683-3.75,3.75	S22.683,27,24.75,27c0.847,0,1.621-0.293,2.25-0.769V26.5c0,0.276,0.224,0.5,0.5,0.5h1v-7.25H27z M24.75,25.5	c-1.24,0-2.25-1.01-2.25-2.25S23.51,21,24.75,21S27,22.01,27,23.25S25.99,25.5,24.75,25.5z"></path><path fill="#2962ff" d="M21.25,18h-8v1.5h5.321L13,26h0.026c-0.163,0.211-0.276,0.463-0.276,0.75V27h7.5	c0.276,0,0.5-0.224,0.5-0.5v-1h-5.321L21,19h-0.026c0.163-0.211,0.276-0.463,0.276-0.75V18z"></path>
-          </svg>
-        </div>
-        <span class="hidden sm:inline">Zalo</span>
-      </a>
+    <h2 class="text-2xl font-semibold text-gray-700 mb-6">TIN TỨC NỔI BẬT</h2>
 
-      <!-- Google Map Button -->
-      <a href="https://goo.gl/maps/example" target="_blank" class="flex items-center space-x-2">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
-            <path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06	C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88	C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"></path><path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15	c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"></path><path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"></path><path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3	L19.83,14.92z"></path><path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74	c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"></path>
+    <div class="space-y-6">
+
+      <!-- News Item 1 -->
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+        <div class="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4">
+          <!-- Image -->
+          <img src="https://via.placeholder.com/300x200" alt="Product X" class="w-full sm:w-48 h-32 sm:h-40 object-cover rounded-lg shadow-lg mt-4 sm:mt-0">
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mt-4">New Product Launch: Product X</h3>
+        <p class="text-gray-600 mt-2">We are excited to announce the launch of our latest product, Product X! It comes with amazing features that will improve your experience.</p>
+        <p class="text-sm text-gray-500 mt-2">Posted on: <span class="font-medium">November 15, 2024</span></p>
+        <a href="#" class="inline-block mt-4 px-6 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors">XEM CHI TIẾT</a>
+      </div>
+
+      <!-- News Item 2 -->
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+        <div class="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4">
+          <!-- Image -->
+          <img src="https://via.placeholder.com/300x200" alt="Product Y" class="w-full sm:w-48 h-32 sm:h-40 object-cover rounded-lg shadow-lg mt-4 sm:mt-0">
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mt-4">Update: New Feature for Product Y</h3>
+        <p class="text-gray-600 mt-2">We've released a new feature for Product Y, enhancing its performance and adding new capabilities for our users.</p>
+        <p class="text-sm text-gray-500 mt-2">Posted on: <span class="font-medium">November 10, 2024</span></p>
+        <a href="#" class="inline-block mt-4 px-6 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors">XEM CHI TIẾT</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="bg-gray-100 py-4">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-semibold text-gray-700 mb-6">NHẬN XÉT TỪ KHÁCH HÀNG</h2>
+
+    <!-- Review Card -->
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+      <div class="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4">
+        <!-- User Image -->
+        <img src="https://via.placeholder.com/300x200" alt="User" class="w-16 h-16 rounded-full object-cover">
+
+        <!-- User Info -->
+        <div class="mt-4 sm:mt-0">
+          <h3 class="text-xl font-semibold text-gray-800">John Doe</h3>
+          <p class="text-sm text-gray-500">Posted on: November 15, 2024</p>
+        </div>
+      </div>
+
+      <!-- Rating Section -->
+      <div class="mt-4">
+        <div class="flex items-center space-x-1">
+          <!-- Star Icons -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
           </svg>
         </div>
-        <span class="hidden sm:inline">Google Map</span>
-      </a>
+      </div>
+
+      <!-- Review Text -->
+      <p class="text-gray-600 mt-4">This product exceeded my expectations. It works flawlessly, and I highly recommend it to others. The quality is top-notch, and it arrived quickly. Will definitely buy again!</p>
+    </div>
+
+    <div class="mt-2 bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+      <div class="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4">
+        <!-- User Image -->
+        <img src="https://via.placeholder.com/300x200" alt="User" class="w-16 h-16 rounded-full object-cover">
+
+        <!-- User Info -->
+        <div class="mt-4 sm:mt-0">
+          <h3 class="text-xl font-semibold text-gray-800">John Doe</h3>
+          <p class="text-sm text-gray-500">Posted on: November 15, 2024</p>
+        </div>
+      </div>
+
+      <!-- Rating Section -->
+      <div class="mt-4">
+        <div class="flex items-center space-x-1">
+          <!-- Star Icons -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Review Text -->
+      <p class="text-gray-600 mt-4">This product exceeded my expectations. It works flawlessly, and I highly recommend it to others. The quality is top-notch, and it arrived quickly. Will definitely buy again!</p>
+    </div>
+
+    <!-- View More Button -->
+    <a href="#" class="inline-block mt-4 px-6 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors">ĐỌC THÊM</a>
+  </div>
+</section>
+
+<!-- Add Your Review -->
+<section class="bg-gray-100 py-4">
+  <div class="container mx-auto px-4">
+    <!-- Review Form -->
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+      <form action="#" method="POST">
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700 text-sm font-semibold">TÊN</label>
+          <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-md mt-2" placeholder="Điền tên của bạn" required>
+        </div>
+
+        <!-- Rating Section -->
+        <div class="mb-4">
+          <div class="flex items-center space-x-1 mt-2">
+            <!-- Star Rating (interactive) -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 star text-gray-400 cursor-pointer text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 star text-gray-400 cursor-pointer text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 star text-gray-400 cursor-pointer text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 star text-gray-400 cursor-pointer text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 star text-gray-400 cursor-pointer text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Review Text Section -->
+        <div class="mb-4">
+          <label for="review" class="block text-gray-700 text-sm font-semibold">NHẬN XÉT</label>
+          <textarea id="review" name="review" class="w-full p-2 border border-gray-300 rounded-md mt-2" rows="4" placeholder="Viết đánh giá của bạn ở đây..." required></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-4">
+          <button type="submit" class="w-full px-6 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors">NHẬN XÉT</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+  <div class="bg-gray-800 text-white py-10">
+    <div class="container mx-auto px-5 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Left Side: Logo and Information -->
+      <div class="text-center md:text-left">
+        <img src="https://via.placeholder.com/300x200" alt="Logo" class="w-24 mx-auto md:mx-0 mb-2">
+        <h3 class="font-bold text-lg">DETECH</h3>
+        <p class="italic">Cùng Bạn Đi Tới Thành Công</p>
+        <div class="text-sm mt-4 space-y-1">
+          <p>CÔNG TY TNHH XE ĐIỆN XE MÁY DETECH</p>
+          <p>Địa chỉ: Phường Dị Sử, Thị xã Mỹ Hào, Tỉnh Hưng Yên</p>
+          <p>MST: 0900189171</p>
+          <p>Hotline: 0904675311</p>
+          <p>Email: <a href="mailto:info@detechmotor.com.vn" class="text-white underline">info@detechmotor.com.vn</a></p>
+        </div>
+        <!-- Social Media Links -->
+        <div class="flex justify-center md:justify-start space-x-4 mt-4">
+          <!-- Phone Button -->
+          <a href="tel:1234567890" class="flex items-center space-x-2">
+            <div class="w-6 h-6 rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                <path fill="#0f0" d="M13,42h22c3.866,0,7-3.134,7-7V13c0-3.866-3.134-7-7-7H13c-3.866,0-7,3.134-7,7v22	C6,38.866,9.134,42,13,42z"></path><path fill="#fff" d="M35.45,31.041l-4.612-3.051c-0.563-0.341-1.267-0.347-1.836-0.017c0,0,0,0-1.978,1.153	c-0.265,0.154-0.52,0.183-0.726,0.145c-0.262-0.048-0.442-0.191-0.454-0.201c-1.087-0.797-2.357-1.852-3.711-3.205	c-1.353-1.353-2.408-2.623-3.205-3.711c-0.009-0.013-0.153-0.193-0.201-0.454c-0.037-0.206-0.009-0.46,0.145-0.726	c1.153-1.978,1.153-1.978,1.153-1.978c0.331-0.569,0.324-1.274-0.017-1.836l-3.051-4.612c-0.378-0.571-1.151-0.722-1.714-0.332	c0,0-1.445,0.989-1.922,1.325c-0.764,0.538-1.01,1.356-1.011,2.496c-0.002,1.604,1.38,6.629,7.201,12.45l0,0l0,0l0,0l0,0	c5.822,5.822,10.846,7.203,12.45,7.201c1.14-0.001,1.958-0.248,2.496-1.011c0.336-0.477,1.325-1.922,1.325-1.922	C36.172,32.192,36.022,31.419,35.45,31.041z"></path>
+              </svg>
+            </div>
+            <span class="hidden sm:inline">Phone</span>
+          </a>
+
+          <!-- Chat Facebook Button -->
+          <a href="https://m.me/facebookusername" target="_blank" class="flex items-center space-x-2">
+            <div class="w-6 h-6 rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                <radialGradient id="8O3wK6b5ASW2Wn6hRCB5xa_YFbzdUk7Q3F8_gr1" cx="11.087" cy="7.022" r="47.612" gradientTransform="matrix(1 0 0 -1 0 50)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1292ff"></stop><stop offset=".079" stop-color="#2982ff"></stop><stop offset=".23" stop-color="#4e69ff"></stop><stop offset=".351" stop-color="#6559ff"></stop><stop offset=".428" stop-color="#6d53ff"></stop><stop offset=".754" stop-color="#df47aa"></stop><stop offset=".946" stop-color="#ff6257"></stop></radialGradient><path fill="url(#8O3wK6b5ASW2Wn6hRCB5xa_YFbzdUk7Q3F8_gr1)" d="M44,23.5C44,34.27,35.05,43,24,43c-1.651,0-3.25-0.194-4.784-0.564	c-0.465-0.112-0.951-0.069-1.379,0.145L13.46,44.77C12.33,45.335,11,44.513,11,43.249v-4.025c0-0.575-0.257-1.111-0.681-1.499	C6.425,34.165,4,29.11,4,23.5C4,12.73,12.95,4,24,4S44,12.73,44,23.5z"></path><path d="M34.992,17.292c-0.428,0-0.843,0.142-1.2,0.411l-5.694,4.215	c-0.133,0.1-0.28,0.15-0.435,0.15c-0.15,0-0.291-0.047-0.41-0.136l-3.972-2.99c-0.808-0.601-1.76-0.918-2.757-0.918	c-1.576,0-3.025,0.791-3.876,2.116l-1.211,1.891l-4.12,6.695c-0.392,0.614-0.422,1.372-0.071,2.014	c0.358,0.654,1.034,1.06,1.764,1.06c0.428,0,0.843-0.142,1.2-0.411l5.694-4.215c0.133-0.1,0.28-0.15,0.435-0.15	c0.15,0,0.291,0.047,0.41,0.136l3.972,2.99c0.809,0.602,1.76,0.918,2.757,0.918c1.576,0,3.025-0.791,3.876-2.116l1.211-1.891	l4.12-6.695c0.392-0.614,0.422-1.372,0.071-2.014C36.398,17.698,35.722,17.292,34.992,17.292L34.992,17.292z" opacity=".05"></path><path d="M34.992,17.792c-0.319,0-0.63,0.107-0.899,0.31l-5.697,4.218	c-0.216,0.163-0.468,0.248-0.732,0.248c-0.259,0-0.504-0.082-0.71-0.236l-3.973-2.991c-0.719-0.535-1.568-0.817-2.457-0.817	c-1.405,0-2.696,0.705-3.455,1.887l-1.21,1.891l-4.115,6.688c-0.297,0.465-0.32,1.033-0.058,1.511c0.266,0.486,0.787,0.8,1.325,0.8	c0.319,0,0.63-0.107,0.899-0.31l5.697-4.218c0.216-0.163,0.468-0.248,0.732-0.248c0.259,0,0.504,0.082,0.71,0.236l3.973,2.991	c0.719,0.535,1.568,0.817,2.457,0.817c1.405,0,2.696-0.705,3.455-1.887l1.21-1.891l4.115-6.688c0.297-0.465,0.32-1.033,0.058-1.511	C36.051,18.106,35.531,17.792,34.992,17.792L34.992,17.792z" opacity=".07"></path><path fill="#fff" d="M34.394,18.501l-5.7,4.22c-0.61,0.46-1.44,0.46-2.04,0.01L22.68,19.74	c-1.68-1.25-4.06-0.82-5.19,0.94l-1.21,1.89l-4.11,6.68c-0.6,0.94,0.55,2.01,1.44,1.34l5.7-4.22c0.61-0.46,1.44-0.46,2.04-0.01	l3.974,2.991c1.68,1.25,4.06,0.82,5.19-0.94l1.21-1.89l4.11-6.68C36.434,18.901,35.284,17.831,34.394,18.501z"></path>
+              </svg>
+            </div>
+            <span class="hidden sm:inline">Facebook</span>
+          </a>
+
+          <!-- Chat Zalo Button -->
+          <a href="https://zalo.me/yourzaloid" target="_blank" class="flex items-center space-x-2">
+            <div class="w-6 h-6 rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                <path fill="#2962ff" d="M15,36V6.827l-1.211-0.811C8.64,8.083,5,13.112,5,19v10c0,7.732,6.268,14,14,14h10	c4.722,0,8.883-2.348,11.417-5.931V36H15z"></path><path fill="#eee" d="M29,5H19c-1.845,0-3.601,0.366-5.214,1.014C10.453,9.25,8,14.528,8,19	c0,6.771,0.936,10.735,3.712,14.607c0.216,0.301,0.357,0.653,0.376,1.022c0.043,0.835-0.129,2.365-1.634,3.742	c-0.162,0.148-0.059,0.419,0.16,0.428c0.942,0.041,2.843-0.014,4.797-0.877c0.557-0.246,1.191-0.203,1.729,0.083	C20.453,39.764,24.333,40,28,40c4.676,0,9.339-1.04,12.417-2.916C42.038,34.799,43,32.014,43,29V19C43,11.268,36.732,5,29,5z"></path><path fill="#2962ff" d="M36.75,27C34.683,27,33,25.317,33,23.25s1.683-3.75,3.75-3.75s3.75,1.683,3.75,3.75	S38.817,27,36.75,27z M36.75,21c-1.24,0-2.25,1.01-2.25,2.25s1.01,2.25,2.25,2.25S39,24.49,39,23.25S37.99,21,36.75,21z"></path><path fill="#2962ff" d="M31.5,27h-1c-0.276,0-0.5-0.224-0.5-0.5V18h1.5V27z"></path><path fill="#2962ff" d="M27,19.75v0.519c-0.629-0.476-1.403-0.769-2.25-0.769c-2.067,0-3.75,1.683-3.75,3.75	S22.683,27,24.75,27c0.847,0,1.621-0.293,2.25-0.769V26.5c0,0.276,0.224,0.5,0.5,0.5h1v-7.25H27z M24.75,25.5	c-1.24,0-2.25-1.01-2.25-2.25S23.51,21,24.75,21S27,22.01,27,23.25S25.99,25.5,24.75,25.5z"></path><path fill="#2962ff" d="M21.25,18h-8v1.5h5.321L13,26h0.026c-0.163,0.211-0.276,0.463-0.276,0.75V27h7.5	c0.276,0,0.5-0.224,0.5-0.5v-1h-5.321L21,19h-0.026c0.163-0.211,0.276-0.463,0.276-0.75V18z"></path>
+              </svg>
+            </div>
+            <span class="hidden sm:inline">Zalo</span>
+          </a>
+
+          <!-- Google Map Button -->
+          <a href="https://goo.gl/maps/example" target="_blank" class="flex items-center space-x-2">
+            <div class="w-6 h-6 rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                <path fill="#48b564" d="M35.76,26.36h0.01c0,0-3.77,5.53-6.94,9.64c-2.74,3.55-3.54,6.59-3.77,8.06	C24.97,44.6,24.53,45,24,45s-0.97-0.4-1.06-0.94c-0.23-1.47-1.03-4.51-3.77-8.06c-0.42-0.55-0.85-1.12-1.28-1.7L28.24,22l8.33-9.88	C37.49,14.05,38,16.21,38,18.5C38,21.4,37.17,24.09,35.76,26.36z"></path><path fill="#fcc60e" d="M28.24,22L17.89,34.3c-2.82-3.78-5.66-7.94-5.66-7.94h0.01c-0.3-0.48-0.57-0.97-0.8-1.48L19.76,15	c-0.79,0.95-1.26,2.17-1.26,3.5c0,3.04,2.46,5.5,5.5,5.5C25.71,24,27.24,23.22,28.24,22z"></path><path fill="#2c85eb" d="M28.4,4.74l-8.57,10.18L13.27,9.2C15.83,6.02,19.69,4,24,4C25.54,4,27.02,4.26,28.4,4.74z"></path><path fill="#ed5748" d="M19.83,14.92L19.76,15l-8.32,9.88C10.52,22.95,10,20.79,10,18.5c0-3.54,1.23-6.79,3.27-9.3	L19.83,14.92z"></path><path fill="#5695f6" d="M28.24,22c0.79-0.95,1.26-2.17,1.26-3.5c0-3.04-2.46-5.5-5.5-5.5c-1.71,0-3.24,0.78-4.24,2L28.4,4.74	c3.59,1.22,6.53,3.91,8.17,7.38L28.24,22z"></path>
+              </svg>
+            </div>
+            <span class="hidden sm:inline">Google Map</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Center Menu Links -->
+      <div class="text-center md:text-left hidden sm:block">
+        <div class="grid grid-cols-2 gap-4">
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">TRANG CHỦ</a></li>
+            <li><a href="#" class="hover:underline">SẢN PHẨM</a></li>
+            <li><a href="#" class="hover:underline">TIN TỨC</a></li>
+          </ul>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">GIỚI THIỆU</a></li>
+            <li><a href="#" class="hover:underline">HỆ THỐNG ĐẠI LÝ</a></li>
+            <li><a href="#" class="hover:underline">ĐĂNG KÝ TƯ VẤN</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Language Selection -->
+      <div class="flex flex-col items-center md:items-end space-y-2 hidden sm:block">
+        <p>
+          <span><img src="https://cdn-icons-png.flaticon.com/128/555/555515.png" alt="Vietnamese" class="w-6 inline-block"> </span>
+          <span><img src="https://cdn-icons-png.flaticon.com/128/11105/11105310.png" alt="English" class="w-6 inline-block mr-1"> </span>
+        </p>
+      </div>
     </div>
   </div>
 </footer>
 
 <!-- JavaScript -->
 <script>
+  // Handle star rating click
+  const stars = document.querySelectorAll('.star');
+  let selectedRating = 0;
+
+  stars.forEach((star, index) => {
+    star.addEventListener('click', () => {
+      // Update selected rating
+      selectedRating = index + 1;
+
+      // Reset all stars
+      stars.forEach(star => star.classList.remove('text-yellow-500'));
+
+      // Add yellow color to the selected stars
+      for (let i = 0; i < selectedRating; i++) {
+        stars[i].classList.add('text-yellow-500');
+      }
+    });
+  });
+
+  // Sample product data (this could be fetched from an API)
+  const products = [
+    { image: '1.jpg', name: 'Xe Đạp Đua 1', originalPrice:'5,000,000₫', discountedPrice: '5,000,000₫', link: '#' },
+    { image: '2.jpg', name: 'Xe Đạp Đua 2', originalPrice:'5,000,000₫', discountedPrice: '7,500,000₫', link: '#' },
+    { image: '3.jpg', name: 'Xe Đạp Đua 3', originalPrice:'5,000,000₫', discountedPrice: '4,200,000₫', link: '#' },
+    { image: '4.jpg', name: 'Xe Đạp Đua 4', originalPrice:'5,000,000₫', discountedPrice: '6,800,000₫', link: '#' },
+    { image: '5.jpg', name: 'Xe Đạp Đua 4', originalPrice:'5,000,000₫', discountedPrice: '6,800,000₫', link: '#' },
+    { image: '6.jpg', name: 'Xe Đạp Đua 4', originalPrice:'5,000,000₫', discountedPrice: '6,800,000₫', link: '#' },
+    { image: '2.jpg', name: 'Xe Đạp Đua 2', originalPrice:'5,000,000₫', discountedPrice: '7,500,000₫', link: '#' },
+    { image: '3.jpg', name: 'Xe Đạp Đua 3', originalPrice:'5,000,000₫', discountedPrice: '4,200,000₫', link: '#' },
+    { image: '4.jpg', name: 'Xe Đạp Đua 4', originalPrice:'5,000,000₫', discountedPrice: '6,800,000₫', link: '#' },
+    // Add more products as needed
+  ];
+
+  // Function to render products in the #bike-suggest container
+  function loadSuggestedProducts() {
+    const container = document.getElementById('bike-suggest');
+    container.innerHTML = ''; // Clear existing content
+
+    products.forEach(product => {
+      const productCard = document.createElement('div');
+      productCard.className = 'min-w-[80%] md:min-w-[250px] bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-shadow';
+
+      const img = document.createElement('img');
+      img.src = product.image;
+      img.alt = product.name;
+      img.className = 'w-full h-48 object-cover rounded-md mb-4';
+
+      const name = document.createElement('h3');
+      name.textContent = product.name;
+      name.className = 'text-lg font-semibold mb-2';
+
+      const priceWrapper = document.createElement('div');
+      priceWrapper.className = 'mb-4 flex items-center space-x-2';
+
+      const originalPrice = document.createElement('span');
+      originalPrice.textContent = product.originalPrice;
+      originalPrice.className = 'text-gray-500 line-through';
+
+      const discountedPrice = document.createElement('span');
+      discountedPrice.textContent = product.discountedPrice;
+      discountedPrice.className = 'text-orange-500 font-bold';
+
+      // Append prices to wrapper
+      priceWrapper.appendChild(originalPrice);
+      priceWrapper.appendChild(discountedPrice);
+
+      const link = document.createElement('a');
+      link.href = product.link;
+      link.className = 'inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600';
+      link.textContent = 'Xem Chi Tiết';
+
+      productCard.appendChild(img);
+      productCard.appendChild(name);
+      productCard.appendChild(priceWrapper);
+      productCard.appendChild(link);
+
+      container.appendChild(productCard);
+    });
+  }// Load products when the page loads
+  function startAutoSlideProduct() {
+    const container = document.getElementById('bike-suggest');
+    let offset = 0;
+
+    setInterval(() => {
+      const maxOffset = container.scrollWidth - container.clientWidth;
+      offset += 250; // Adjust this value to change the slide width
+
+      if (offset >= maxOffset) {
+        offset = 0; // Reset to the beginning
+      }
+
+      container.style.transform = `translateX(-${offset}px)`;
+    }, 2000); // Slide every 2 seconds
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadSuggestedProducts();
+    startAutoSlideProduct();
+  });
+
+
   // Fake bike product data
   const bikes = [
     {
       id: 1,
-      name: "Xe Ga SYM PRITI 50CC",
+      name: "Xe Ga SYM PRITI 50CC 2024",
       originalPrice: "28,000,000đ",
       discountedPrice: "26,700,000đ",
       image: "1.jpg",
@@ -215,6 +580,28 @@
       originalPrice: "19,990,000đ",
       discountedPrice: "16,990,000đ",
       image: "6.jpg",
+      features: [
+        "- Quà tặng trị giá tới 500K",
+        "- Áp dụng giao hàng toàn quốc",
+      ],
+    },
+    {
+      id: 7,
+      name: "Xe Ga 50CC KYMCO HERMOSA 2024",
+      originalPrice: "30,000,000đ",
+      discountedPrice: "28,190,000đ",
+      image: "2.jpg",
+      features: [
+        "- Quà tặng trị giá tới 500K",
+        "- Áp dụng giao hàng toàn quốc",
+      ],
+    },
+    {
+      id: 8,
+      name: "Xe Máy Điện YADEA V002 (VFV)",
+      originalPrice: "35,000,000đ",
+      discountedPrice: "27,990,000đ",
+      image: "3.jpg",
       features: [
         "- Quà tặng trị giá tới 500K",
         "- Áp dụng giao hàng toàn quốc",
