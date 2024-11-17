@@ -115,26 +115,84 @@
   </div>
 </section>
 
-<!-- Product Section -->
-<div>
-  <section class="container mx-auto py-4">
-    <h2 class="text-2xl font-bold mb-6">XE ĐẠP ĐIỆN NỔI BẬT</h2>
-    <div id="bike-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <!-- Bikes will be dynamically loaded here -->
+<!-- Product Detail -->
+<section class="container mx-auto p-6">
+  <h2 class="text-2xl font-bold mb-6">THÔNG TIN CHI TIẾT</h2>
+  <div class="flex flex-col lg:flex-row items-start lg:items-center gap-6">
+    <!-- Product Image -->
+    <div class="w-full lg:w-1/2">
+      <img
+              src="bike.png"
+              alt="Product Image"
+              class="w-full h-auto rounded-lg shadow"
+      />
     </div>
-  </section>
-</div>
 
-<!-- Load More Button -->
-<div class="flex justify-center">
-  <button class="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e8eaed">
-      <path d="M0 0h24v24H0z" fill="none"/>
-      <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
-    </svg>
-    TẢI THÊM SẢN PHẨM
-  </button>
-</div>
+    <!-- Product Details -->
+    <div class="w-full lg:w-1/2">
+      <h2 class="text-2xl lg:text-3xl font-bold text-blue-600 mb-4">
+        XE ĐIỆN XMEN CPI-1
+      </h2>
+      <p class="text-gray-600 text-base lg:text-lg mb-4">
+        Màu sắc: <span class="font-semibold">Đỏ</span>
+      </p>
+      <!-- Prices -->
+      <div class="mb-4">
+        <p class="text-xl lg:text-2xl font-bold text-red-500">
+          12,000,000₫ <span class="line-through text-gray-400 ml-3 text-base lg:text-lg">15,000,000₫</span>
+        </p>
+      </div>
+      <!-- Button -->
+      <a href="payment.html" class="block group">
+        <button class="w-full lg:w-auto bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg
+        shadow transition" href="payment.html">
+          Mua Ngay
+        </button>
+      </a>
+
+      <!-- Technical Specifications -->
+      <h3 class="text-lg lg:text-xl font-semibold text-blue-600 mt-8">
+        THÔNG SỐ KĨ THUẬT
+      </h3>
+      <table class="w-full border-collapse border border-gray-300 mt-4 text-sm lg:text-base">
+        <tbody>
+        <tr>
+          <td class="p-2 border border-gray-300 font-semibold">Kích thước</td>
+          <td class="p-2 border border-gray-300">1820 x 765 x 1030 mm</td>
+        </tr>
+        <tr>
+          <td class="p-2 border border-gray-300 font-semibold">Khối lượng</td>
+          <td class="p-2 border border-gray-300">95kg</td>
+        </tr>
+        <tr>
+          <td class="p-2 border border-gray-300 font-semibold">Chiều dài cơ sở</td>
+          <td class="p-2 border border-gray-300">1260mm</td>
+        </tr>
+        <tr>
+          <td class="p-2 border border-gray-300 font-semibold">Động cơ điện, công suất (Max)</td>
+          <td class="p-2 border border-gray-300">1600 W</td>
+        </tr>
+        <tr>
+          <td class="p-2 border border-gray-300 font-semibold">Quãng đường/sạc</td>
+          <td class="p-2 border border-gray-300">60-90 km</td>
+        </tr>
+        <tr>
+          <td class="p-2 border border-gray-300 font-semibold">Thời gian sạc</td>
+          <td class="p-2 border border-gray-300">8 – 12 h</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Highlighted Features -->
+  <div class="mt-10">
+    <h2 class="text-xl font-bold text-blue-600 mb-4">TÍNH NĂNG NỔI BẬT</h2>
+    <p class="text-gray-600 leading-relaxed">
+      A brief description of the highlighted features of the product. You can include information about durability, efficiency, and other standout qualities that appeal to potential buyers.
+    </p>
+  </div>
+</section>
 
 <!-- Product Suggest -->
 <section class="container mx-auto py-8 px-4">
@@ -146,45 +204,96 @@
   </div>
 </section>
 
-<!-- News -->
-<section class="bg-gray-100 py-8">
+<!-- Reviews -->
+<section class="bg-gray-100 py-4">
   <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-semibold text-gray-700 mb-6">NHẬN XÉT TỪ KHÁCH HÀNG</h2>
 
-    <h2 class="text-2xl font-semibold text-gray-700 mb-6">TIN TỨC NỔI BẬT</h2>
+    <!-- Review Card -->
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+      <div class="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4">
+        <!-- User Image -->
+        <img src="https://via.placeholder.com/100" alt="User" class="w-16 h-16 rounded-full object-cover hidden sm:block">
 
-    <div class="space-y-6">
-
-      <!-- News Item 1 -->
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-        <div class="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4">
-          <!-- Image -->
-          <img src="https://via.placeholder.com/300x200" alt="Product X" class="w-full sm:w-48 h-32 sm:h-40 object-cover rounded-lg shadow-lg mt-4 sm:mt-0">
+        <!-- User Info -->
+        <div class="mt-4 sm:mt-0">
+          <h3 class="text-xl font-semibold text-gray-800">John Doe</h3>
+          <p class="text-sm text-gray-500">Posted on: November 15, 2024</p>
         </div>
-        <h3 class="text-xl font-semibold text-gray-800 mt-4">New Product Launch: Product X</h3>
-        <p class="text-gray-600 mt-2">We are excited to announce the launch of our latest product, Product X! It comes with amazing features that will improve your experience.</p>
-        <p class="text-sm text-gray-500 mt-2">Posted on: <span class="font-medium">November 15, 2024</span></p>
-        <a href="#" class="inline-block mt-4 px-6 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors">XEM CHI TIẾT</a>
       </div>
 
-      <!-- News Item 2 -->
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
-        <div class="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4">
-          <!-- Image -->
-          <img src="https://via.placeholder.com/300x200" alt="Product Y" class="w-full sm:w-48 h-32 sm:h-40 object-cover rounded-lg shadow-lg mt-4 sm:mt-0">
+      <!-- Rating Section -->
+      <div class="mt-4">
+        <div class="flex items-center space-x-1">
+          <!-- Star Icons -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
         </div>
-        <h3 class="text-xl font-semibold text-gray-800 mt-4">Update: New Feature for Product Y</h3>
-        <p class="text-gray-600 mt-2">We've released a new feature for Product Y, enhancing its performance and adding new capabilities for our users.</p>
-        <p class="text-sm text-gray-500 mt-2">Posted on: <span class="font-medium">November 10, 2024</span></p>
-        <a href="#" class="inline-block mt-4 px-6 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors">XEM CHI TIẾT</a>
       </div>
+
+      <!-- Review Text -->
+      <p class="text-gray-600 mt-4">This product exceeded my expectations. It works flawlessly, and I highly recommend it to others. The quality is top-notch, and it arrived quickly. Will definitely buy again!</p>
     </div>
+
+    <div class="mt-2 bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+      <div class="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4">
+        <!-- User Image -->
+        <img src="https://via.placeholder.com/100" alt="User" class="w-16 h-16 rounded-full object-cover hidden sm:block">
+
+        <!-- User Info -->
+        <div class="mt-4 sm:mt-0">
+          <h3 class="text-xl font-semibold text-gray-800">John Doe</h3>
+          <p class="text-sm text-gray-500">Posted on: November 15, 2024</p>
+        </div>
+      </div>
+
+      <!-- Rating Section -->
+      <div class="mt-4">
+        <div class="flex items-center space-x-1">
+          <!-- Star Icons -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Review Text -->
+      <p class="text-gray-600 mt-4">This product exceeded my expectations. It works flawlessly, and I highly recommend it to others. The quality is top-notch, and it arrived quickly. Will definitely buy again!</p>
+    </div>
+
+    <!-- View More Button -->
+    <a href="#" class="inline-block mt-4 px-6 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors">ĐỌC THÊM</a>
   </div>
 </section>
 
 <!-- Add Your Review -->
 <section class="bg-gray-100 py-4">
   <div class="container mx-auto px-4">
-    <h2 class="text-2xl font-semibold text-gray-700 mb-6">ĐIỀN THÔNG TIN ĐỂ TƯ VẤN</h2>
     <!-- Review Form -->
     <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
       <form action="#" method="POST">
@@ -193,20 +302,37 @@
           <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-md mt-2" placeholder="Điền tên của bạn" required>
         </div>
 
+        <!-- Rating Section -->
         <div class="mb-4">
-          <label for="name" class="block text-gray-700 text-sm font-semibold">SỐ ĐIỆN THOẠI</label>
-          <input type="text" id="phone" name="phone" class="w-full p-2 border border-gray-300 rounded-md mt-2" placeholder="Điền số điện thoại của bạn" required>
+          <div class="flex items-center space-x-1 mt-2">
+            <!-- Star Rating (interactive) -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 star text-gray-400 cursor-pointer text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 star text-gray-400 cursor-pointer text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 star text-gray-400 cursor-pointer text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 star text-gray-400 cursor-pointer text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 star text-gray-400 cursor-pointer text-yellow-500" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+          </div>
         </div>
 
         <!-- Review Text Section -->
         <div class="mb-4">
-          <label for="review" class="block text-gray-700 text-sm font-semibold">MÔ TẢ</label>
-          <textarea id="review" name="review" class="w-full p-2 border border-gray-300 rounded-md mt-2" rows="4" placeholder="Điền mô tả mong muốn của bạn ở đây..." required></textarea>
+          <label for="review" class="block text-gray-700 text-sm font-semibold">NHẬN XÉT</label>
+          <textarea id="review" name="review" class="w-full p-2 border border-gray-300 rounded-md mt-2" rows="4" placeholder="Viết đánh giá của bạn ở đây..." required></textarea>
         </div>
 
         <!-- Submit Button -->
         <div class="mt-4">
-          <button type="submit" class="w-full px-6 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors">GỬI YÊU CẦU</button>
+          <button type="submit" class="w-full px-6 py-2 bg-orange-500 text-white rounded-lg text-sm hover:bg-orange-600 transition-colors">NHẬN XÉT</button>
         </div>
       </form>
     </div>
@@ -401,138 +527,6 @@
     loadSuggestedProducts();
     startAutoSlideProduct();
   });
-
-
-  // Fake bike product data
-  const bikes = [
-    {
-      id: 1,
-      name: "Xe Ga SYM PRITI 50CC 2024",
-      originalPrice: "28,000,000đ",
-      discountedPrice: "26,700,000đ",
-      image: "1.jpg",
-      features: [
-        "- Bộ quà tặng 500K",
-        "- Áp dụng giao hàng toàn quốc",
-      ],
-    },
-    {
-      id: 2,
-      name: "Xe Ga 50CC KYMCO HERMOSA 2024",
-      originalPrice: "30,000,000đ",
-      discountedPrice: "28,190,000đ",
-      image: "2.jpg",
-      features: [
-        "- Quà tặng trị giá tới 500K",
-        "- Áp dụng giao hàng toàn quốc",
-      ],
-    },
-    {
-      id: 3,
-      name: "Xe Máy Điện YADEA V002 (VFV)",
-      originalPrice: "35,000,000đ",
-      discountedPrice: "27,990,000đ",
-      image: "3.jpg",
-      features: [
-        "- Quà tặng trị giá tới 500K",
-        "- Áp dụng giao hàng toàn quốc",
-      ],
-    },
-    {
-      id: 4,
-      name: "Xe Máy Điện YADEA XMEN NEO",
-      originalPrice: "19,500,000đ",
-      discountedPrice: "17,490,000đ",
-      image: "4.jpg",
-      features: [
-        "- Quà tặng trị giá tới 500K",
-        "- Áp dụng giao hàng toàn quốc",
-      ],
-    },
-    {
-      id: 5,
-      name: "Xe Máy Điện YADEA I8 2024",
-      originalPrice: "15,500,000đ",
-      discountedPrice: "13,990,000đ",
-      image: "5.jpg",
-      features: [
-        "- Quà tặng trị giá tới 500K",
-        "- Áp dụng giao hàng toàn quốc",
-      ],
-    },
-    {
-      id: 6,
-      name: "Xe Máy Điện YADEA OCEAN 2024",
-      originalPrice: "19,990,000đ",
-      discountedPrice: "16,990,000đ",
-      image: "6.jpg",
-      features: [
-        "- Quà tặng trị giá tới 500K",
-        "- Áp dụng giao hàng toàn quốc",
-      ],
-    },
-    {
-      id: 7,
-      name: "Xe Ga 50CC KYMCO HERMOSA 2024",
-      originalPrice: "30,000,000đ",
-      discountedPrice: "28,190,000đ",
-      image: "2.jpg",
-      features: [
-        "- Quà tặng trị giá tới 500K",
-        "- Áp dụng giao hàng toàn quốc",
-      ],
-    },
-    {
-      id: 8,
-      name: "Xe Máy Điện YADEA V002 (VFV)",
-      originalPrice: "35,000,000đ",
-      discountedPrice: "27,990,000đ",
-      image: "3.jpg",
-      features: [
-        "- Quà tặng trị giá tới 500K",
-        "- Áp dụng giao hàng toàn quốc",
-      ],
-    },
-  ];
-
-  const bikeList = document.getElementById("bike-list");
-
-  // Function to render bike cards
-  function renderBikes() {
-    bikes.forEach((bike) => {
-      const bikeCard = document.createElement("div");
-      bikeCard.className = "bg-white shadow-md rounded-lg overflow-hidden";
-
-      bikeCard.innerHTML = `
-        <a href="detail.html" class="block group">
-          <img src="${bike.image}" alt="${bike.name}" class="w-full h-auto object-cover rounded-lg mb-4">
-          <div class="p-4">
-            <h3 class="text-lg font-bold text-gray-800">${bike.name}</h3>
-            <div class="flex items-center space-x-2 my-2">
-              <span class="text-gray-500 line-through">${bike.originalPrice}</span>
-              <span class="text-orange-500 font-bold">${bike.discountedPrice}</span>
-            </div>
-            <ul class="text-gray-600 text-sm">
-              ${bike.features.map((feature) => `<li>${feature}</li>`).join("")}
-            </ul>
-            <div class="mt-4 flex space-x-2">
-            <a href="payment.html" class="btn text-center block group bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 flex-1">
-              Mua Ngay
-            </a>
-              <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex-1">
-                Mua Trả Góp
-              </button>
-            </div>
-          </div>
-        </a>
-        `;
-
-      bikeList.appendChild(bikeCard);
-    });
-  }
-
-  // Initialize page with bikes
-  renderBikes();
 
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
