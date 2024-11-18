@@ -181,18 +181,18 @@
       <form action="#" method="POST">
         <div class="mb-4">
           <label for="name" class="block text-gray-700 text-sm font-semibold">TÊN</label>
-          <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-md mt-2" placeholder="Điền tên của bạn" required>
+          <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-md mt-2" placeholder="Tên" required>
         </div>
 
         <div class="mb-4">
           <label for="name" class="block text-gray-700 text-sm font-semibold">SỐ ĐIỆN THOẠI</label>
-          <label for="phone"></label><input type="text" id="phone" name="phone" class="w-full p-2 border border-gray-300 rounded-md mt-2" placeholder="Điền số điện thoại của bạn" required>
+          <label for="phone"></label><input type="text" id="phone" name="phone" class="w-full p-2 border border-gray-300 rounded-md mt-2" placeholder="Số điện thoại" required>
         </div>
 
         <!-- Review Text Section -->
         <div class="mb-4">
           <label for="review" class="block text-gray-700 text-sm font-semibold">MÔ TẢ</label>
-          <textarea id="review" name="review" class="w-full p-2 border border-gray-300 rounded-md mt-2" rows="4" placeholder="Điền mô tả mong muốn của bạn ở đây..." required></textarea>
+          <textarea id="review" name="review" class="w-full p-2 border border-gray-300 rounded-md mt-2" rows="4" placeholder="Mô tả" required></textarea>
         </div>
 
         <!-- Submit Button -->
@@ -494,7 +494,11 @@
       bikeCard.className = "bg-white shadow-md rounded-lg overflow-hidden";
 
       bikeCard.innerHTML = `
-        <a href="detail.html" class="block group">
+        <a href="detail.html" class="block group relative">
+          <!-- Animated New Icon -->
+          <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-lg animate-bounce">
+            MỚI
+          </div>
           <img src="${bike.image}" alt="${bike.name}" class="w-full h-auto object-cover rounded-lg mb-4">
           <div class="p-4">
             <h3 class="text-lg font-bold text-gray-800">${bike.name}</h3>
