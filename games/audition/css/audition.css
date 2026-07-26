@@ -207,6 +207,41 @@ body::before {
     color: var(--text-dim);
 }
 
+.local-folder-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 0.6rem 1.1rem;
+    margin-bottom: 0.9rem;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.local-folder-btn:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.song-card__badge {
+    flex-shrink: 0;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-c);
+    border: 1px solid rgba(255, 207, 77, 0.4);
+    border-radius: 1rem;
+    padding: 0.2rem 0.6rem;
+}
+
 .card-grid {
     display: grid;
     gap: 0.9rem;

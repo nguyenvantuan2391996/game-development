@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="css/audition.css" rel="stylesheet">
+    <script src="/game-development/js/block-devtools.js"></script>
 </head>
 <body class="home-body">
     <div class="bg-glow"></div>
@@ -39,6 +40,12 @@
                 <span id="song-search-status" class="song-search__status"></span>
             </div>
 
+            <button type="button" id="btn-pick-local-folder" class="local-folder-btn">
+                <i class="fa-solid fa-folder-open"></i> Chọn nhạc từ máy tính
+            </button>
+            <input type="file" id="local-folder-input" webkitdirectory multiple hidden>
+            <span id="local-folder-status" class="song-search__status"></span>
+
             <div class="card-grid song-grid" id="song-grid-suggested">
                 <div class="song-card" data-value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/Waiting%20For%20You%20-%20MONO_%20Onionn.mp3?alt=media&token=a10b4da9-9967-4dc4-b120-76c7e08e13e2">
                     <button type="button" class="preview-btn" title="Preview"><i class="fa-solid fa-play"></i></button>
@@ -64,6 +71,7 @@
             </div>
 
             <div class="card-grid song-grid" id="song-grid-search-results" hidden></div>
+            <div class="card-grid song-grid" id="song-grid-local" hidden></div>
         </section>
 
         <section class="select-section">

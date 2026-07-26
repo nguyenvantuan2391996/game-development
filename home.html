@@ -1,22 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<link rel="stylesheet" href="css/home.css">
 <head>
     <meta charset="UTF-8">
-    <title>Game development</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Development</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="/game-development/js/block-devtools.js"></script>
 </head>
 <body>
-  <div class="boxes">
-    <div class="box"><img onclick={{redirectUrlGame("audition")}} src="images/audition-thumbnail.png" alt="audition"></div>
-    <div class="box"><img onclick={{redirectUrlGame("caro")}} src="images/caro-thumbnail.png" alt="tic-tac-toe"></div>
-    <div class="box"><img onclick={{redirectUrlGame("plan-and-zombie")}} src="images/plan-and-zombie-thumbnail.png" alt="plan-and-zombie"></div>
-    <div class="box"><img onclick={{redirectUrlGame("rock-paper-scissors")}} src="images/rock-paper-scissors.png" alt="rock-paper-scissors" style="width: 360px; height: 360px"></div>
-    <div class="box"><img onclick={{notice()}} src="images/nong-trai-vui-ve-thumbnail.png" alt="nong-trai-vui-ve"></div>
-    <div class="box"><img onclick={{notice()}} src="images/gunny-thumbnail.png" alt="gunny"></div>
-  </div>
+    <div class="bg-glow"></div>
+
+    <div class="hero">
+        <span class="hero__eyebrow">Made with JavaScript</span>
+        <h1 class="hero__title">GAME DEVELOPMENT</h1>
+        <p class="hero__subtitle">Một vài trò chơi nhỏ mình tự tay làm, chọn một cái và chơi thử nhé</p>
+    </div>
+
+    <div class="boxes">
+        <a class="box" href="/game-development/games/audition/home.html">
+            <img src="images/audition-thumbnail.png" alt="audition">
+            <div class="box__text">
+                <div class="box__title">Audition</div>
+                <div class="box__hint">Chơi ngay</div>
+            </div>
+        </a>
+        <a class="box" href="/game-development/games/caro/home.html">
+            <img src="images/caro-thumbnail.png" alt="tic-tac-toe">
+            <div class="box__text">
+                <div class="box__title">Caro</div>
+                <div class="box__hint">Chơi ngay</div>
+            </div>
+        </a>
+        <a class="box" href="/game-development/games/plan-and-zombie/home.html">
+            <img src="images/plan-and-zombie-thumbnail.png" alt="plan-and-zombie">
+            <div class="box__text">
+                <div class="box__title">Plan and Zombie</div>
+                <div class="box__hint">Chơi ngay</div>
+            </div>
+        </a>
+        <a class="box" href="/game-development/games/rock-paper-scissors/home.html">
+            <img src="images/rock-paper-scissors.png" alt="rock-paper-scissors">
+            <div class="box__text">
+                <div class="box__title">Rock Paper Scissors</div>
+                <div class="box__hint">Chơi ngay</div>
+            </div>
+        </a>
+        <div class="box box--soon">
+            <img src="images/nong-trai-vui-ve-thumbnail.png" alt="nong-trai-vui-ve">
+            <div class="box__text">
+                <div class="box__title">Nông Trại Vui Vẻ</div>
+                <div class="box__hint">Sắp ra mắt</div>
+            </div>
+        </div>
+        <div class="box box--soon">
+            <img src="images/gunny-thumbnail.png" alt="gunny">
+            <div class="box__text">
+                <div class="box__title">Gunny</div>
+                <div class="box__hint">Sắp ra mắt</div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
-
-<script type="text/javascript" src="js/home.js"></script>

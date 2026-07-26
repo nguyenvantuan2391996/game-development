@@ -8,6 +8,10 @@ let previewingCard = null;
 // represent a dynamically searched Jamendo track (assigning .value to a URL
 // with no matching <option> silently fails and leaves it at "").
 let selectedMusicUrl = "";
+// Set instead of selectedMusicUrl when the chosen card is a local mp3 file
+// (see buildLocalSongCard) - a File object can't be represented as a URL
+// query param, so it's handed off separately in handleLetGo().
+let selectedLocalFile = null;
 
 function updateLetsGoState() {
   const ready = selectedMusicUrl !== "" && danceSelect.value !== "";
@@ -20,6 +24,7 @@ function selectSongCard(card) {
     .forEach((c) => c.classList.remove("is-selected"));
   card.classList.add("is-selected");
   selectedMusicUrl = card.dataset.value;
+  selectedLocalFile = card._localFile || null;
   updateLetsGoState();
 }
 
@@ -32,9 +37,10 @@ function selectDanceCard(card) {
   updateLetsGoState();
 }
 
+let previewObjectUrl = null;
+
 function togglePreview(card, event) {
   event.stopPropagation();
-  const url = card.dataset.value;
   const icon = card.querySelector(".preview-btn i");
 
   if (previewingCard === card) {
@@ -49,7 +55,16 @@ function togglePreview(card, event) {
   });
 
   previewAudio.pause();
-  previewAudio = new Audio(url);
+  if (previewObjectUrl) {
+    URL.revokeObjectURL(previewObjectUrl);
+    previewObjectUrl = null;
+  }
+  if (card._localFile) {
+    previewObjectUrl = URL.createObjectURL(card._localFile);
+    previewAudio = new Audio(previewObjectUrl);
+  } else {
+    previewAudio = new Audio(card.dataset.value);
+  }
   previewAudio.play().catch(() => {});
   previewingCard = card;
   icon.className = "fa-solid fa-pause";
@@ -67,7 +82,7 @@ function renderBestScores() {
   });
 }
 
-function handleLetGo() {
+async function handleLetGo() {
   const music = selectedMusicUrl;
   const typeDance = danceSelect.value;
 
@@ -76,6 +91,15 @@ function handleLetGo() {
     return;
   }
   previewAudio.pause();
+
+  if (selectedLocalFile) {
+    await saveLocalSongBlob(selectedLocalFile);
+    window.location.href =
+      "/game-development/games/audition/audition.html?music=local&type=" +
+      encodeURIComponent(typeDance);
+    return;
+  }
+
   window.location.href =
     "/game-development/games/audition/audition.html?music=" +
     encodeURIComponent(music) +
@@ -106,6 +130,7 @@ const songSearchInput = document.getElementById("song-search-input");
 const songSearchStatus = document.getElementById("song-search-status");
 const suggestedGrid = document.getElementById("song-grid-suggested");
 const searchResultsGrid = document.getElementById("song-grid-search-results");
+const localGrid = document.getElementById("song-grid-local");
 let songSearchDebounce = null;
 let songSearchRequestId = 0;
 
@@ -187,6 +212,7 @@ async function runSongSearch(query) {
     }
     suggestedGrid.hidden = true;
     searchResultsGrid.hidden = false;
+    localGrid.hidden = true;
   } catch (error) {
     if (requestId !== songSearchRequestId) {
       return;
@@ -209,6 +235,144 @@ songSearchInput.addEventListener("input", () => {
 
   songSearchDebounce = setTimeout(() => runSongSearch(query), 400);
 });
+
+// ---------------------------------------------------------------------------
+// Local mp3 files (picked from a folder on the player's own computer)
+// ---------------------------------------------------------------------------
+const btnPickLocalFolder = document.getElementById("btn-pick-local-folder");
+const localFolderInput = document.getElementById("local-folder-input");
+const localFolderStatus = document.getElementById("local-folder-status");
+
+function buildLocalSongCard(file) {
+  const card = document.createElement("div");
+  card.className = "song-card";
+  card.dataset.value = "local:" + file.name;
+  card._localFile = file;
+
+  const previewBtn = document.createElement("button");
+  previewBtn.type = "button";
+  previewBtn.className = "preview-btn";
+  previewBtn.title = "Preview";
+  previewBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+
+  const text = document.createElement("div");
+  text.className = "song-card__text";
+  const titleEl = document.createElement("div");
+  titleEl.className = "song-card__title";
+  titleEl.textContent = file.name.replace(/\.mp3$/i, "");
+  const artistEl = document.createElement("div");
+  artistEl.className = "song-card__artist";
+  artistEl.textContent = "Từ máy tính";
+  text.append(titleEl, artistEl);
+
+  const badge = document.createElement("span");
+  badge.className = "song-card__badge";
+  badge.textContent = "Local";
+
+  card.append(previewBtn, text, badge);
+  attachSongCardHandlers(card);
+  return card;
+}
+
+function renderLocalMp3Files(files) {
+  localGrid.innerHTML = "";
+  if (files.length === 0) {
+    localFolderStatus.textContent = "Không tìm thấy file .mp3 nào trong folder";
+    return;
+  }
+  files.forEach((file) => localGrid.appendChild(buildLocalSongCard(file)));
+  localFolderStatus.textContent = files.length + " file mp3";
+  songSearchInput.value = "";
+  songSearchStatus.textContent = "";
+  suggestedGrid.hidden = true;
+  searchResultsGrid.hidden = true;
+  localGrid.hidden = false;
+}
+
+// The File System Access API lets a picked folder's *handle* be stored in
+// IndexedDB and reopened on a later visit (after a quick permission check),
+// so the player only has to go through the OS folder picker once. Plain
+// <input type="file" webkitdirectory> can't do this - a FileList has no
+// concept that survives a reload - so it's kept only as a fallback for
+// browsers without the newer API (Firefox, Safari).
+const localFolderApiSupported = "showDirectoryPicker" in window;
+
+async function listMp3FilesFromDirectoryHandle(dirHandle) {
+  const files = [];
+  for await (const entry of dirHandle.values()) {
+    if (entry.kind === "file" && /\.mp3$/i.test(entry.name)) {
+      files.push(await entry.getFile());
+    }
+  }
+  return files;
+}
+
+if (localFolderApiSupported) {
+  btnPickLocalFolder.addEventListener("click", async () => {
+    try {
+      const dirHandle = await window.showDirectoryPicker();
+      await saveLocalFolderHandle(dirHandle);
+      localFolderStatus.textContent = "Đang đọc folder...";
+      renderLocalMp3Files(await listMp3FilesFromDirectoryHandle(dirHandle));
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        localFolderStatus.textContent = "Không thể đọc folder";
+      }
+    }
+  });
+
+  // Try to restore the folder picked on a previous visit.
+  (async () => {
+    let savedHandle;
+    try {
+      savedHandle = await loadLocalFolderHandle();
+    } catch (error) {
+      return;
+    }
+    if (!savedHandle) return;
+
+    try {
+      const permission = await savedHandle.queryPermission({ mode: "read" });
+      if (permission === "granted") {
+        localFolderStatus.textContent = "Đang tải lại folder đã lưu...";
+        renderLocalMp3Files(await listMp3FilesFromDirectoryHandle(savedHandle));
+        return;
+      }
+
+      // Browsers require a fresh user gesture to re-confirm folder access,
+      // so surface a one-click "reuse" affordance instead of the full
+      // picker dialog.
+      const reuseBtn = document.createElement("button");
+      reuseBtn.type = "button";
+      reuseBtn.className = "local-folder-btn";
+      reuseBtn.innerHTML =
+        '<i class="fa-solid fa-rotate-left"></i> Dùng lại folder đã lưu (' +
+        savedHandle.name +
+        ")";
+      reuseBtn.addEventListener("click", async () => {
+        const granted = await savedHandle.requestPermission({ mode: "read" });
+        if (granted !== "granted") {
+          localFolderStatus.textContent = "Chưa được cấp quyền đọc folder";
+          return;
+        }
+        reuseBtn.remove();
+        localFolderStatus.textContent = "Đang đọc folder...";
+        renderLocalMp3Files(await listMp3FilesFromDirectoryHandle(savedHandle));
+      });
+      btnPickLocalFolder.insertAdjacentElement("afterend", reuseBtn);
+    } catch (error) {
+      // Stale handle (e.g. folder moved/deleted) - ignore, user can pick again.
+    }
+  })();
+} else {
+  btnPickLocalFolder.addEventListener("click", () => localFolderInput.click());
+  localFolderInput.addEventListener("change", () => {
+    const mp3Files = Array.from(localFolderInput.files).filter((file) =>
+      /\.mp3$/i.test(file.name)
+    );
+    renderLocalMp3Files(mp3Files);
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Ambient background music (YouTube IFrame Player API)

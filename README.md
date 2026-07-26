@@ -15,6 +15,8 @@ I will be super happy if you could help me endorse some skills or knowledge on m
 # Games were developed
 - Game Audition : [Audition](https://nguyenvantuan2391996.github.io/game-development/games/audition/home.html)
 - Game Caro : [Caro](https://nguyenvantuan2391996.github.io/game-development/games/caro/home.html)
+- Game Plan and Zombie : [Plan and Zombie](https://nguyenvantuan2391996.github.io/game-development/games/plan-and-zombie/home.html)
+- Game Rock Paper Scissors : [Rock Paper Scissors](https://nguyenvantuan2391996.github.io/game-development/games/rock-paper-scissors/home.html)
 
 # Applications were developed
 - Music Player: [Music Player](https://nguyenvantuan2391996.github.io/game-development/applications/music-player/home.html)

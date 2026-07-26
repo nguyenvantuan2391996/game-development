@@ -2,6 +2,11 @@
 let audio = new Audio();
 let isReverse = false;
 let isSpaced = false;
+// True for the entire 3s gap where the box is hidden between rounds
+// (whether the round ended via Space or timed out), so arrow-key presses
+// during that gap don't get matched against the still-stale listKeyRandom
+// (it isn't regenerated until pos next crosses 1150).
+let isBoxHidden = false;
 let increase = 1;
 let pos = 0;
 let count = 0;
@@ -72,7 +77,7 @@ function updateCombo(hit) {
 }
 
 function compareKeyPressAndRandom(key) {
-  if (listKeyPress.length === listKeyRandom.length) {
+  if (isBoxHidden || listKeyPress.length === listKeyRandom.length) {
     return;
   }
 
@@ -200,9 +205,11 @@ function move() {
       updatePerfectStreak(false);
       resetListKeyPress();
       hide("box");
+      isBoxHidden = true;
       setTimeout(function () {
         show("box");
         pos = 0;
+        isBoxHidden = false;
       }, 3000);
     }
   }
@@ -225,15 +232,17 @@ document.body.onkeyup = function (e) {
   switch (typeDance) {
     case "4k":
     case "8k":
-      if (e.code === "Space" && count >= MIN_COUNT_TO_PLAY) {
+      if (e.code === "Space" && count >= MIN_COUNT_TO_PLAY && !isSpaced) {
         isSpaced = true;
         setScore(pos);
         hide("box");
+        isBoxHidden = true;
         resetListKeyPress();
         setTimeout(function () {
           show("box");
           pos = 0;
           isSpaced = false;
+          isBoxHidden = false;
         }, 3000);
         countToIncreaseLevel++;
       }
@@ -343,6 +352,7 @@ function quitToHome() {
 function initVariable() {
   isReverse = false;
   isSpaced = false;
+  isBoxHidden = false;
   increase = 1;
   pos = 0;
   count = 0;
@@ -410,16 +420,27 @@ function startCountdownThenPlay() {
   }, 700);
 }
 
-function initAudio() {
+async function initAudio() {
   stopMoveLoop();
 
   const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get("music") === null || urlParams.get("type") === null) {
+  const musicParam = urlParams.get("music");
+  if (musicParam === null || urlParams.get("type") === null) {
     window.location.href = "/game-development/games/audition/home.html";
     return;
   }
 
-  audio.src = urlParams.get("music");
+  if (musicParam === "local") {
+    const blob = await loadLocalSongBlob();
+    if (!blob) {
+      window.location.href = "/game-development/games/audition/home.html";
+      return;
+    }
+    audio.src = URL.createObjectURL(blob);
+  } else {
+    audio.src = musicParam;
+  }
+
   typeDance = urlParams.get("type");
   bestScore = getBestScore(typeDance);
   const bestScoreElement = document.getElementById("best-score");
