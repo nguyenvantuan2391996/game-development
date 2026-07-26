@@ -2,16 +2,32 @@ async function searchKey(keyword) {
   return await searchYouTube(keyword, API_KEY);
 }
 
+// Perform keyword search using YouTube Data API v3 and return full song
+// objects straight from the search response so we don't need an extra
+// request per video just to show a title/artist/thumbnail.
 async function searchYouTube(keyword, apiKey) {
-  // Perform keyword search using YouTube Data API v3
   const searchResponse = await fetch(
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${encodeURIComponent(
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=15&q=${encodeURIComponent(
       keyword
     )}&key=${apiKey}`
   );
   const searchResult = await searchResponse.json();
 
-  return searchResult.items.map((item) => item.id.videoId);
+  if (!searchResult.items) {
+    return [];
+  }
+
+  return searchResult.items
+    .filter((item) => item.id && item.id.videoId)
+    .map((item) => ({
+      id: item.id.videoId,
+      title: item.snippet.title,
+      artist: item.snippet.channelTitle,
+      thumbnail:
+        (item.snippet.thumbnails.high && item.snippet.thumbnails.high.url) ||
+        (item.snippet.thumbnails.medium && item.snippet.thumbnails.medium.url) ||
+        item.snippet.thumbnails.default.url,
+    }));
 }
 
 async function getInfoSong(id) {

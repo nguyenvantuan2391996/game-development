@@ -1,65 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player Manager By Tuan Nguyen</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="css/music.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
     <body>
+        <div class="bg-glow"></div>
+
         <div class="wrapper">
             <div class="player__container">
+                <div class="player__header">
+                    <button id="btn-menu" type="button" class="icon-btn" title="Playlist">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <span class="header__title">Now Playing</span>
+                    <button id="btn-search" type="button" class="icon-btn" title="Search a song">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+
                 <div class="player__body">
                     <div class="body__cover">
-                        <ul class="list list--cover">
-                            <li>
-                                <a class="list__link" href=""><i class="fa fa-navicon"></i></a>
-                            </li>
-                            <li>
-                                <a class="list__link" href=""></a>
-                            </li>
-                            <li>
-                                <a id="btn-search" type="button" class="list__link" href=""><i class="fa fa-search"></i></a>
-                            </li>
-                        </ul>
-
-                        <img id="album-cover" src="http://ecx.images-amazon.com/images/I/51XSHShbPiL.jpg" alt="Album cover" />
-
-                        <div class="range"></div>
+                        <div class="equalizer" id="equalizer">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div id="disc" class="disc">
+                            <img id="album-cover" src="https://ecx.images-amazon.com/images/I/51XSHShbPiL.jpg" alt="Album cover" />
+                            <div class="disc__hole"></div>
+                        </div>
                     </div>
 
                     <div class="body__info">
-                        <div id="song-name" class="info__song"></div>
-                        <div id="song-artist" class="info__artist"></div>
+                        <div class="info__text">
+                            <div id="song-name" class="info__song">Search a song to get started</div>
+                            <div id="song-artist" class="info__artist">Your library is empty</div>
+                        </div>
+                        <button id="btn-favorite" type="button" class="icon-btn favorite" title="Add to favorites">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+
+                    <div class="body__progress">
+                        <span id="time-current" class="time">0:00</span>
+                        <div class="progress" id="progress">
+                            <div class="progress__filled" id="progress-filled"></div>
+                            <div class="progress__thumb" id="progress-thumb"></div>
+                        </div>
+                        <span id="time-duration" class="time">0:00</span>
                     </div>
 
                     <div class="body__buttons">
                         <ul class="list list--buttons">
-                            <li><a id="btn-backward" type="button" class="list__link"><i class="fa fa-step-backward"></i></a></li>
-                            <li><a id="btn-play-song" type="button" class="list__link"><i id="icon-play-pause" class="fa fa-play"></i></a></li>
-                            <li><a id="btn-forward" type="button" class="list__link"><i class="fa fa-step-forward"></i></a></li>
+                            <li><a id="btn-shuffle" type="button" class="list__link mode-btn" title="Shuffle"><i class="fa-solid fa-shuffle"></i></a></li>
+                            <li><a id="btn-backward" type="button" class="list__link"><i class="fa-solid fa-backward-step"></i></a></li>
+                            <li><a id="btn-play-song" type="button" class="list__link btn-play"><i id="icon-play-pause" class="fa-solid fa-play"></i></a></li>
+                            <li><a id="btn-forward" type="button" class="list__link"><i class="fa-solid fa-forward-step"></i></a></li>
+                            <li><a id="btn-repeat" type="button" class="list__link mode-btn" title="Repeat"><i class="fa-solid fa-repeat"></i></a></li>
                         </ul>
                     </div>
-                </div>
 
-                <div class="player__footer">
-                    <ul class="list list--footer">
-                        <li><a href="#" class="list__link"><i class="fa fa-heart"></i></a></li>
-                        <li><a href="#" class="list__link"><i class="fa fa-random"></i></a></li>
-                        <li><a href="#" class="list__link"><i class="fa fa-undo"></i></a></li>
-                        <li><a href="#" class="list__link"><i class="fa fa-ellipsis-h"></i></a></li>
-                    </ul>
+                    <div class="body__volume">
+                        <i class="fa-solid fa-volume-low"></i>
+                        <div class="volume" id="volume">
+                            <div class="volume__filled" id="volume-filled"></div>
+                            <div class="volume__thumb" id="volume-thumb"></div>
+                        </div>
+                        <i class="fa-solid fa-volume-high"></i>
+                    </div>
                 </div>
             </div>
+
+            <div class="playlist__panel" id="playlist-panel">
+                <div class="playlist__header">
+                    <div class="playlist__tabs">
+                        <button id="tab-playlist" type="button" class="playlist__tab is-active">Playlist</button>
+                        <button id="tab-favorites" type="button" class="playlist__tab">Favorites</button>
+                    </div>
+                    <button id="btn-close-playlist" type="button" class="icon-btn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <ul id="playlist-list" class="playlist__list"></ul>
+            </div>
+            <div class="playlist__overlay" id="playlist-overlay"></div>
         </div>
-        <iframe hidden id="song" src="" frameborder="0" allowfullscreen playsinline allow="autoplay; encrypted-media"></iframe>
+
+        <div id="player-yt" hidden></div>
     </body>
 </html>
 
 <script type="text/javascript" src="js/constants.js"></script>
-<script type="text/javascript" src="js/music.js"></script>
 <script type="text/javascript" src="js/utils.js"></script>
 <script type="text/javascript" src="js/youtubeAPI.js"></script>
+<script type="text/javascript" src="js/music.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
