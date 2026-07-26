@@ -25,6 +25,34 @@ let isPaused = false;
 let isCountingDown = true;
 const gameLoopControl = { start: null, stop: null };
 
+// Consecutive-Perfect streak: each Perfect beyond the first in a row adds a
+// growing bonus on top of the normal judgement score (capped so late-game
+// streaks don't dwarf the base scoring).
+let perfectStreak = 0;
+const PERFECT_STREAK_BONUS_STEP = 50;
+const PERFECT_STREAK_BONUS_CAP = 500;
+let perfectStreakElement = document.getElementById("perfect-streak");
+
+function updatePerfectStreak(isPerfect) {
+  if (!isPerfect) {
+    perfectStreak = 0;
+    if (perfectStreakElement) perfectStreakElement.textContent = "";
+    return;
+  }
+  perfectStreak++;
+  if (perfectStreak > 1) {
+    score += Math.min(
+      PERFECT_STREAK_BONUS_STEP * (perfectStreak - 1),
+      PERFECT_STREAK_BONUS_CAP
+    );
+    scoreElement.textContent = score;
+  }
+  if (perfectStreakElement) {
+    perfectStreakElement.textContent =
+      perfectStreak > 1 ? "Perfect x" + perfectStreak : "";
+  }
+}
+
 function startMoveLoop() {
   if (intervalID === null) {
     intervalID = setInterval(move, 0);
@@ -101,27 +129,33 @@ function setScore(pos) {
   if (listKeyPress.length !== listKeyRandom.length) {
     showJudgement(picElement, "images/Miss.png");
     updateCombo(false);
+    updatePerfectStreak(false);
     return;
   }
   if (840 <= pos && pos <= 860) {
     showJudgement(picElement, "images/Perfect.png");
     score += isReverse ? 1200 : 800;
     updateCombo(true);
+    updatePerfectStreak(true);
   } else if ((790 <= pos && pos < 840) || (860 < pos && pos <= 910)) {
     showJudgement(picElement, "images/Great.png");
     score += isReverse ? 600 : 350;
     updateCombo(true);
+    updatePerfectStreak(false);
   } else if ((760 <= pos && pos < 790) || (910 < pos && pos <= 940)) {
     showJudgement(picElement, "images/Cool.png");
     score += isReverse ? 350 : 150;
     updateCombo(true);
+    updatePerfectStreak(false);
   } else if ((750 <= pos && pos < 760) || (940 < pos && pos <= 950)) {
     showJudgement(picElement, "images/Bad.png");
     score += isReverse ? 200 : 50;
     updateCombo(true);
+    updatePerfectStreak(false);
   } else {
     showJudgement(picElement, "images/Miss.png");
     updateCombo(false);
+    updatePerfectStreak(false);
   }
   scoreElement.textContent = score;
 }
@@ -159,6 +193,7 @@ function move() {
       countToIncreaseLevel++;
       showJudgement(picElement, "images/Miss.png");
       updateCombo(false);
+      updatePerfectStreak(false);
       resetListKeyPress();
       hide("box");
       setTimeout(function () {
@@ -313,9 +348,11 @@ function initVariable() {
   listKeyRandom = [];
   listKeyPress = [];
   comboCount = 0;
+  perfectStreak = 0;
   picElement = document.getElementById("pic");
   scoreElement = document.getElementById("score");
   comboElement = document.getElementById("combo");
+  perfectStreakElement = document.getElementById("perfect-streak");
 }
 
 audio.onended = function () {

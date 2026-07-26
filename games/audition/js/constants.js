@@ -75,3 +75,8 @@ const MAP_KEY_8K = new Map([
 
 // YouTube video IDs (official MVs) used for the home screen's ambient background music.
 const LIST_MUSIC = ["okz5RIZRT0U", "1ntkDbxTnXA", "gJHSDZfJrRY"];
+
+// Jamendo (Creative Commons music) client_id, used client-side for public
+// track search only - safe to expose since it carries no OAuth privileges.
+const JAMENDO_CLIENT_ID_ENCODED = "MDVjZjA4OTk=";
+const JAMENDO_CLIENT_ID = atob(JAMENDO_CLIENT_ID_ENCODED);

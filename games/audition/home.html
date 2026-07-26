@@ -33,7 +33,14 @@
 
         <section class="select-section">
             <h2 class="select-section__title">1. Chọn bài hát</h2>
-            <div class="card-grid song-grid">
+
+            <div class="song-search">
+                <i class="fa-solid fa-magnifying-glass song-search__icon"></i>
+                <input type="text" id="song-search-input" class="song-search__input" placeholder="Tìm bài hát (Jamendo)..." autocomplete="off">
+                <span id="song-search-status" class="song-search__status"></span>
+            </div>
+
+            <div class="card-grid song-grid" id="song-grid-suggested">
                 <div class="song-card" data-value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/Waiting%20For%20You%20-%20MONO_%20Onionn.mp3?alt=media&token=a10b4da9-9967-4dc4-b120-76c7e08e13e2">
                     <button type="button" class="preview-btn" title="Preview"><i class="fa-solid fa-play"></i></button>
                     <div class="song-card__text">
@@ -56,6 +63,8 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card-grid song-grid" id="song-grid-search-results" hidden></div>
         </section>
 
         <section class="select-section">
