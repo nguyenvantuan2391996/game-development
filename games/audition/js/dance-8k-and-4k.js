@@ -78,9 +78,13 @@ function compareKeyPressAndRandom(key) {
 
   const mapKey = typeDance === "4k" ? MAP_KEY_4K : MAP_KEY_8K;
   if (mapKey.get(listKeyRandom[listKeyPress.length]) === key) {
+    const hitElement = document.getElementById(String(listKeyPress.length + 1));
     listKeyPress.push(key + "-success");
     setKey(key + "-success", listKeyPress.length);
     highlightCurrentKey();
+    hitElement.classList.remove("key-hit");
+    void hitElement.offsetWidth;
+    hitElement.classList.add("key-hit");
   } else {
     listKeyPress = [];
     for (let i = 0; i < listKeyRandom.length; i++) {
@@ -358,7 +362,8 @@ function initVariable() {
 audio.onended = function () {
   gameLoopControl.stop();
   const result = saveBestScoreIfHigher(typeDance, score);
-  Swal.fire({
+  showModal({
+    icon: "success",
     title: result.isNewBest ? "New high score!" : "Song finished!",
     html:
       "Điểm của bạn: <b>" +
@@ -366,10 +371,10 @@ audio.onended = function () {
       "</b><br/>Điểm cao nhất: <b>" +
       result.best +
       "</b>",
-    icon: "success",
-    confirmButtonText: "Về trang chủ",
-  }).then(function () {
-    window.location.href = "/game-development/games/audition/home.html";
+    confirmText: "Về trang chủ",
+    onConfirm: function () {
+      window.location.href = "/game-development/games/audition/home.html";
+    },
   });
 };
 

@@ -36,10 +36,29 @@ function saveBestScoreIfHigher(danceType, finalScore) {
   return { isNewBest: false, best };
 }
 
-function AlertError(msg) {
-  Swal.fire({
-    icon: "error",
-    title: "Oops...",
-    text: msg,
+// Lightweight modal styled to match the game's own overlay system (see
+// .overlay / .overlay-btn in audition.css), replacing SweetAlert2 so popups
+// don't look like a foreign library dropped into a custom-themed game.
+function showModal({ icon, title, html, confirmText = "OK", onConfirm }) {
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  overlay.style.display = "block";
+  overlay.innerHTML =
+    '<div class="overlay__inner">' +
+    '<div class="modal-panel">' +
+    (icon ? '<div class="modal-icon modal-icon--' + icon + '"></div>' : "") +
+    '<p class="modal-title">' + title + "</p>" +
+    (html ? '<div class="modal-body">' + html + "</div>" : "") +
+    '<div class="modal-actions">' +
+    '<button type="button" class="overlay-btn modal-confirm-btn">' + confirmText + "</button>" +
+    "</div></div></div>";
+  document.body.appendChild(overlay);
+  overlay.querySelector(".modal-confirm-btn").addEventListener("click", function () {
+    overlay.remove();
+    if (onConfirm) onConfirm();
   });
+}
+
+function AlertError(msg) {
+  showModal({ icon: "error", title: "Oops...", html: msg });
 }

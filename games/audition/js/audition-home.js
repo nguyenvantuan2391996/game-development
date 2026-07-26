@@ -1,12 +1,16 @@
-const musicSelect = document.getElementById("list-music");
 const danceSelect = document.getElementById("list-type-dance");
 const btnLetsGo = document.getElementById("button");
 
 let previewAudio = new Audio();
 let previewingCard = null;
+// Selected music URL, tracked separately from the hidden <select> below:
+// that select only ever had <option>s for the 3 default songs, so it can't
+// represent a dynamically searched Jamendo track (assigning .value to a URL
+// with no matching <option> silently fails and leaves it at "").
+let selectedMusicUrl = "";
 
 function updateLetsGoState() {
-  const ready = musicSelect.value !== "" && danceSelect.value !== "";
+  const ready = selectedMusicUrl !== "" && danceSelect.value !== "";
   btnLetsGo.classList.toggle("is-ready", ready);
 }
 
@@ -15,7 +19,7 @@ function selectSongCard(card) {
     .querySelectorAll(".song-card")
     .forEach((c) => c.classList.remove("is-selected"));
   card.classList.add("is-selected");
-  musicSelect.value = card.dataset.value;
+  selectedMusicUrl = card.dataset.value;
   updateLetsGoState();
 }
 
@@ -64,7 +68,7 @@ function renderBestScores() {
 }
 
 function handleLetGo() {
-  const music = musicSelect.value;
+  const music = selectedMusicUrl;
   const typeDance = danceSelect.value;
 
   if (music === "" || typeDance === "") {
