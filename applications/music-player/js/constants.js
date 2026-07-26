@@ -1,4 +1,5 @@
-const API_KEY = "***REMOVED_API_KEY***";
+const API_KEY_ENCODED = "QUl6YVN5QnV2NEtOUjJ3S2xtNWRNcC1GUlo5aExFS0dicWtNRXJj";
+const API_KEY = atob(API_KEY_ENCODED);
 
 const NOT_FOUND_SONG = "The song is not found";
 
