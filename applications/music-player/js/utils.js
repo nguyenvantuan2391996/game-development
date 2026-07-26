@@ -1,12 +1,3 @@
-function AlertError(msg, footerMsg) {
-    Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: msg,
-        footer: footerMsg,
-    });
-}
-
 function formatTime(totalSeconds) {
     if (!isFinite(totalSeconds) || totalSeconds < 0) {
         return "0:00";

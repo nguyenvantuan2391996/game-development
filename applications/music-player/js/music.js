@@ -57,6 +57,11 @@ const el = {
   volume: document.getElementById("volume"),
   volumeFilled: document.getElementById("volume-filled"),
   volumeThumb: document.getElementById("volume-thumb"),
+  searchPanel: document.getElementById("search-panel"),
+  searchOverlay: document.getElementById("search-overlay"),
+  searchInput: document.getElementById("search-input"),
+  searchResults: document.getElementById("search-results"),
+  btnCloseSearch: document.getElementById("btn-close-search"),
 };
 
 // Disabled until the YouTube IFrame Player has finished initializing.
@@ -424,35 +429,104 @@ function setVolumeFromClientX(clientX) {
 // ---------------------------------------------------------------------------
 // Search
 // ---------------------------------------------------------------------------
-function openSearchDialog() {
-  Swal.fire({
-    title: "Điền tên bài hát",
-    input: "text",
-    inputAttributes: {
-      autocapitalize: "off",
-    },
-    showCancelButton: true,
-    confirmButtonText: "Search",
-    showLoaderOnConfirm: true,
-    preConfirm: async (songName) => {
-      const songs = await searchKey(songName);
-      if (songs.length === 0) {
-        AlertError(NOT_FOUND_SONG, "");
-        return;
-      }
-      loadQueue(songs, 0);
-    },
-    allowOutsideClick: () => !Swal.isLoading(),
+let searchDebounceTimer = null;
+let searchRequestId = 0;
+
+function openSearchPanel() {
+  el.searchPanel.classList.add("is-open");
+  el.searchOverlay.classList.add("is-open");
+  el.searchInput.focus();
+}
+
+function closeSearchPanel() {
+  el.searchPanel.classList.remove("is-open");
+  el.searchOverlay.classList.remove("is-open");
+}
+
+function renderSearchState(html) {
+  el.searchResults.innerHTML = `<li class="search__state">${html}</li>`;
+}
+
+function renderSearchResults(songs) {
+  el.searchResults.innerHTML = "";
+
+  if (songs.length === 0) {
+    renderSearchState(NOT_FOUND_SONG);
+    return;
+  }
+
+  songs.forEach((song) => {
+    const li = document.createElement("li");
+    li.className = "search__item";
+
+    const img = document.createElement("img");
+    img.src = song.thumbnail;
+    img.alt = "";
+
+    const text = document.createElement("div");
+    text.className = "search__item-text";
+    const title = document.createElement("div");
+    title.className = "search__item-title";
+    title.textContent = decodeHtmlEntities(song.title);
+    const artist = document.createElement("div");
+    artist.className = "search__item-artist";
+    artist.textContent = decodeHtmlEntities(song.artist);
+    text.appendChild(title);
+    text.appendChild(artist);
+
+    li.appendChild(img);
+    li.appendChild(text);
+
+    li.addEventListener("click", () => {
+      loadQueue(songs, songs.indexOf(song));
+      closeSearchPanel();
+    });
+
+    el.searchResults.appendChild(li);
   });
 }
+
+async function runSearch(keyword) {
+  const requestId = ++searchRequestId;
+  renderSearchState('<i class="fa-solid fa-spinner fa-spin"></i>Đang tìm...');
+
+  const songs = await searchKey(keyword);
+
+  if (requestId !== searchRequestId) {
+    return;
+  }
+  renderSearchResults(songs);
+}
+
+el.searchInput.addEventListener("input", (event) => {
+  const keyword = event.target.value.trim();
+  clearTimeout(searchDebounceTimer);
+
+  if (keyword === "") {
+    searchRequestId++;
+    renderSearchState("Nhập tên bài hát để tìm kiếm");
+    return;
+  }
+
+  searchDebounceTimer = setTimeout(() => runSearch(keyword), 400);
+});
 
 // ---------------------------------------------------------------------------
 // Event wiring
 // ---------------------------------------------------------------------------
 el.btnSearch.addEventListener("click", (event) => {
   event.preventDefault();
-  openSearchDialog();
+  renderSearchState("Nhập tên bài hát để tìm kiếm");
+  el.searchInput.value = "";
+  openSearchPanel();
 });
+
+el.btnCloseSearch.addEventListener("click", (event) => {
+  event.preventDefault();
+  closeSearchPanel();
+});
+
+el.searchOverlay.addEventListener("click", closeSearchPanel);
 
 el.btnPlay.addEventListener("click", (event) => {
   event.preventDefault();
@@ -505,6 +579,10 @@ document.addEventListener("keydown", (event) => {
   if (event.code === "Space" && tag !== "INPUT" && tag !== "TEXTAREA") {
     event.preventDefault();
     togglePlay();
+  }
+  if (event.code === "Escape") {
+    closeSearchPanel();
+    closePlaylist();
   }
 });
 

@@ -6,8 +6,9 @@ UI with a spinning vinyl disc.
 
 ## Features
 
-- **Search** — search YouTube by song name (via the YouTube Data API v3) and
-  build a playlist from the results.
+- **Search** — a slide-down search panel (styled like the rest of the app,
+  not a browser dialog) with live, debounced YouTube search as you type;
+  clicking a result builds a playlist from the results.
 - **Real playback controls** — play/pause, seek, and volume are driven by the
   YouTube IFrame Player API (not just swapping the iframe URL), so they behave
   like a real player.
@@ -50,5 +51,5 @@ the bundled one stops working or you exceed its quota.
 | `css/music.css`        | Dark glassmorphism theme, disc/equalizer animations, layout    |
 | `js/constants.js`      | API key and `localStorage` keys                                 |
 | `js/youtubeAPI.js`     | YouTube Data API search + video-info requests                   |
-| `js/utils.js`          | Small helpers (alerts, time formatting, HTML-entity decoding)    |
+| `js/utils.js`          | Small helpers (time formatting, HTML-entity decoding)            |
 | `js/music.js`          | App state, YouTube IFrame Player wiring, all UI interactions     |

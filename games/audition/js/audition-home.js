@@ -93,21 +93,43 @@ document.querySelectorAll(".dance-card").forEach((card) => {
 
 renderBestScores();
 
-window.addEventListener("load", () => {
-  const music = LIST_MUSIC[Math.floor(Math.random() * LIST_MUSIC.length)];
-  const ambientAudio = new Audio(music);
-  ambientAudio.volume = 0.4;
-  ambientAudio.play().catch(function (error) {
-    console.log(
-      "Chrome cannot play sound without user interaction first" + error
-    );
-  });
+// ---------------------------------------------------------------------------
+// Ambient background music (YouTube IFrame Player API)
+// ---------------------------------------------------------------------------
+let ambientPlayer = null;
 
-  const muteBtn = document.getElementById("btn-mute-ambient");
-  muteBtn.addEventListener("click", () => {
-    ambientAudio.muted = !ambientAudio.muted;
-    muteBtn.querySelector("i").className = ambientAudio.muted
-      ? "fa-solid fa-volume-xmark"
-      : "fa-solid fa-volume-high";
+function onYouTubeIframeAPIReady() {
+  const videoId = LIST_MUSIC[Math.floor(Math.random() * LIST_MUSIC.length)];
+  ambientPlayer = new YT.Player("ambient-player", {
+    height: "0",
+    width: "0",
+    videoId: videoId,
+    playerVars: {
+      autoplay: 1,
+      controls: 0,
+      disablekb: 1,
+      loop: 1,
+      playlist: videoId,
+    },
+    events: {
+      onReady: (event) => {
+        event.target.setVolume(40);
+        event.target.playVideo();
+      },
+    },
   });
+}
+
+const muteBtn = document.getElementById("btn-mute-ambient");
+muteBtn.addEventListener("click", () => {
+  if (!ambientPlayer) return;
+  const isMuted = ambientPlayer.isMuted();
+  if (isMuted) {
+    ambientPlayer.unMute();
+  } else {
+    ambientPlayer.mute();
+  }
+  muteBtn.querySelector("i").className = isMuted
+    ? "fa-solid fa-volume-high"
+    : "fa-solid fa-volume-xmark";
 });

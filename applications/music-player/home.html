@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="css/music.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
     <body>
         <div class="bg-glow"></div>
@@ -89,6 +88,20 @@
                 <ul id="playlist-list" class="playlist__list"></ul>
             </div>
             <div class="playlist__overlay" id="playlist-overlay"></div>
+
+            <div class="search__panel" id="search-panel">
+                <div class="search__header">
+                    <div class="search__input-wrap">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input id="search-input" type="text" placeholder="Tìm bài hát..." autocomplete="off" />
+                    </div>
+                    <button id="btn-close-search" type="button" class="icon-btn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <ul id="search-results" class="search__results"></ul>
+            </div>
+            <div class="search__overlay" id="search-overlay"></div>
         </div>
 
         <div id="player-yt" hidden></div>

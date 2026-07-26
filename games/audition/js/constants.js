@@ -73,8 +73,5 @@ const MAP_KEY_8K = new Map([
   ["left-down-reverse", "right-up"],
 ]);
 
-const LIST_MUSIC = [
-  "https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/Waiting%20For%20You%20-%20MONO_%20Onionn.mp3?alt=media&token=a10b4da9-9967-4dc4-b120-76c7e08e13e2",
-  "https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/dua%20nao%20lam%20em%20buon_%20-%20Phuc%20Du.mp3?alt=media&token=5123bcc3-3305-408c-adf9-e3cb3d95d8cd",
-  "https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/See%20Tinh%20-%20Hoang%20Thuy%20Linh.mp3?alt=media&token=87095bae-98a7-4d18-9573-2e129d0c136b",
-];
+// YouTube video IDs (official MVs) used for the home screen's ambient background music.
+const LIST_MUSIC = ["okz5RIZRT0U", "1ntkDbxTnXA", "gJHSDZfJrRY"];
