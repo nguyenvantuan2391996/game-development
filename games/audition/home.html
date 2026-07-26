@@ -1,59 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<link rel="stylesheet" href="../common/css/home.css">
-<link rel="stylesheet" href="../common/css/table.css">
-<link rel="stylesheet" href="css/audition.css">
-
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Home game audition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audition - Nơi cảm xúc thăng hoa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/audition.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
+<body class="home-body">
+    <div class="bg-glow"></div>
 
-<h1>Guide</h1>
-<table>
-    <tr class="heading">
-        <th>Button</th>
-        <th>Content</th>
-    </tr>
-    <tr>
-        <td>Del</td>
-        <td>Dance with reverse button</td>
-    </tr>
-    <tr>
-        <td>⬆ ⬇ ⬅ ➡</td>
-        <td>Up Down Left Right</td>
-    </tr>
-    <tr>
-        <td>↖ ↙ ↗ ↘</td>
-        <td>Left-Up Left-Down Right-Up Right-Down</td>
-    </tr>
-</table>
+    <button id="btn-mute-ambient" class="icon-btn ambient-toggle" title="Mute ambient preview">
+        <i class="fa-solid fa-volume-high"></i>
+    </button>
 
-<div>
-    <div class="options" >
-        <label for="list-music"></label><select id="list-music" class="hide-option option">
-        <option selected="selected" disabled="disabled" value="">Select music</option>
-        <option value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/Waiting%20For%20You%20-%20MONO_%20Onionn.mp3?alt=media&token=a10b4da9-9967-4dc4-b120-76c7e08e13e2">Waiting For You - Mono</option>
-        <option value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/dua%20nao%20lam%20em%20buon_%20-%20Phuc%20Du.mp3?alt=media&token=5123bcc3-3305-408c-adf9-e3cb3d95d8cd">Đứa nào làm em buồn? - Phúc Du</option>
-        <option value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/See%20Tinh%20-%20Hoang%20Thuy%20Linh.mp3?alt=media&token=87095bae-98a7-4d18-9573-2e129d0c136b">See Tình - Hoàng Thuỳ Linh</option>
-    </select>
+    <div class="home-shell">
+        <div class="home-hero">
+            <span class="home-hero__eyebrow">Rhythm dance game</span>
+            <h1 class="home-hero__title">AUDITION</h1>
+            <p class="home-hero__subtitle">Nơi cảm xúc thăng hoa</p>
+        </div>
+
+        <div class="guide-strip">
+            <div class="guide-chip"><kbd>Del</kbd><span>Reverse mode</span></div>
+            <div class="guide-chip"><span class="guide-arrows">⬆ ⬇ ⬅ ➡</span><span>Up / Down / Left / Right</span></div>
+            <div class="guide-chip"><span class="guide-arrows">↖ ↙ ↗ ↘</span><span>Diagonals</span></div>
+            <div class="guide-chip"><kbd>Esc</kbd><span>Pause</span></div>
+        </div>
+
+        <section class="select-section">
+            <h2 class="select-section__title">1. Chọn bài hát</h2>
+            <div class="card-grid song-grid">
+                <div class="song-card" data-value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/Waiting%20For%20You%20-%20MONO_%20Onionn.mp3?alt=media&token=a10b4da9-9967-4dc4-b120-76c7e08e13e2">
+                    <button type="button" class="preview-btn" title="Preview"><i class="fa-solid fa-play"></i></button>
+                    <div class="song-card__text">
+                        <div class="song-card__title">Waiting For You</div>
+                        <div class="song-card__artist">MONO</div>
+                    </div>
+                </div>
+                <div class="song-card" data-value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/dua%20nao%20lam%20em%20buon_%20-%20Phuc%20Du.mp3?alt=media&token=5123bcc3-3305-408c-adf9-e3cb3d95d8cd">
+                    <button type="button" class="preview-btn" title="Preview"><i class="fa-solid fa-play"></i></button>
+                    <div class="song-card__text">
+                        <div class="song-card__title">Đứa nào làm em buồn?</div>
+                        <div class="song-card__artist">Phúc Du</div>
+                    </div>
+                </div>
+                <div class="song-card" data-value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/See%20Tinh%20-%20Hoang%20Thuy%20Linh.mp3?alt=media&token=87095bae-98a7-4d18-9573-2e129d0c136b">
+                    <button type="button" class="preview-btn" title="Preview"><i class="fa-solid fa-play"></i></button>
+                    <div class="song-card__text">
+                        <div class="song-card__title">See Tình</div>
+                        <div class="song-card__artist">Hoàng Thuỳ Linh</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="select-section">
+            <h2 class="select-section__title">2. Chọn kiểu nhảy</h2>
+            <div class="card-grid dance-grid">
+                <div class="dance-card" data-value="4k">
+                    <i class="fa-solid fa-arrows-up-down-left-right dance-card__icon"></i>
+                    <div class="dance-card__title">4K Dance</div>
+                    <div class="dance-card__desc">4 phím cơ bản</div>
+                    <div class="dance-card__best">Best: 0</div>
+                </div>
+                <div class="dance-card" data-value="8k">
+                    <i class="fa-solid fa-compass dance-card__icon"></i>
+                    <div class="dance-card__title">8K Dance</div>
+                    <div class="dance-card__desc">4 phím + chéo</div>
+                    <div class="dance-card__best">Best: 0</div>
+                </div>
+                <div class="dance-card" data-value="beat-up">
+                    <i class="fa-solid fa-bolt dance-card__icon"></i>
+                    <div class="dance-card__title">Beat-up Dance</div>
+                    <div class="dance-card__desc">Bắt nhịp liên tục</div>
+                    <div class="dance-card__best">Best: 0</div>
+                </div>
+            </div>
+        </section>
+
+        <label for="list-music" class="visually-hidden">Music</label>
+        <select id="list-music" class="visually-hidden">
+            <option selected disabled value="">Select music</option>
+            <option value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/Waiting%20For%20You%20-%20MONO_%20Onionn.mp3?alt=media&token=a10b4da9-9967-4dc4-b120-76c7e08e13e2">Waiting For You - Mono</option>
+            <option value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/dua%20nao%20lam%20em%20buon_%20-%20Phuc%20Du.mp3?alt=media&token=5123bcc3-3305-408c-adf9-e3cb3d95d8cd">Đứa nào làm em buồn? - Phúc Du</option>
+            <option value="https://firebasestorage.googleapis.com/v0/b/tuvandaihoc-c8a1c.appspot.com/o/See%20Tinh%20-%20Hoang%20Thuy%20Linh.mp3?alt=media&token=87095bae-98a7-4d18-9573-2e129d0c136b">See Tình - Hoàng Thuỳ Linh</option>
+        </select>
+
+        <label for="list-type-dance" class="visually-hidden">Dance type</label>
+        <select id="list-type-dance" class="visually-hidden">
+            <option selected disabled value="">Select type dance</option>
+            <option value="4k">4K Dance</option>
+            <option value="8k">8K Dance</option>
+            <option value="beat-up">Beat-up Dance</option>
+        </select>
+
+        <button type="button" class="button" id="button" onclick="handleLetGo()">
+            <i class="fa-solid fa-play"></i> Let's go!
+        </button>
     </div>
-
-    <div class="options" style="margin-top: 30px">
-        <label for="list-type-dance"></label><select id="list-type-dance" class="hide-option option">
-        <option selected="selected" disabled="disabled" value="">Select type dance</option>
-        <option value="4k">4K Dance</option>
-        <option value="8k">8K Dance</option>
-        <option value="beat-up">Beat-up Dance</option>
-    </select>
-    </div>
-</div>
-
-<div class="button" id="button" onclick="handleLetGo()">Let's go!</div>
 </body>
 </html>
 
 <script type="text/javascript" src="js/constants.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
 <script type="text/javascript" src="js/audition-home.js"></script>

@@ -13,8 +13,35 @@ let listKeyPress = [];
 const boxElement = document.getElementById("box");
 let picElement = document.getElementById("pic");
 let scoreElement = document.getElementById("score");
-let intervalID = setInterval(move, 0);
+let comboElement = document.getElementById("combo");
+let intervalID = null;
 let typeDance = "4k";
+
+// Shared across dance-8k-and-4k.js / dance-beat-up.js so both game modes can
+// feed the same HUD (combo, best score) and be paused/resumed generically.
+let comboCount = 0;
+let bestScore = 0;
+let isPaused = false;
+let isCountingDown = true;
+const gameLoopControl = { start: null, stop: null };
+
+function startMoveLoop() {
+  if (intervalID === null) {
+    intervalID = setInterval(move, 0);
+  }
+}
+
+function stopMoveLoop() {
+  clearInterval(intervalID);
+  intervalID = null;
+}
+
+function updateCombo(hit) {
+  comboCount = hit ? comboCount + 1 : 0;
+  if (comboElement) {
+    comboElement.textContent = comboCount > 1 ? comboCount + "x combo" : "";
+  }
+}
 
 function compareKeyPressAndRandom(key) {
   if (listKeyPress.length === listKeyRandom.length) {
@@ -22,20 +49,16 @@ function compareKeyPressAndRandom(key) {
   }
 
   const mapKey = typeDance === "4k" ? MAP_KEY_4K : MAP_KEY_8K;
-  if (mapKey.get(listKeyRandom[listKeyPress.length]) === key && !isReverse) {
+  if (mapKey.get(listKeyRandom[listKeyPress.length]) === key) {
     listKeyPress.push(key + "-success");
     setKey(key + "-success", listKeyPress.length);
-  } else if (
-    mapKey.get(listKeyRandom[listKeyPress.length]) === key &&
-    isReverse
-  ) {
-    listKeyPress.push(key + "-success");
-    setKey(key + "-success", listKeyPress.length);
+    highlightCurrentKey();
   } else {
     listKeyPress = [];
     for (let i = 0; i < listKeyRandom.length; i++) {
       setKey(listKeyRandom[i], i + 1);
     }
+    highlightCurrentKey();
   }
 }
 
@@ -52,7 +75,9 @@ function getListKey(level, listRandom) {
 
 function resetKeyRandom() {
   for (let i = 1; i <= 11; i++) {
-    document.getElementById(i.toString()).src = "";
+    const el = document.getElementById(i.toString());
+    el.src = "";
+    el.classList.remove("current-key");
   }
 }
 
@@ -60,25 +85,43 @@ function resetListKeyPress() {
   listKeyPress = [];
 }
 
+// Highlights the next key the player needs to press in the preview row.
+function highlightCurrentKey() {
+  for (let i = 1; i <= listKeyRandom.length; i++) {
+    document.getElementById(i.toString()).classList.remove("current-key");
+  }
+  if (listKeyPress.length < listKeyRandom.length) {
+    const nextIndex = listKeyPress.length + 1;
+    const el = document.getElementById(nextIndex.toString());
+    if (el) el.classList.add("current-key");
+  }
+}
+
 function setScore(pos) {
   if (listKeyPress.length !== listKeyRandom.length) {
-    picElement.src = "images/Miss.png";
+    showJudgement(picElement, "images/Miss.png");
+    updateCombo(false);
     return;
   }
   if (840 <= pos && pos <= 860) {
-    picElement.src = "images/Perfect.png";
+    showJudgement(picElement, "images/Perfect.png");
     score += isReverse ? 1200 : 800;
+    updateCombo(true);
   } else if ((790 <= pos && pos < 840) || (860 < pos && pos <= 910)) {
-    picElement.src = "images/Great.png";
+    showJudgement(picElement, "images/Great.png");
     score += isReverse ? 600 : 350;
+    updateCombo(true);
   } else if ((760 <= pos && pos < 790) || (910 < pos && pos <= 940)) {
-    picElement.src = "images/Cool.png";
+    showJudgement(picElement, "images/Cool.png");
     score += isReverse ? 350 : 150;
+    updateCombo(true);
   } else if ((750 <= pos && pos < 760) || (940 < pos && pos <= 950)) {
-    picElement.src = "images/Bad.png";
+    showJudgement(picElement, "images/Bad.png");
     score += isReverse ? 200 : 50;
+    updateCombo(true);
   } else {
-    picElement.src = "images/Miss.png";
+    showJudgement(picElement, "images/Miss.png");
+    updateCombo(false);
   }
   scoreElement.textContent = score;
 }
@@ -97,21 +140,25 @@ function move() {
           : typeDance === "4k"
           ? getListKey(level, LIST_KEY_4K)
           : getListKey(level, LIST_KEY_8K);
-        console.log(listKeyRandom);
         for (let i = 0; i < listKeyRandom.length; i++) {
           setKey(listKeyRandom[i], i + 1);
         }
+        highlightCurrentKey();
       }, 1000);
     }
-    if (count >= MIN_COUNT_TO_PLAY && countToIncreaseLevel % 1 === 0) {
+    if (
+      count >= MIN_COUNT_TO_PLAY &&
+      countToIncreaseLevel % ROUNDS_PER_LEVEL_UP === 0
+    ) {
       level++;
     }
     if (level > MAX_LEVEL) {
-      level = 11;
+      level = MAX_LEVEL;
     }
     if (count > MIN_COUNT_TO_PLAY && !isSpaced) {
       countToIncreaseLevel++;
-      picElement.src = "images/Miss.png";
+      showJudgement(picElement, "images/Miss.png");
+      updateCombo(false);
       resetListKeyPress();
       hide("box");
       setTimeout(function () {
@@ -127,6 +174,15 @@ function move() {
 
 // Event press key
 document.body.onkeyup = function (e) {
+  if (e.code === "Escape") {
+    togglePause();
+    return;
+  }
+
+  if (isPaused || isCountingDown) {
+    return;
+  }
+
   switch (typeDance) {
     case "4k":
     case "8k":
@@ -145,7 +201,6 @@ document.body.onkeyup = function (e) {
 
       // Key dance
       if (e.code === "ArrowUp" || e.code === "Numpad8") {
-        console.log(e.code);
         compareKeyPressAndRandom("up");
       }
       if (e.code === "ArrowDown" || e.code === "Numpad2") {
@@ -220,6 +275,32 @@ document.body.onkeyup = function (e) {
   }
 };
 
+function togglePause() {
+  if (isCountingDown || !gameLoopControl.start) {
+    return;
+  }
+  isPaused = !isPaused;
+  if (isPaused) {
+    audio.pause();
+    gameLoopControl.stop();
+    show("pause-overlay");
+  } else {
+    audio.play();
+    gameLoopControl.start();
+    hide("pause-overlay");
+  }
+}
+
+function resumeFromPause() {
+  if (isPaused) {
+    togglePause();
+  }
+}
+
+function quitToHome() {
+  window.location.href = "/game-development/games/audition/home.html";
+}
+
 function initVariable() {
   isReverse = false;
   isSpaced = false;
@@ -231,49 +312,92 @@ function initVariable() {
   level = 6;
   listKeyRandom = [];
   listKeyPress = [];
+  comboCount = 0;
   picElement = document.getElementById("pic");
   scoreElement = document.getElementById("score");
+  comboElement = document.getElementById("combo");
 }
 
 audio.onended = function () {
-  clearInterval(intervalID);
-  alert("Chúc mừng bạn đã đạt: " + score + " điểm");
-  window.location.href = "/game-development/games/audition/home.html";
+  gameLoopControl.stop();
+  const result = saveBestScoreIfHigher(typeDance, score);
+  Swal.fire({
+    title: result.isNewBest ? "New high score!" : "Song finished!",
+    html:
+      "Điểm của bạn: <b>" +
+      score +
+      "</b><br/>Điểm cao nhất: <b>" +
+      result.best +
+      "</b>",
+    icon: "success",
+    confirmButtonText: "Về trang chủ",
+  }).then(function () {
+    window.location.href = "/game-development/games/audition/home.html";
+  });
 };
 
+// Shows a 3-2-1 countdown (reusing the Ready.png artwork already on the
+// page) before the audio and game loop start, so players aren't thrown in
+// mid-motion the instant the page loads.
+function startCountdownThenPlay() {
+  isCountingDown = true;
+  show("countdown-overlay");
+  const countdownText = document.getElementById("countdown-text");
+  let secondsLeft = COUNTDOWN_SECONDS;
+  countdownText.textContent = secondsLeft;
+
+  const countdownInterval = setInterval(function () {
+    secondsLeft--;
+    if (secondsLeft > 0) {
+      countdownText.textContent = secondsLeft;
+      return;
+    }
+    if (secondsLeft === 0) {
+      countdownText.textContent = "Go!";
+      return;
+    }
+    clearInterval(countdownInterval);
+    hide("countdown-overlay");
+    isCountingDown = false;
+    audio.play().catch(function (error) {
+      console.log(
+        "Chrome cannot play sound without user interaction first" + error
+      );
+    });
+    gameLoopControl.start();
+  }, 700);
+}
+
 function initAudio() {
-  clearInterval(intervalID);
+  stopMoveLoop();
 
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get("music") === null || urlParams.get("type") === null) {
     window.location.href = "/game-development/games/audition/home.html";
+    return;
   }
 
   audio.src = urlParams.get("music");
-  audio.play().catch(function (error) {
-    console.log(
-      "Chrome cannot play sound without user interaction first" + error
-    );
-  });
-
   typeDance = urlParams.get("type");
+  bestScore = getBestScore(typeDance);
+  const bestScoreElement = document.getElementById("best-score");
+  if (bestScoreElement) {
+    bestScoreElement.textContent = bestScore;
+  }
 
   if (typeDance !== "4k" && typeDance !== "8k") {
     hide("4k-8k-dance");
-    intervalIDLeftUp = setInterval(moveLeftUp, 15);
-    intervalIDRightUp = setInterval(moveRightUp, 15);
-    intervalIDLeft = setInterval(moveLeft, 15);
-    intervalIDRight = setInterval(moveRight, 15);
-    intervalIDLeftDown = setInterval(moveLeftDown, 15);
-    intervalIDRightDown = setInterval(moveRightDown, 15);
-    intervalIDSpaceBeatUp = setInterval(moveSpaceBeatUp, 15);
-
     initVariableBeatUp();
+    gameLoopControl.start = startBeatUpLoops;
+    gameLoopControl.stop = stopBeatUpLoops;
   } else {
     hide("beat-up-dance");
-    intervalID = setInterval(move, 0);
     initVariable();
+    gameLoopControl.start = startMoveLoop;
+    gameLoopControl.stop = stopMoveLoop;
   }
+
+  startCountdownThenPlay();
 }
 
 window.addEventListener("load", initAudio);

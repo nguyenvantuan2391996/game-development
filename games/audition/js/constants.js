@@ -1,6 +1,9 @@
 // Const variable
 const MAX_LEVEL = 11;
 const MIN_COUNT_TO_PLAY = 5;
+const ROUNDS_PER_LEVEL_UP = 2;
+const COUNTDOWN_SECONDS = 3;
+const BEST_SCORE_PREFIX = "audition_best_";
 const LIST_KEY_HAS_REVERSE_4K = [
   "right",
   "up",
