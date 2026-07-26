@@ -507,7 +507,11 @@ body::before {
 }
 
 .inline {
-    display: inline;
+    display: inline-block;
+    width: 3.25rem;
+    height: 3.25rem;
+    object-fit: contain;
+    flex: 0 0 auto;
     filter: drop-shadow(0 0 4px rgba(124, 92, 255, 0.6));
     border-radius: 6px;
     transition: filter 0.2s ease, transform 0.2s ease;
@@ -519,17 +523,22 @@ body::before {
 }
 
 .margin-css {
-    margin-left: 100px;
-    margin-top: 50px;
-    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+    margin: 50px auto auto;
+    min-height: 100px;
     text-align: center;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 1rem;
     padding: 0.75rem;
     backdrop-filter: blur(8px);
-    max-width: 1000px;
-    margin-right: auto;
+    width: fit-content;
+    max-width: min(1000px, 96vw);
+    overflow-x: auto;
 }
 
 .col-main {
