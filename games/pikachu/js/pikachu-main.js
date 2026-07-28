@@ -4,14 +4,28 @@ let lockBoard = false;
 let moveCount = 0;
 let pairsTotal = 0;
 let pairsMatched = 0;
+let cellSizePx = 64;
+let boardKey = "";
+
+let startTime = 0;
+let penaltySeconds = 0;
+let timerInterval = null;
+let lastMatchTime = 0;
+let comboCount = 0;
 
 const pairsLeftEl = document.getElementById("pairs-left");
 const moveCountEl = document.getElementById("move-count");
 const boardSizeEl = document.getElementById("board-size");
+const elapsedTimeEl = document.getElementById("elapsed-time");
+const bestTimeEl = document.getElementById("best-time");
+const btnHint = document.getElementById("btn-hint");
+const btnShuffle = document.getElementById("btn-shuffle");
 
 document.getElementById("btn-restart").addEventListener("click", () => {
   location.reload();
 });
+btnHint.addEventListener("click", useHint);
+btnShuffle.addEventListener("click", () => shuffleBoard(true));
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -28,16 +42,68 @@ function computeCellSize(maxDimension) {
   return 26;
 }
 
+function formatTime(totalSeconds) {
+  const m = Math.floor(totalSeconds / 60);
+  const s = Math.floor(totalSeconds % 60);
+  return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+}
+
 function updateHUD() {
   pairsLeftEl.textContent = String(pairsTotal - pairsMatched);
   moveCountEl.textContent = String(moveCount);
+}
+
+function currentElapsedSeconds() {
+  return Math.floor((Date.now() - startTime) / 1000) + penaltySeconds;
+}
+
+function updateTimerDisplay() {
+  elapsedTimeEl.textContent = formatTime(currentElapsedSeconds());
+}
+
+function startTimer() {
+  startTime = Date.now();
+  penaltySeconds = 0;
+  updateTimerDisplay();
+  timerInterval = setInterval(updateTimerDisplay, 1000);
+}
+
+function stopTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+function loadBestTime() {
+  const raw = localStorage.getItem(BEST_SCORE_PREFIX + boardKey);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch (e) {
+    return null;
+  }
+}
+
+function renderBestTime() {
+  const best = loadBestTime();
+  bestTimeEl.textContent = best ? formatTime(best.timeSec) : "--:--";
+}
+
+function saveBestTimeIfBetter(timeSec, moves) {
+  const best = loadBestTime();
+  if (!best || timeSec < best.timeSec) {
+    localStorage.setItem(BEST_SCORE_PREFIX + boardKey, JSON.stringify({ timeSec, moves }));
+    return true;
+  }
+  return false;
 }
 
 // ---------------------------------------------------------------------------
 // Connect-path check: two tiles can be matched if a line connecting them
 // (going through empty cells and at most 2 turns, same rule as the classic
 // Pikachu/Onet game) exists. The grid is treated as bordered by an extra
-// walkable ring one cell outside the real board on every side.
+// walkable ring one cell outside the real board on every side. Returns the
+// list of waypoints for the path (used both for validation and for drawing
+// the connecting line), or null when no path exists.
 // ---------------------------------------------------------------------------
 function isCellEmpty(r, c) {
   if (r < 0 || r >= matrixGame.length || c < 0 || c >= matrixGame[0].length) {
@@ -66,49 +132,196 @@ function isPathClear(r1, c1, r2, c2) {
   return false;
 }
 
-function canConnect(a, b) {
+function getConnectPath(a, b) {
   const [r1, c1] = a;
   const [r2, c2] = b;
   const rows = matrixGame.length;
   const columns = matrixGame[0].length;
 
-  // straight line
-  if (isPathClear(r1, c1, r2, c2)) return true;
+  if (isPathClear(r1, c1, r2, c2)) return [[r1, c1], [r2, c2]];
 
-  // one turn
   if (isCellEmpty(r1, c2) && isPathClear(r1, c1, r1, c2) && isPathClear(r1, c2, r2, c2)) {
-    return true;
+    return [[r1, c1], [r1, c2], [r2, c2]];
   }
   if (isCellEmpty(r2, c1) && isPathClear(r1, c1, r2, c1) && isPathClear(r2, c1, r2, c2)) {
-    return true;
+    return [[r1, c1], [r2, c1], [r2, c2]];
   }
 
-  // two turns: horizontal from a, vertical through column k, horizontal into b
   for (let k = -1; k <= columns; k++) {
     if (!isCellEmpty(r1, k) || !isCellEmpty(r2, k)) continue;
     if (!isPathClear(r1, c1, r1, k)) continue;
     if (!isPathClear(r1, k, r2, k)) continue;
     if (!isPathClear(r2, k, r2, c2)) continue;
-    return true;
+    return [[r1, c1], [r1, k], [r2, k], [r2, c2]];
   }
 
-  // two turns: vertical from a, horizontal through row k, vertical into b
   for (let k = -1; k <= rows; k++) {
     if (!isCellEmpty(k, c1) || !isCellEmpty(k, c2)) continue;
     if (!isPathClear(r1, c1, k, c1)) continue;
     if (!isPathClear(k, c1, k, c2)) continue;
     if (!isPathClear(k, c2, r2, c2)) continue;
-    return true;
+    return [[r1, c1], [k, c1], [k, c2], [r2, c2]];
   }
 
-  return false;
+  return null;
+}
+
+function canConnect(a, b) {
+  return getConnectPath(a, b) !== null;
+}
+
+function findHintPair() {
+  const rows = matrixGame.length;
+  const columns = matrixGame[0].length;
+  for (let r1 = 0; r1 < rows; r1++) {
+    for (let c1 = 0; c1 < columns; c1++) {
+      if (matrixGame[r1][c1] === "") continue;
+      for (let r2 = r1; r2 < rows; r2++) {
+        for (let c2 = r2 === r1 ? c1 + 1 : 0; c2 < columns; c2++) {
+          if (matrixGame[r2][c2] === "") continue;
+          if (matrixGame[r1][c1] !== matrixGame[r2][c2]) continue;
+          const path = getConnectPath([r1, c1], [r2, c2]);
+          if (path) return { a: { r: r1, c: c1 }, b: { r: r2, c: c2 }, path };
+        }
+      }
+    }
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------------------
+// Connecting-line drawing (classic Onet-style visual feedback on a match)
+// ---------------------------------------------------------------------------
+function pxX(c) {
+  return (c + 1) * cellSizePx + cellSizePx / 2;
+}
+
+function pxY(r) {
+  return (r + 1) * cellSizePx + cellSizePx / 2;
+}
+
+function drawPathLine(path, className) {
+  const svg = document.getElementById("path-line-svg");
+  const points = path.map(([r, c]) => `${pxX(c)},${pxY(r)}`).join(" ");
+  const polyline = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+  polyline.setAttribute("points", points);
+  polyline.setAttribute("class", className || "path-line");
+  svg.appendChild(polyline);
+  setTimeout(() => polyline.remove(), 700);
+}
+
+function showComboPopup(count, path) {
+  const mid = path[Math.floor(path.length / 2)];
+  const boardInner = document.getElementById("board-inner");
+  const popup = document.createElement("div");
+  popup.className = "combo-popup";
+  popup.textContent = `Combo x${count}!`;
+  popup.style.left = pxX(mid[1]) + "px";
+  popup.style.top = pxY(mid[0]) + "px";
+  boardInner.appendChild(popup);
+  setTimeout(() => popup.remove(), 900);
+}
+
+function showToast(message, actionLabel, onAction) {
+  const existing = document.getElementById("toast");
+  if (existing) existing.remove();
+
+  const toast = document.createElement("div");
+  toast.id = "toast";
+  toast.className = "toast";
+  toast.innerHTML =
+    `<span>${message}</span>` +
+    (actionLabel ? `<button type="button" class="toast-btn">${actionLabel}</button>` : "");
+  document.body.appendChild(toast);
+
+  if (actionLabel && onAction) {
+    toast.querySelector(".toast-btn").addEventListener("click", () => {
+      toast.remove();
+      onAction();
+    });
+  }
+  setTimeout(() => {
+    if (toast.isConnected) toast.remove();
+  }, 5000);
+}
+
+function checkStuck() {
+  if (pairsMatched >= pairsTotal) return;
+  if (findHintPair()) return;
+  showToast("Không còn cặp nào ghép được!", "Xáo bài", () => shuffleBoard(false));
+}
+
+// ---------------------------------------------------------------------------
+// Hint / shuffle actions
+// ---------------------------------------------------------------------------
+function useHint() {
+  if (lockBoard || pairsMatched >= pairsTotal) return;
+
+  const hint = findHintPair();
+  if (!hint) {
+    showToast("Không còn cặp nào ghép được!", "Xáo bài", () => shuffleBoard(false));
+    return;
+  }
+
+  penaltySeconds += HINT_PENALTY_SEC;
+  updateTimerDisplay();
+
+  const idA = hint.a.r + "-" + hint.a.c;
+  const idB = hint.b.r + "-" + hint.b.c;
+  document.getElementById("img-" + idA).classList.add("is-hint");
+  document.getElementById("img-" + idB).classList.add("is-hint");
+  drawPathLine(hint.path, "path-line path-line--hint");
+
+  setTimeout(() => {
+    document.getElementById("img-" + idA).classList.remove("is-hint");
+    document.getElementById("img-" + idB).classList.remove("is-hint");
+  }, 1100);
+}
+
+function shuffleBoard(manual) {
+  if (lockBoard || pairsMatched >= pairsTotal) return;
+
+  const positions = [];
+  const values = [];
+  for (let r = 0; r < matrixGame.length; r++) {
+    for (let c = 0; c < matrixGame[0].length; c++) {
+      if (matrixGame[r][c] !== "") {
+        positions.push([r, c]);
+        values.push(matrixGame[r][c]);
+      }
+    }
+  }
+
+  for (let i = values.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [values[i], values[j]] = [values[j], values[i]];
+  }
+
+  positions.forEach(([r, c], i) => {
+    matrixGame[r][c] = values[i];
+    document.getElementById("img-" + r + "-" + c).src = values[i];
+  });
+
+  selected.forEach((tile) => document.getElementById("img-" + tile.id).classList.remove("is-selected"));
+  selected = [];
+
+  if (manual) {
+    penaltySeconds += SHUFFLE_PENALTY_SEC;
+    updateTimerDisplay();
+  }
 }
 
 function showWinModal() {
+  const finalTime = currentElapsedSeconds();
+  const isNewRecord = saveBestTimeIfBetter(finalTime, moveCount);
+  renderBestTime();
+
   showModal({
     icon: "success",
     title: "Chúc mừng, bạn đã ghép hết!",
-    html: "Hoàn thành trong " + moveCount + " lượt chọn.",
+    html:
+      `Hoàn thành trong <strong>${formatTime(finalTime)}</strong> với ${moveCount} lượt chọn.` +
+      (isNewRecord ? "<br><span style=\"color:var(--accent-a)\">🏆 Kỷ lục mới!</span>" : ""),
     actions: [
       { label: "Chơi lại", onClick: () => location.reload() },
       {
@@ -141,9 +354,16 @@ function handleClick(id) {
 
   const [a, b] = selected;
   const sameImage = matrixGame[a.r][a.c] === matrixGame[b.r][b.c];
-  const matched = sameImage && canConnect([a.r, a.c], [b.r, b.c]);
+  const path = sameImage ? getConnectPath([a.r, a.c], [b.r, b.c]) : null;
 
-  if (matched) {
+  if (path) {
+    drawPathLine(path);
+
+    const now = Date.now();
+    comboCount = now - lastMatchTime <= COMBO_WINDOW_MS ? comboCount + 1 : 1;
+    lastMatchTime = now;
+    if (comboCount >= 2) showComboPopup(comboCount, path);
+
     setTimeout(() => {
       document.getElementById("img-" + a.id).classList.add("is-cleared");
       document.getElementById("img-" + b.id).classList.add("is-cleared");
@@ -155,7 +375,10 @@ function handleClick(id) {
       lockBoard = false;
 
       if (pairsMatched === pairsTotal) {
+        stopTimer();
         setTimeout(showWinModal, 200);
+      } else {
+        checkStuck();
       }
     }, 250);
   } else {
@@ -203,6 +426,8 @@ function init() {
   lockBoard = false;
   moveCount = 0;
   pairsMatched = 0;
+  comboCount = 0;
+  lastMatchTime = 0;
 
   const urlParams = new URLSearchParams(window.location.search);
   const rows = Number(urlParams.get("rows"));
@@ -215,11 +440,11 @@ function init() {
 
   pairsTotal = Math.floor((rows * columns) / 2);
   boardSizeEl.textContent = rows + " x " + columns;
+  boardKey = rows + "x" + columns;
+  renderBestTime();
 
-  document.documentElement.style.setProperty(
-    "--cell-size",
-    computeCellSize(Math.max(rows, columns)) + "px"
-  );
+  cellSizePx = computeCellSize(Math.max(rows, columns));
+  document.documentElement.style.setProperty("--cell-size", cellSizePx + "px");
 
   matrixGame = buildMatrix(rows, columns);
 
@@ -236,7 +461,17 @@ function init() {
   }
 
   document.getElementById("table_game_pikachu").innerHTML = tableContent;
+
+  const svg = document.getElementById("path-line-svg");
+  svg.setAttribute("width", (columns + 2) * cellSizePx);
+  svg.setAttribute("height", (rows + 2) * cellSizePx);
+  svg.style.width = (columns + 2) * cellSizePx + "px";
+  svg.style.height = (rows + 2) * cellSizePx + "px";
+  svg.style.top = -cellSizePx + "px";
+  svg.style.left = -cellSizePx + "px";
+
   updateHUD();
+  startTimer();
 }
 
 window.addEventListener("load", () => {

@@ -32,9 +32,27 @@
         </div>
 
         <div class="hud-item">
+            <span class="hud-label">Thời gian</span>
+            <span id="elapsed-time" class="hud-value time">00:00</span>
+        </div>
+
+        <div class="hud-item">
+            <span class="hud-label">Kỷ lục</span>
+            <span id="best-time" class="hud-value best">--:--</span>
+        </div>
+
+        <div class="hud-item">
             <span class="hud-label">Bàn chơi</span>
             <span id="board-size" class="hud-value board-size">-</span>
         </div>
+
+        <button type="button" class="icon-btn" id="btn-hint" title="Gợi ý (+5s)">
+            <i class="fa-solid fa-lightbulb"></i>
+        </button>
+
+        <button type="button" class="icon-btn" id="btn-shuffle" title="Xáo bài (+10s)">
+            <i class="fa-solid fa-shuffle"></i>
+        </button>
 
         <button type="button" class="icon-btn" id="btn-restart" title="Chơi lại">
             <i class="fa-solid fa-rotate-right"></i>
@@ -42,7 +60,10 @@
     </div>
 
     <div class="board-wrap" id="board-wrap">
-        <table id="table_game_pikachu"></table>
+        <div class="board-inner" id="board-inner">
+            <svg id="path-line-svg" class="path-line-svg"></svg>
+            <table id="table_game_pikachu"></table>
+        </div>
     </div>
 </div>
 </body>
