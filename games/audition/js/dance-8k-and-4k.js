@@ -25,6 +25,8 @@ let typeDance = "4k";
 // Shared across dance-8k-and-4k.js / dance-beat-up.js so both game modes can
 // feed the same HUD (combo, best score) and be paused/resumed generically.
 let comboCount = 0;
+let maxCombo = 0;
+let judgementCounts = { perfect: 0, great: 0, cool: 0, bad: 0, miss: 0 };
 let bestScore = 0;
 let isPaused = false;
 let isCountingDown = true;
@@ -71,6 +73,7 @@ function stopMoveLoop() {
 
 function updateCombo(hit) {
   comboCount = hit ? comboCount + 1 : 0;
+  if (comboCount > maxCombo) maxCombo = comboCount;
   if (comboElement) {
     comboElement.textContent = comboCount > 1 ? comboCount + "x combo" : "";
   }
@@ -137,6 +140,7 @@ function highlightCurrentKey() {
 function setScore(pos) {
   if (listKeyPress.length !== listKeyRandom.length) {
     showJudgement(picElement, "images/Miss.png");
+    judgementCounts.miss++;
     updateCombo(false);
     updatePerfectStreak(false);
     return;
@@ -144,25 +148,30 @@ function setScore(pos) {
   if (840 <= pos && pos <= 860) {
     showJudgement(picElement, "images/Perfect.png");
     score += isReverse ? 1200 : 800;
+    judgementCounts.perfect++;
     updateCombo(true);
     updatePerfectStreak(true);
   } else if ((790 <= pos && pos < 840) || (860 < pos && pos <= 910)) {
     showJudgement(picElement, "images/Great.png");
     score += isReverse ? 600 : 350;
+    judgementCounts.great++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else if ((760 <= pos && pos < 790) || (910 < pos && pos <= 940)) {
     showJudgement(picElement, "images/Cool.png");
     score += isReverse ? 350 : 150;
+    judgementCounts.cool++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else if ((750 <= pos && pos < 760) || (940 < pos && pos <= 950)) {
     showJudgement(picElement, "images/Bad.png");
     score += isReverse ? 200 : 50;
+    judgementCounts.bad++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else {
     showJudgement(picElement, "images/Miss.png");
+    judgementCounts.miss++;
     updateCombo(false);
     updatePerfectStreak(false);
   }
@@ -362,6 +371,8 @@ function initVariable() {
   listKeyRandom = [];
   listKeyPress = [];
   comboCount = 0;
+  maxCombo = 0;
+  judgementCounts = { perfect: 0, great: 0, cool: 0, bad: 0, miss: 0 };
   perfectStreak = 0;
   picElement = document.getElementById("pic");
   scoreElement = document.getElementById("score");
@@ -372,17 +383,16 @@ function initVariable() {
 audio.onended = function () {
   gameLoopControl.stop();
   const result = saveBestScoreIfHigher(typeDance, score);
-  showModal({
-    icon: "success",
-    title: result.isNewBest ? "New high score!" : "Song finished!",
-    html:
-      "Điểm của bạn: <b>" +
-      score +
-      "</b><br/>Điểm cao nhất: <b>" +
-      result.best +
-      "</b>",
-    confirmText: "Về trang chủ",
-    onConfirm: function () {
+  showScoreSummary({
+    score,
+    best: result.best,
+    isNewBest: result.isNewBest,
+    maxCombo,
+    judgementCounts,
+    onReplay: function () {
+      window.location.reload();
+    },
+    onHome: function () {
       window.location.href = "/game-development/games/audition/home.html";
     },
   });

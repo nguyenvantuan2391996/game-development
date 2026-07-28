@@ -43,6 +43,40 @@
     });
     overlayBtn.addEventListener("click", startGame);
 
+    document.querySelectorAll(".dpad-btn").forEach((btn) => {
+        const dir = btn.dataset.dir;
+        const press = (e) => {
+            e.preventDefault();
+            keys[dir] = true;
+            btn.classList.add("is-pressed");
+        };
+        const release = (e) => {
+            e.preventDefault();
+            keys[dir] = false;
+            btn.classList.remove("is-pressed");
+        };
+        btn.addEventListener("pointerdown", press);
+        btn.addEventListener("pointerup", release);
+        btn.addEventListener("pointercancel", release);
+        btn.addEventListener("pointerleave", release);
+    });
+
+    const fireBtn = document.getElementById("fire-btn");
+    fireBtn.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        keys[" "] = true;
+        fireBtn.classList.add("is-pressed");
+        if (state === "ready" || state === "gameover") startGame();
+    });
+    const releaseFire = (e) => {
+        e.preventDefault();
+        keys[" "] = false;
+        fireBtn.classList.remove("is-pressed");
+    };
+    fireBtn.addEventListener("pointerup", releaseFire);
+    fireBtn.addEventListener("pointercancel", releaseFire);
+    fireBtn.addEventListener("pointerleave", releaseFire);
+
     function randomBetween(min, max) {
         return min + Math.random() * (max - min);
     }

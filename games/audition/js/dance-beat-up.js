@@ -170,25 +170,30 @@ function setScoreBeatUpSpace(pos) {
   if (325 <= pos && pos <= 365) {
     showJudgement(picBeatUpElement, "images/Perfect.png");
     score += isReverse ? 1200 : 800;
+    judgementCounts.perfect++;
     updateCombo(true);
     updatePerfectStreak(true);
   } else if ((310 <= pos && pos < 325) || (365 < pos && pos <= 380)) {
     showJudgement(picBeatUpElement, "images/Great.png");
     score += isReverse ? 600 : 350;
+    judgementCounts.great++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else if ((295 <= pos && pos < 310) || (380 < pos && pos <= 395)) {
     showJudgement(picBeatUpElement, "images/Cool.png");
     score += isReverse ? 350 : 150;
+    judgementCounts.cool++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else if ((280 <= pos && pos < 295) || (395 < pos && pos <= 410)) {
     showJudgement(picBeatUpElement, "images/Bad.png");
     score += isReverse ? 200 : 50;
+    judgementCounts.bad++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else {
     showJudgement(picBeatUpElement, "images/Miss.png");
+    judgementCounts.miss++;
     updateCombo(false);
     updatePerfectStreak(false);
   }
@@ -200,25 +205,30 @@ function setScoreBeatUpLeft(pos) {
   if (400 <= pos && pos <= 420) {
     showJudgement(picBeatUpElement, "images/Perfect.png");
     score += isReverse ? 1200 : 800;
+    judgementCounts.perfect++;
     updateCombo(true);
     updatePerfectStreak(true);
   } else if ((390 <= pos && pos < 400) || (420 < pos && pos <= 430)) {
     showJudgement(picBeatUpElement, "images/Great.png");
     score += isReverse ? 600 : 350;
+    judgementCounts.great++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else if ((380 <= pos && pos < 390) || (430 < pos && pos <= 440)) {
     showJudgement(picBeatUpElement, "images/Cool.png");
     score += isReverse ? 350 : 150;
+    judgementCounts.cool++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else if ((370 <= pos && pos < 380) || (440 < pos && pos <= 450)) {
     showJudgement(picBeatUpElement, "images/Bad.png");
     score += isReverse ? 200 : 50;
+    judgementCounts.bad++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else {
     showJudgement(picBeatUpElement, "images/Miss.png");
+    judgementCounts.miss++;
     updateCombo(false);
     updatePerfectStreak(false);
   }
@@ -230,25 +240,30 @@ function setScoreBeatUpRight(pos) {
   if (30 <= pos && pos <= 50) {
     showJudgement(picBeatUpElement, "images/Perfect.png");
     score += isReverse ? 1200 : 800;
+    judgementCounts.perfect++;
     updateCombo(true);
     updatePerfectStreak(true);
   } else if ((20 <= pos && pos < 30) || (50 < pos && pos <= 60)) {
     showJudgement(picBeatUpElement, "images/Great.png");
     score += isReverse ? 600 : 350;
+    judgementCounts.great++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else if ((10 <= pos && pos < 20) || (60 < pos && pos <= 70)) {
     showJudgement(picBeatUpElement, "images/Cool.png");
     score += isReverse ? 350 : 150;
+    judgementCounts.cool++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else if ((0 <= pos && pos < 10) || (70 < pos && pos <= 80)) {
     showJudgement(picBeatUpElement, "images/Bad.png");
     score += isReverse ? 200 : 50;
+    judgementCounts.bad++;
     updateCombo(true);
     updatePerfectStreak(false);
   } else {
     showJudgement(picBeatUpElement, "images/Miss.png");
+    judgementCounts.miss++;
     updateCombo(false);
     updatePerfectStreak(false);
   }

@@ -575,6 +575,174 @@ body::before {
 
 .modal-actions {
     margin-top: 0.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Score summary card (end-of-song results)                           */
+/* ------------------------------------------------------------------ */
+.summary-panel {
+    position: relative;
+    max-width: min(23rem, 90vw);
+    padding-top: 2.5rem;
+}
+
+.summary-rank {
+    position: absolute;
+    top: -1.1rem;
+    right: -1.1rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--bg-mid);
+    border: 2px solid var(--card-border);
+    box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.6);
+    animation: judgement-pop 0.4s ease 0.1s both;
+}
+
+.summary-rank.rank-s {
+    color: var(--accent-c);
+    border-color: var(--accent-c);
+    box-shadow: 0 0 22px rgba(255, 207, 77, 0.55);
+}
+
+.summary-rank.rank-a {
+    color: var(--accent-b);
+    border-color: var(--accent-b);
+    box-shadow: 0 0 20px rgba(124, 92, 255, 0.5);
+}
+
+.summary-rank.rank-b {
+    color: #4ce6d0;
+    border-color: #4ce6d0;
+}
+
+.summary-rank.rank-c {
+    color: var(--text-dim);
+}
+
+.summary-rank.rank-d {
+    color: var(--accent-a);
+    border-color: var(--accent-a);
+}
+
+.modal-icon--trophy {
+    background: rgba(255, 207, 77, 0.15);
+    color: var(--accent-c);
+    box-shadow: 0 0 25px rgba(255, 207, 77, 0.45);
+    font-size: 1.6rem;
+}
+
+.modal-icon--trophy::before {
+    content: "\1F3C6";
+}
+
+.summary-score {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+}
+
+.summary-score__value {
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: judgement-pop 0.35s ease;
+}
+
+.summary-score__label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+.summary-stats {
+    display: flex;
+    gap: 0.6rem;
+    width: 100%;
+}
+
+.stat-chip {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
+    border-radius: 0.9rem;
+    padding: 0.5rem 0.6rem;
+    text-align: center;
+}
+
+.stat-chip__label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.15rem;
+}
+
+.stat-chip__value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.judgement-breakdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 0.2rem;
+}
+
+.judgement-row {
+    display: grid;
+    grid-template-columns: 3.3rem 1fr 2rem;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.judgement-row__label {
+    color: var(--text-dim);
+    text-align: left;
+}
+
+.judgement-row__bar {
+    display: block;
+    height: 0.4rem;
+    border-radius: 0.3rem;
+    background: rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+}
+
+.judgement-row__bar span {
+    display: block;
+    height: 100%;
+    border-radius: 0.3rem;
+    transition: width 0.4s ease;
+}
+
+.judgement-row--perfect .judgement-row__bar span { background: var(--accent-c); }
+.judgement-row--great .judgement-row__bar span { background: var(--accent-b); }
+.judgement-row--cool .judgement-row__bar span { background: #4ce6d0; }
+.judgement-row--bad .judgement-row__bar span { background: #ff8a3d; }
+.judgement-row--miss .judgement-row__bar span { background: var(--accent-a); }
+
+.judgement-row__count {
+    text-align: right;
+    font-weight: 700;
 }
 
 /* ------------------------------------------------------------------ */

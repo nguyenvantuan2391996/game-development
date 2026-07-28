@@ -91,7 +91,7 @@ body {
 
 .canvas-wrap {
     position: relative;
-    width: min(90vw, 356px);
+    width: min(90vw, calc(78vh * 0.9036), 640px);
     aspect-ratio: 356 / 394;
     border-radius: 1.25rem;
     overflow: hidden;

@@ -89,9 +89,77 @@ body {
     color: var(--accent-c);
 }
 
+.touch-controls {
+    display: none;
+    width: 100%;
+    max-width: 640px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+    user-select: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+    .touch-controls {
+        display: flex;
+    }
+}
+
+.dpad {
+    position: relative;
+    width: 9.5rem;
+    height: 9.5rem;
+}
+
+.dpad-btn {
+    position: absolute;
+    width: 3.1rem;
+    height: 3.1rem;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+    font-size: 1.1rem;
+    border-radius: 0.75rem;
+    backdrop-filter: blur(10px);
+    touch-action: none;
+    cursor: pointer;
+}
+
+.dpad-btn:active,
+.dpad-btn.is-pressed {
+    background: var(--accent-gradient);
+    color: #1a1330;
+    border-color: transparent;
+}
+
+.dpad-btn--up { top: 0; left: 3.2rem; }
+.dpad-btn--left { top: 3.2rem; left: 0; }
+.dpad-btn--right { top: 3.2rem; left: 6.4rem; }
+.dpad-btn--down { top: 6.4rem; left: 3.2rem; }
+
+.fire-btn {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 61, 154, 0.4);
+    background: var(--accent-gradient);
+    color: #1a1330;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    box-shadow: 0 15px 35px -12px rgba(255, 61, 154, 0.6);
+    touch-action: none;
+    cursor: pointer;
+}
+
+.fire-btn:active,
+.fire-btn.is-pressed {
+    transform: scale(0.94);
+}
+
 .canvas-wrap {
     position: relative;
-    width: min(90vw, 416px);
+    width: min(90vw, 78vh, 640px);
     aspect-ratio: 1 / 1;
     border-radius: 1.25rem;
     overflow: hidden;
