@@ -1,52 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<link rel="stylesheet" href="../common/css/home.css">
-<link rel="stylesheet" href="css/caro.css">
-
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Home game tic tac toe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caro - Nối 5 quân thắng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/caro.css">
     <script src="/game-development/js/block-devtools.js"></script>
 </head>
-<body>
-<div>
-    <div class="options">
-        <label for="list-type-play"></label><select id="list-type-play" class="hide-option option">
-        <option selected="selected" disabled="disabled" value="">Select type play</option>
-        <option value="2-players">2 players</option>
-        <option value="player-computer">Player and computer</option>
-        <option value="computer-computer">Computer and computer</option>
-    </select>
+<body class="home-body">
+<div class="home-shell">
+    <div class="home-hero">
+        <span class="home-hero__eyebrow">Board game</span>
+        <h1 class="home-hero__title">CARO</h1>
+        <p class="home-hero__subtitle">Nối 5 quân liền để chiến thắng</p>
     </div>
 
-    <div class="options" style="margin-top: 30px">
-        <label for="list-row"></label><select id="list-row" class="hide-option option">
-        <option selected="selected" disabled="disabled" value="">Select amount of rows</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-        <option value="50">50</option>
-        <option value="60">60</option>
-    </select>
-    </div>
+    <section class="select-section">
+        <h2 class="select-section__title">1. Chọn kiểu chơi</h2>
+        <div class="card-grid type-grid">
+            <div class="type-card" data-value="2-players">
+                <i class="fa-solid fa-user-group type-card__icon"></i>
+                <div class="type-card__title">2 người chơi</div>
+                <div class="type-card__desc">Chơi cùng bạn bè</div>
+            </div>
+            <div class="type-card" data-value="player-computer">
+                <i class="fa-solid fa-robot type-card__icon"></i>
+                <div class="type-card__title">Đấu với máy</div>
+                <div class="type-card__desc">Thử thách AI</div>
+            </div>
+            <div class="type-card" data-value="computer-computer">
+                <i class="fa-solid fa-microchip type-card__icon"></i>
+                <div class="type-card__title">Máy đấu máy</div>
+                <div class="type-card__desc">Xem AI tự đấu</div>
+            </div>
+        </div>
+    </section>
 
-    <div class="options" style="margin-top: 30px">
-        <label for="list-column"></label><select id="list-column" class="hide-option option">
-        <option selected="selected" disabled="disabled" value="">Select amount of columns</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-        <option value="50">50</option>
-        <option value="60">60</option>
-    </select>
-    </div>
+    <section class="select-section">
+        <h2 class="select-section__title">2. Chọn kích thước bàn cờ</h2>
+
+        <label class="size-toggle">
+            <input type="checkbox" id="square-toggle" checked>
+            Bàn vuông (số cột bằng số hàng)
+        </label>
+
+        <div class="size-block">
+            <div class="size-block__label">Số hàng</div>
+            <div class="card-grid size-grid" id="rows-grid"></div>
+        </div>
+
+        <div class="size-block" id="columns-block" hidden>
+            <div class="size-block__label">Số cột</div>
+            <div class="card-grid size-grid" id="columns-grid"></div>
+        </div>
+    </section>
+
+    <button type="button" class="button" id="button" onclick="handleLetGo()">
+        <i class="fa-solid fa-play"></i> Let's go!
+    </button>
 </div>
-
-<div class="button" id="button" onclick="handleLetGo()">Let's go!</div>
 </body>
 </html>
 
+<script type="text/javascript" src="js/constants.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
 <script type="text/javascript" src="js/caro-home.js"></script>

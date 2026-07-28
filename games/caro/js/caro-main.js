@@ -2,29 +2,145 @@ let player = X;
 let matrixGame = [];
 let typeGame = TWO_PLAYER;
 let isFirst = true;
+let moveCount = 0;
+
+const turnIndicator = document.getElementById("turn-indicator");
+const moveCountEl = document.getElementById("move-count");
+const boardSizeEl = document.getElementById("board-size");
+const boardWrap = document.getElementById("board-wrap");
+
+document.getElementById("btn-restart").addEventListener("click", () => {
+  location.reload();
+});
 
 function delay(time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
+function computeCellSize(maxDimension) {
+  if (maxDimension <= 10) return 56;
+  if (maxDimension <= 20) return 46;
+  if (maxDimension <= 30) return 38;
+  if (maxDimension <= 40) return 32;
+  if (maxDimension <= 50) return 28;
+  return 24;
+}
+
+function updateHUD() {
+  turnIndicator.textContent = player.toUpperCase();
+  turnIndicator.classList.toggle("x", player === X);
+  turnIndicator.classList.toggle("o", player === O);
+  moveCountEl.textContent = String(moveCount);
+}
+
+function markCell(row, col, mark) {
+  const cell = document.getElementById(row + "-" + col);
+  cell.textContent = mark.toUpperCase();
+  cell.classList.add(mark);
+  matrixGame[row][col] = mark;
+  moveCount++;
+}
+
+function collectLine(x, y, mark, dx, dy) {
+  const cells = [[x, y]];
+
+  for (let i = 1; i < 5; i++) {
+    const nx = x + dx * i;
+    const ny = y + dy * i;
+    if (
+      nx >= 0 &&
+      nx < matrixGame.length &&
+      ny >= 0 &&
+      ny < matrixGame[0].length &&
+      matrixGame[nx][ny] === mark
+    ) {
+      cells.push([nx, ny]);
+    } else {
+      break;
+    }
+  }
+
+  for (let i = 1; i < 5; i++) {
+    const nx = x - dx * i;
+    const ny = y - dy * i;
+    if (
+      nx >= 0 &&
+      nx < matrixGame.length &&
+      ny >= 0 &&
+      ny < matrixGame[0].length &&
+      matrixGame[nx][ny] === mark
+    ) {
+      cells.unshift([nx, ny]);
+    } else {
+      break;
+    }
+  }
+
+  return cells;
+}
+
+function findWinningLine(points, mark) {
+  const x = Number(points[0]);
+  const y = Number(points[1]);
+  const directions = [
+    [0, 1],
+    [1, 0],
+    [1, 1],
+    [1, -1],
+  ];
+
+  for (const [dx, dy] of directions) {
+    const line = collectLine(x, y, mark, dx, dy);
+    if (line.length >= 5) {
+      return line;
+    }
+  }
+
+  return null;
+}
+
+function highlightWinningLine(points, mark) {
+  const line = findWinningLine(points, mark);
+  if (!line) return;
+
+  for (const [x, y] of line) {
+    document.getElementById(x + "-" + y).classList.add("win-cell");
+  }
+}
+
+function showGameOverModal(title, icon) {
+  showModal({
+    icon,
+    title,
+    actions: [
+      { label: "Chơi lại", onClick: () => location.reload() },
+      {
+        label: "Về trang chủ",
+        ghost: true,
+        onClick: () => {
+          window.location.href = "/game-development/games/caro/home.html";
+        },
+      },
+    ],
+  });
+}
+
 function handleClick(id) {
   switch (processClick(id)) {
     case WIN:
+      updateHUD();
       setTimeout(function () {
-        alert("Player: " + player + " is winner");
-
-        // reset game
-        init();
+        showGameOverModal("Người chơi " + player.toUpperCase() + " chiến thắng!", "success");
       }, 100);
       break;
     case DRAW:
+      updateHUD();
       setTimeout(function () {
-        alert("Draw");
-
-        // reset game
-        init();
+        showGameOverModal("Hòa cờ!", "draw");
       }, 100);
       break;
+    default:
+      updateHUD();
   }
 }
 
@@ -40,17 +156,10 @@ function processClick(id) {
         return;
       }
 
-      if (player === X) {
-        matrixGame[Number(points[0])][Number(points[1])] = X;
-        document.getElementById(id).innerHTML = XText;
-      }
-
-      if (player === O) {
-        matrixGame[Number(points[0])][Number(points[1])] = O;
-        document.getElementById(id).innerHTML = OText;
-      }
+      markCell(Number(points[0]), Number(points[1]), player);
 
       if (checkWin(points)) {
+        highlightWinningLine(points, player);
         return WIN;
       }
 
@@ -69,13 +178,11 @@ function processClick(id) {
         return;
       }
 
-      if (player === X) {
-        matrixGame[Number(points[0])][Number(points[1])] = X;
-        document.getElementById(id).innerHTML = XText;
-      }
+      markCell(Number(points[0]), Number(points[1]), X);
 
       // check win
       if (checkWin(points)) {
+        highlightWinningLine(points, X);
         return WIN;
       }
 
@@ -84,17 +191,15 @@ function processClick(id) {
         return DRAW;
       }
 
-      player = player === X ? O : X;
+      player = O;
 
       // computer
       let pointsComputer = getPointsComputer();
-      matrixGame[pointsComputer[0]][pointsComputer[1]] = O;
-      document.getElementById(
-        pointsComputer[0].toString() + "-" + pointsComputer[1].toString()
-      ).innerHTML = OText;
+      markCell(pointsComputer[0], pointsComputer[1], O);
 
       // check win
       if (checkWin(pointsComputer)) {
+        highlightWinningLine(pointsComputer, O);
         return WIN;
       }
 
@@ -103,7 +208,7 @@ function processClick(id) {
         return DRAW;
       }
 
-      player = player === X ? O : X;
+      player = X;
 
       break;
   }
@@ -249,23 +354,21 @@ function getPointsComputer() {
   for (let i = 0; i < matrixGame.length; i++) {
     for (let j = 0; j < matrixGame[0].length; j++) {
       if (matrixGame[i][j] === "") {
+        let computerRun = Math.max(
+          getHorizontal(i, j, O),
+          getVertical(i, j, O),
+          getRightDiagonal(i, j, O),
+          getLeftDiagonal(i, j, O)
+        );
+        let humanRun = Math.max(
+          getHorizontal(i, j, X),
+          getVertical(i, j, X),
+          getRightDiagonal(i, j, X),
+          getLeftDiagonal(i, j, X)
+        );
         let score =
-          MAP_SCORE_COMPUTER.get(
-            Math.max(
-              getHorizontal(i, j, O),
-              getVertical(i, j, O),
-              getRightDiagonal(i, j, O),
-              getLeftDiagonal(i, j, O)
-            )
-          ) +
-          MAP_POINT_HUMAN.get(
-            Math.max(
-              getHorizontal(i, j, X),
-              getVertical(i, j, X),
-              getRightDiagonal(i, j, X),
-              getLeftDiagonal(i, j, X)
-            ) - 1
-          );
+          MAP_SCORE_COMPUTER.get(Math.min(6, computerRun)) +
+          MAP_POINT_HUMAN.get(Math.min(5, humanRun - 1));
         if (maxScore <= score) {
           maxScore = score;
           listScorePoint.push({
@@ -290,6 +393,7 @@ function init() {
   player = X;
   matrixGame = [];
   typeGame = TWO_PLAYER;
+  moveCount = 0;
   const urlParams = new URLSearchParams(window.location.search);
   let rows = urlParams.get("rows");
   let columns = urlParams.get("columns");
@@ -305,6 +409,14 @@ function init() {
   }
 
   typeGame = urlParams.get("type");
+
+  boardWrap.classList.toggle("is-locked", typeGame === COMPUTER_COMPUTER);
+  boardSizeEl.textContent = rows + " x " + columns;
+
+  document.documentElement.style.setProperty(
+    "--cell-size",
+    computeCellSize(Math.max(Number(rows), Number(columns))) + "px"
+  );
 
   // Data table
   let tableXO = document.getElementById("table_game");
@@ -329,10 +441,10 @@ function init() {
   }
 
   tableXO.innerHTML = tableContent;
+  updateHUD();
 }
 
 window.addEventListener("load", (event) => {
-  console.log(event);
   init();
 
   if (typeGame === COMPUTER_COMPUTER) {
@@ -342,20 +454,12 @@ window.addEventListener("load", (event) => {
       switch (state) {
         case WIN:
           setTimeout(function () {
-            alert("Player: " + player + " is winner");
-
-            // reset game
-            init();
-            location.reload();
+            showGameOverModal("Người chơi " + player.toUpperCase() + " chiến thắng!", "success");
           }, 100);
           break;
         case DRAW:
           setTimeout(function () {
-            alert("Draw");
-
-            // reset game
-            init();
-            location.reload();
+            showGameOverModal("Hòa cờ!", "draw");
           }, 100);
           break;
       }
@@ -370,15 +474,17 @@ async function ComputerAndComputer(sumPoints) {
     let pointsComputerA = getPointsComputer();
     if (isFirst) {
       isFirst = false;
-      pointsComputerA = [matrixGame.length / 2, matrixGame[0].length / 2];
+      pointsComputerA = [
+        Math.floor(matrixGame.length / 2),
+        Math.floor(matrixGame[0].length / 2),
+      ];
     }
-    matrixGame[pointsComputerA[0]][pointsComputerA[1]] = X;
-    document.getElementById(
-      pointsComputerA[0].toString() + "-" + pointsComputerA[1].toString()
-    ).innerHTML = XText;
+    markCell(pointsComputerA[0], pointsComputerA[1], X);
+    updateHUD();
 
     // check win
     if (checkWin(pointsComputerA)) {
+      highlightWinningLine(pointsComputerA, X);
       return WIN;
     }
 
@@ -387,18 +493,18 @@ async function ComputerAndComputer(sumPoints) {
       return DRAW;
     }
 
-    player = player === X ? O : X;
+    player = O;
+    updateHUD();
 
     await delay(1000);
     // computer B
     let pointsComputerB = getPointsComputer();
-    matrixGame[pointsComputerB[0]][pointsComputerB[1]] = O;
-    document.getElementById(
-      pointsComputerB[0].toString() + "-" + pointsComputerB[1].toString()
-    ).innerHTML = OText;
+    markCell(pointsComputerB[0], pointsComputerB[1], O);
+    updateHUD();
 
     // check win
     if (checkWin(pointsComputerB)) {
+      highlightWinningLine(pointsComputerB, O);
       return WIN;
     }
 
@@ -407,6 +513,7 @@ async function ComputerAndComputer(sumPoints) {
       return DRAW;
     }
 
-    player = player === X ? O : X;
+    player = X;
+    updateHUD();
   }
 }

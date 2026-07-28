@@ -1,59 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<link rel="stylesheet" href="css/plan-and-zombie.css">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants vs Zombies</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/plan-and-zombie.css">
     <script src="/game-development/js/block-devtools.js"></script>
 </head>
 <body>
 
-<!--<button onclick="handle()">aaa</button>-->
-<img id="zombie" src="images/normalzombie.gif" style="position: absolute;margin-left: 1500px;z-index: 9999" alt="zombie">
+<div class="bg-glow"></div>
 
-    <table id="table_game"></table>
+<div class="landing">
+    <div class="landing__intro">
+        <span class="eyebrow">Chiến thuật phòng thủ</span>
+        <h1 class="landing__title">PLANTS <span>vs</span> ZOMBIES</h1>
+        <p class="landing__subtitle">
+            Trồng cây, hứng nắng và đừng để lũ zombie đói bụng bước qua khu vườn nhà bạn!
+        </p>
+
+        <a class="play-btn" href="game.html">Chơi ngay</a>
+
+        <ul class="how-to">
+            <li><span class="how-to__icon">🌻</span> Hướng Dương sinh thêm mặt trời để mua cây mới</li>
+            <li><span class="how-to__icon">🌿</span> Đậu Bắn tự động bắn hạ zombie trong hàng</li>
+            <li><span class="how-to__icon">🥜</span> Hạt Óc Chó trâu bò, cản chân zombie</li>
+            <li><span class="how-to__icon">🚜</span> Xe cắt cỏ cứu bạn một lần cho mỗi hàng</li>
+        </ul>
+    </div>
+
+    <div class="landing__preview">
+        <div class="preview-board">
+            <div class="preview-board__row">
+                <span class="preview-board__plant">🌻</span>
+                <img class="preview-board__zombie" src="images/normalzombie.gif" alt="zombie">
+            </div>
+            <div class="preview-board__row">
+                <span class="preview-board__plant">🌿</span>
+                <img class="preview-board__zombie preview-board__zombie--slow" src="images/normalzombie.gif" alt="zombie">
+            </div>
+            <div class="preview-board__row">
+                <span class="preview-board__plant">🥜</span>
+                <img class="preview-board__zombie preview-board__zombie--fast" src="images/normalzombie.gif" alt="zombie">
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
-
-<script>
-    let aaa = 0
-    function handle() {
-        setInterval(function (){
-            aaa += 10
-            document.getElementById("zombie").style.marginLeft = aaa + "px"
-        }, 500)
-
-    }
-
-    window.addEventListener("load", (event) => {
-        // Data table
-        let tableXO = document.getElementById("table_game");
-        let tableContent = "";
-
-        for (let row = 0; row < 10; row++) {
-            let arr = [];
-            let rowHTML = "<tr>";
-            for (let col = 0; col < 10; col++) {
-                arr.push("");
-                rowHTML +=
-                    `<td class="td_game"><div id="` +
-                    row.toString() +
-                    "-" +
-                    col.toString() +
-                    `" onclick="handleClick(this.id)" class="fixed"><img id="zombie" src="images/land.png" alt="zombie"></div></td>`;
-            }
-            rowHTML += "</tr>";
-
-            tableContent += rowHTML;
-        }
-
-        tableXO.innerHTML = tableContent;
-
-        setInterval(function (){
-            let aaa = document.getElementById("zombie").style.marginLeft.split("px")[0]
-            aaa--
-            document.getElementById("zombie").style.marginLeft = aaa + "px"
-        }, 100)
-    })
-</script>

@@ -1,0 +1,440 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Baloo 2', 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(180deg, #8fd8ff 0%, #bfe9a8 35%, #a9dd8c 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3rem;
+}
+
+/* ---------------- HUD ---------------- */
+.hud {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(180deg, #8a5a2b, #6b4420);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    flex-wrap: wrap;
+}
+
+.hud__home {
+    color: #fff4de;
+    text-decoration: none;
+    font-size: 1.4rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    transition: background 0.2s ease;
+}
+
+.hud__home:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.hud__stat {
+    color: #fff4de;
+    font-weight: 700;
+    font-size: 1.15rem;
+    background: rgba(0, 0, 0, 0.18);
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.75rem;
+    white-space: nowrap;
+}
+
+.hud__icon-btn {
+    margin-left: auto;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff4de;
+    font-size: 1.2rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.hud__icon-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.hud__icon-btn.muted {
+    opacity: 0.6;
+}
+
+/* ---------------- Seed bank ---------------- */
+.seed-bank {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.seed-card {
+    position: relative;
+    width: 68px;
+    height: 82px;
+    background: linear-gradient(180deg, #f4e2b8, #e6c98a);
+    border: 2px solid #7a4a24;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    user-select: none;
+}
+
+.seed-card:hover {
+    transform: translateY(-2px);
+}
+
+.seed-card--selected {
+    box-shadow: 0 0 0 3px #ffd23f, 0 0 12px rgba(255, 210, 63, 0.8);
+}
+
+.seed-card--unaffordable {
+    filter: grayscale(60%) brightness(0.85);
+}
+
+.seed-card--deny {
+    animation: shake 0.3s ease;
+}
+
+.seed-card__icon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.seed-card__cost {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #4a2e12;
+}
+
+.seed-card__name {
+    font-size: 0.55rem;
+    font-weight: 600;
+    color: #5a3a1a;
+    text-align: center;
+    padding: 0 2px;
+}
+
+.seed-card__cooldown {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: rgba(10, 10, 10, 0.55);
+    pointer-events: none;
+    transition: height 0.15s linear;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+/* ---------------- Board ---------------- */
+.board-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+}
+
+.board {
+    box-sizing: content-box;
+    position: relative;
+    background-image: url("../images/land.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: 10px solid #6b4420;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+.row {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.mower {
+    flex-shrink: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.4));
+    transition: transform 0.9s cubic-bezier(0.55, 0, 0.85, 0.35);
+    z-index: 20;
+    transform: translateX(-6px);
+}
+
+.mower--running {
+    z-index: 30;
+}
+
+.lane {
+    position: relative;
+    height: 100%;
+}
+
+.cell {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    cursor: pointer;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+/* ---------------- Plants ---------------- */
+.plant {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.plant__icon {
+    font-size: 2.3rem;
+    filter: drop-shadow(1px 3px 2px rgba(0, 0, 0, 0.35));
+    animation: sway 2.4s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-4deg); }
+    50% { transform: rotate(4deg); }
+}
+
+.plant__hp {
+    width: 60%;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 2px;
+}
+
+.plant__hp-fill {
+    height: 100%;
+    width: 100%;
+    background: #5cc95c;
+    transition: width 0.2s ease;
+}
+
+/* ---------------- Zombies ---------------- */
+.zombie {
+    position: absolute;
+    top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 6;
+    transition: left 0.05s linear;
+}
+
+.zombie img {
+    height: 84%;
+    max-height: 74px;
+    display: block;
+    filter: drop-shadow(1px 3px 3px rgba(0, 0, 0, 0.4));
+}
+
+.zombie__hp {
+    width: 42px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 2px;
+}
+
+.zombie__hp-fill {
+    height: 100%;
+    width: 100%;
+    background: #e2483d;
+    transition: width 0.2s ease;
+}
+
+.zombie--dead {
+    animation: zombieFall 0.25s ease forwards;
+}
+
+@keyframes zombieFall {
+    to {
+        transform: rotate(85deg) translateY(10px);
+        opacity: 0;
+    }
+}
+
+/* ---------------- Peas ---------------- */
+.pea {
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    margin-top: -7px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #d4ff7a, #6f9c1f);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+    z-index: 7;
+}
+
+/* ---------------- Falling sun ---------------- */
+.falling-sun {
+    position: absolute;
+    font-size: 1.9rem;
+    cursor: pointer;
+    z-index: 15;
+    filter: drop-shadow(0 0 6px rgba(255, 210, 63, 0.85));
+    transition: transform 0.15s ease, opacity 0.4s ease;
+    animation: spin 6s linear infinite;
+}
+
+.falling-sun:hover {
+    transform: scale(1.15);
+}
+
+.falling-sun--fade {
+    opacity: 0;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ---------------- Floating text ---------------- */
+.float-text {
+    position: absolute;
+    top: 6px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: #ffb703;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 25;
+    animation: floatUp 0.9s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-30px); }
+}
+
+/* ---------------- Overlay ---------------- */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 15, 5, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 1rem;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+.overlay__panel {
+    background: linear-gradient(180deg, #fdf6e3, #f0e2bb);
+    border: 4px solid #6b4420;
+    border-radius: 1rem;
+    padding: 2rem 1.75rem;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 25px 60px -20px rgba(0, 0, 0, 0.7);
+}
+
+.overlay__panel h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.6rem;
+}
+
+.overlay--win .overlay__panel h2 {
+    color: #2f8f3a;
+}
+
+.overlay--lose .overlay__panel h2 {
+    color: #c23a2e;
+}
+
+.overlay__panel p {
+    margin: 0 0 1.5rem;
+    color: #4a3a20;
+    font-weight: 600;
+}
+
+.overlay__actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.overlay__btn {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.65rem 1.4rem;
+    border-radius: 2rem;
+    background: linear-gradient(180deg, #7ed957, #4caf3c);
+    color: #143d0d;
+    text-decoration: none;
+    box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s ease;
+}
+
+.overlay__btn:hover {
+    transform: translateY(-2px);
+}
+
+.overlay__btn--ghost {
+    background: rgba(0, 0, 0, 0.08);
+    color: #4a3a20;
+}
+
+@media (max-width: 640px) {
+    .hud {
+        justify-content: center;
+    }
+    .hud__icon-btn {
+        margin-left: 0;
+    }
+}
