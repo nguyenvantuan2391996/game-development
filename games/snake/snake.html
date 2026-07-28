@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rắn săn mồi</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/snake.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <a class="back-link" href="home.html">&larr; Menu</a>
+
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip">Điểm: <span id="hud-score">0</span></div>
+            <div class="hud-chip">Best: <span id="hud-best">0</span></div>
+            <div class="hud-chip hud-chip--ai" id="hud-episode-chip">Episode: <span id="hud-episode">0</span></div>
+            <div class="hud-chip hud-chip--ai" id="hud-epsilon-chip">Epsilon: <span id="hud-epsilon">1.00</span></div>
+        </div>
+
+        <div class="canvas-wrap">
+            <canvas id="game-canvas"></canvas>
+            <div class="overlay" id="overlay">
+                <div class="overlay__inner">
+                    <div class="overlay__title" id="overlay-title">Rắn săn mồi</div>
+                    <div class="overlay__desc" id="overlay-desc">Nhấn phím mũi tên hoặc chạm để bắt đầu</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-controls" id="ai-controls">
+            <span class="ai-controls__label">Tốc độ:</span>
+            <button type="button" class="speed-btn" data-delay="150">Chậm</button>
+            <button type="button" class="speed-btn speed-btn--active" data-delay="60">Vừa</button>
+            <button type="button" class="speed-btn" data-delay="20">Nhanh</button>
+            <button type="button" class="speed-btn" data-delay="2">Turbo</button>
+            <button type="button" class="reset-btn" id="btn-reset-ai">Xoá học & học lại</button>
+        </div>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/snake-engine.js"></script>
+    <script src="js/q-learning-agent.js"></script>
+    <script src="js/snake-main.js"></script>
+</body>
+</html>

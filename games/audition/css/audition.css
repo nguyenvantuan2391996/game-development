@@ -207,6 +207,15 @@ body::before {
     color: var(--text-dim);
 }
 
+.local-folder-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 0.9rem;
+}
+
 .local-folder-btn {
     display: inline-flex;
     align-items: center;
@@ -215,7 +224,6 @@ body::before {
     border: 1px solid var(--card-border);
     border-radius: 1rem;
     padding: 0.6rem 1.1rem;
-    margin-bottom: 0.9rem;
     color: var(--text-main);
     font-family: inherit;
     font-size: 0.9rem;

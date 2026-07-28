@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rắn săn mồi</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <div class="home-shell">
+        <div class="home-hero">
+            <span class="home-hero__eyebrow">Classic + AI game</span>
+            <h1 class="home-hero__title">RẮN SĂN MỒI</h1>
+            <p class="home-hero__subtitle">Chọn chế độ: tự chơi bằng phím mũi tên, hoặc xem AI tự học bằng Q-learning</p>
+        </div>
+
+        <div class="mode-grid">
+            <div class="mode-card mode-card--active" data-mode="normal">
+                <i class="mode-card__icon">🎮</i>
+                <div class="mode-card__title">Bình thường</div>
+                <div class="mode-card__desc">Điều khiển bằng phím mũi tên / WASD</div>
+            </div>
+            <div class="mode-card" data-mode="ai">
+                <i class="mode-card__icon">🤖</i>
+                <div class="mode-card__title">AI Q-learning</div>
+                <div class="mode-card__desc">AI tự chơi và tự học qua từng lượt (episode)</div>
+            </div>
+        </div>
+
+        <button type="button" class="button" id="btn-play">Bắt đầu</button>
+        <a class="back-link" href="/game-development/home.html">&larr; Về trang chủ</a>
+    </div>
+
+    <script src="js/snake-home.js"></script>
+</body>
+</html>
