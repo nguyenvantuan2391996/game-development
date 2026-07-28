@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff3d9a"/>
+      <stop offset="55%" stop-color="#7c5cff"/>
+      <stop offset="100%" stop-color="#0b0a1f"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="360" fill="#0b0a1f"/>
+  <rect width="360" height="360" fill="url(#bg)" opacity="0.5"/>
+
+  <rect x="60" y="60" width="36" height="36" fill="#b5651d"/>
+  <rect x="264" y="60" width="36" height="36" fill="#b5651d"/>
+  <rect x="60" y="264" width="36" height="36" fill="#9aa5b1"/>
+  <rect x="264" y="264" width="36" height="36" fill="#9aa5b1"/>
+
+  <g transform="translate(180,180) rotate(0)">
+    <rect x="-30" y="-30" width="60" height="60" rx="6" fill="#e63946"/>
+    <rect x="-22" y="-22" width="44" height="44" fill="rgba(0,0,0,0.35)"/>
+    <rect x="-4" y="-46" width="8" height="24" fill="#f5f4fb"/>
+  </g>
+
+  <g transform="translate(120,255)">
+    <rect x="-16" y="-16" width="32" height="32" rx="4" fill="#ff3d9a"/>
+    <rect x="-11" y="-11" width="22" height="22" fill="rgba(0,0,0,0.35)"/>
+    <rect x="-3" y="-28" width="6" height="14" fill="#f5f4fb"/>
+  </g>
+</svg>
