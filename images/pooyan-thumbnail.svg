@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <rect width="360" height="360" fill="#0b0a1f"/>
+  <rect width="360" height="360" fill="rgba(124,92,255,0.12)"/>
+
+  <line x1="60" y1="0" x2="60" y2="360" stroke="rgba(124,92,255,0.35)" stroke-width="5"/>
+
+  <g transform="translate(60,190)">
+    <circle r="24" fill="#ffcf4d"/>
+    <polygon points="18,-4 34,0 18,4" fill="#ff8a3d"/>
+    <circle cx="-6" cy="-6" r="3" fill="#0b0a1f"/>
+  </g>
+
+  <rect x="140" y="185" width="20" height="5" fill="#4ce6d0"/>
+
+  <g transform="translate(230,120)">
+    <ellipse rx="26" ry="30" fill="#ff3d9a"/>
+    <line x1="0" y1="30" x2="0" y2="46" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+    <circle cx="0" cy="52" r="8" fill="#7c5cff"/>
+  </g>
+
+  <circle cx="290" cy="260" r="20" fill="#8a8a9a"/>
+  <circle cx="286" cy="256" r="7" fill="rgba(0,0,0,0.25)"/>
+</svg>
