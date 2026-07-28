@@ -1,5 +1,3 @@
-const XText = '<span class="x">x</class>';
-const OText = '<span class="o">o</class>';
 const X = "x";
 const O = "o";
 const WIN = "win";
@@ -7,6 +5,7 @@ const DRAW = "draw";
 const TWO_PLAYER = "2-players";
 const COMPUTER = "player-computer";
 const COMPUTER_COMPUTER = "computer-computer";
+const BOARD_SIZES = [10, 20, 30, 40, 50, 60];
 const MAP_SCORE_COMPUTER = new Map([
   [6, Infinity],
   [5, 99999],
