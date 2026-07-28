@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants vs Zombies</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/game.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+</head>
+<body>
+
+<div class="hud">
+    <a class="hud__home" href="home.html" title="Về trang chủ">⌂</a>
+    <div class="hud__stat hud__stat--sun">☀️ <span id="sunCount">0</span></div>
+    <div id="seedBank" class="seed-bank"></div>
+    <div class="hud__stat hud__stat--kills">🧟 <span id="killCount">0 / 0</span></div>
+    <button id="muteBtn" class="hud__icon-btn" title="Tắt/bật âm thanh">🔊</button>
+</div>
+
+<div class="board-wrap">
+    <div id="board" class="board"></div>
+</div>
+
+<div id="overlay" class="overlay hidden">
+    <div class="overlay__panel">
+        <h2 id="overlayTitle"></h2>
+        <p id="overlayText"></p>
+        <div class="overlay__actions">
+            <button id="restartBtn" class="overlay__btn">Chơi lại</button>
+            <a class="overlay__btn overlay__btn--ghost" href="home.html">Về trang chủ</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript" src="js/constants.js"></script>
+<script type="text/javascript" src="js/game.js"></script>
