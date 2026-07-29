@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="55%" stop-color="#b388ff"/>
+      <stop offset="100%" stop-color="#05060f"/>
+    </linearGradient>
+    <radialGradient id="ball" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffe0b3"/>
+      <stop offset="50%" stop-color="#ff9d3d"/>
+      <stop offset="100%" stop-color="#e8590c"/>
+    </radialGradient>
+  </defs>
+  <rect width="360" height="360" fill="#05060f"/>
+  <rect width="360" height="360" fill="url(#bg)" opacity="0.4"/>
+
+  <rect x="40" y="90" width="110" height="14" rx="4" fill="#4dc9ff"/>
+  <rect x="220" y="150" width="100" height="14" rx="4" fill="#b388ff"/>
+  <rect x="60" y="210" width="90" height="14" rx="4" fill="#ffe14d"/>
+  <g transform="translate(200,270)">
+    <rect x="0" y="0" width="110" height="12" fill="#ff4d4d"/>
+    <polygon points="10,0 20,-14 30,0" fill="#ffb3b3"/>
+    <polygon points="40,0 50,-14 60,0" fill="#ffb3b3"/>
+    <polygon points="70,0 80,-14 90,0" fill="#ffb3b3"/>
+  </g>
+
+  <circle cx="150" cy="150" r="26" fill="url(#ball)"/>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8bff4d"/>
+      <stop offset="55%" stop-color="#4dff9d"/>
+      <stop offset="100%" stop-color="#050a06"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="360" fill="#050a06"/>
+  <rect width="360" height="360" fill="url(#bg)" opacity="0.35"/>
+
+  <g transform="translate(120,120) rotate(-20)">
+    <ellipse cx="-3" cy="-9" rx="20" ry="9" fill="#ffffff" opacity="0.55"/>
+    <ellipse cx="-3" cy="9" rx="20" ry="9" fill="#ffffff" opacity="0.55"/>
+    <ellipse cx="0" cy="0" rx="16" ry="10" fill="#3a3a3a"/>
+    <circle cx="10" cy="-3" r="2.5" fill="#ff3d3d"/>
+    <circle cx="10" cy="3" r="2.5" fill="#ff3d3d"/>
+  </g>
+
+  <g transform="translate(230,180) rotate(15)">
+    <ellipse cx="-3" cy="-11" rx="22" ry="10" fill="#ffffff" opacity="0.5"/>
+    <ellipse cx="-3" cy="11" rx="22" ry="10" fill="#ffffff" opacity="0.5"/>
+    <ellipse cx="0" cy="0" rx="18" ry="12" fill="#ffb300"/>
+    <rect x="-5" y="-12" width="4" height="24" fill="#1a1a1a"/>
+    <rect x="5" y="-12" width="4" height="24" fill="#1a1a1a"/>
+    <circle cx="12" cy="-3" r="2.5" fill="#ff3d3d"/>
+    <circle cx="12" cy="3" r="2.5" fill="#ff3d3d"/>
+  </g>
+
+  <g transform="translate(150,260) rotate(8)">
+    <ellipse cx="-3" cy="-9" rx="18" ry="8" fill="#ffffff" opacity="0.6"/>
+    <ellipse cx="-3" cy="9" rx="18" ry="8" fill="#ffffff" opacity="0.6"/>
+    <ellipse cx="0" cy="0" rx="15" ry="10" fill="#ffd93d"/>
+    <circle cx="9" cy="-3" r="2.2" fill="#ff3d3d"/>
+    <circle cx="9" cy="3" r="2.2" fill="#ff3d3d"/>
+  </g>
+
+  <g transform="translate(255,90)" stroke="#eafff0" stroke-width="3" opacity="0.85">
+    <line x1="-14" y1="0" x2="14" y2="0"/>
+    <line x1="0" y1="-14" x2="0" y2="14"/>
+    <circle cx="0" cy="0" r="16" fill="none"/>
+  </g>
+</svg>

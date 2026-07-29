@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff9d3d"/>
+      <stop offset="55%" stop-color="#ff5252"/>
+      <stop offset="100%" stop-color="#150c05"/>
+    </linearGradient>
+    <radialGradient id="ball" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffb066"/>
+      <stop offset="100%" stop-color="#e8590c"/>
+    </radialGradient>
+  </defs>
+  <rect width="360" height="360" fill="#150c05"/>
+  <rect width="360" height="360" fill="url(#bg)" opacity="0.35"/>
+
+  <rect x="250" y="60" width="8" height="70" fill="#e8e8f0"/>
+  <rect x="240" y="90" width="18" height="46" fill="none" stroke="#ff5252" stroke-width="2"/>
+  <line x1="220" y1="136" x2="280" y2="136" stroke="#ff5252" stroke-width="6"/>
+  <line x1="228" y1="136" x2="222" y2="162" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+  <line x1="240" y1="136" x2="236" y2="164" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+  <line x1="260" y1="136" x2="264" y2="164" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+  <line x1="272" y1="136" x2="278" y2="162" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+
+  <circle cx="130" cy="230" r="34" fill="url(#ball)"/>
+  <path d="M 96 230 H 164 M 130 196 V 264 M 106 202 Q 130 230 106 258 M 154 202 Q 130 230 154 258" stroke="#00000055" stroke-width="2" fill="none"/>
+</svg>

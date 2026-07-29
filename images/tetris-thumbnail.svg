@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4dc9ff"/>
+      <stop offset="55%" stop-color="#b388ff"/>
+      <stop offset="100%" stop-color="#070a12"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="360" fill="#070a12"/>
+  <rect width="360" height="360" fill="url(#bg)" opacity="0.35"/>
+
+  <g>
+    <rect x="80" y="260" width="34" height="34" fill="#ff5252"/>
+    <rect x="114" y="260" width="34" height="34" fill="#ff5252"/>
+    <rect x="114" y="226" width="34" height="34" fill="#ff5252"/>
+    <rect x="148" y="226" width="34" height="34" fill="#ff5252"/>
+
+    <rect x="150" y="150" width="34" height="34" fill="#4dc9ff"/>
+    <rect x="150" y="184" width="34" height="34" fill="#4dc9ff"/>
+    <rect x="150" y="218" width="34" height="34" fill="#4dc9ff"/>
+    <rect x="150" y="252" width="34" height="34" fill="#4dc9ff"/>
+
+    <rect x="200" y="90" width="34" height="34" fill="#ffd93d"/>
+    <rect x="234" y="90" width="34" height="34" fill="#ffd93d"/>
+    <rect x="200" y="124" width="34" height="34" fill="#ffd93d"/>
+    <rect x="234" y="124" width="34" height="34" fill="#ffd93d"/>
+
+    <rect x="230" y="220" width="34" height="34" fill="#b388ff"/>
+    <rect x="196" y="220" width="34" height="34" fill="#b388ff"/>
+    <rect x="264" y="220" width="34" height="34" fill="#b388ff"/>
+    <rect x="230" y="186" width="34" height="34" fill="#b388ff"/>
+
+    <rect x="60" y="150" width="34" height="34" fill="#4dff88"/>
+    <rect x="94" y="150" width="34" height="34" fill="#4dff88"/>
+    <rect x="94" y="184" width="34" height="34" fill="#4dff88"/>
+    <rect x="128" y="184" width="34" height="34" fill="#4dff88"/>
+  </g>
+</svg>

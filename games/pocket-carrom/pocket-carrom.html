@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pocket Carrom</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/pocket-carrom.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <a class="back-link" href="home.html">&larr; Menu</a>
+
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip">Bạn: <span id="hud-player-score">0</span></div>
+            <div class="hud-chip">Máy: <span id="hud-cpu-score">0</span></div>
+            <div class="hud-chip">Lượt: <span id="hud-turn">Bạn</span></div>
+        </div>
+
+        <div class="canvas-wrap">
+            <canvas id="game-canvas"></canvas>
+            <div class="overlay" id="overlay">
+                <div class="overlay__inner">
+                    <div class="overlay__title" id="overlay-title">Pocket Carrom</div>
+                    <div class="overlay__desc" id="overlay-desc">Kéo từ quân cái (trắng lớn) ra xa để ngắm và chọn lực, thả ra để bắn. Đưa quân trắng của bạn vào lỗ để ghi điểm và được đánh tiếp. Nhấn để bắt đầu.</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/pocket-carrom-main.js"></script>
+</body>
+</html>

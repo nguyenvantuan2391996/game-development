@@ -1,0 +1,28 @@
+const GAME_WIDTH = 360;
+const GAME_HEIGHT = 560;
+
+const GOAL_LEFT = 50;
+const GOAL_RIGHT = 310;
+const GOAL_TOP = 70;
+const GOAL_BOTTOM = 190;
+const ZONE_COLS = 3;
+const ZONE_ROWS = 2;
+const ZONE_WIDTH = (GOAL_RIGHT - GOAL_LEFT) / ZONE_COLS;
+const ZONE_HEIGHT = (GOAL_BOTTOM - GOAL_TOP) / ZONE_ROWS;
+
+const PLAYER_X = GAME_WIDTH / 2;
+const PLAYER_Y = 480;
+const BALL_RADIUS = 10;
+
+const KEEPER_RADIUS = 24;
+const KEEPER_HOME_X = GAME_WIDTH / 2;
+const KEEPER_HOME_Y = (GOAL_TOP + GOAL_BOTTOM) / 2;
+
+const KICK_DURATION_MS = 550;
+const RESULT_DISPLAY_MS = 900;
+
+const BASE_GUESS_CHANCE = 0.26;
+const GUESS_CHANCE_STEP = 0.03;
+const MAX_GUESS_CHANCE = 0.68;
+
+const BEST_SCORE_KEY = "penaltyKickBestScore";

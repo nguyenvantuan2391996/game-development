@@ -1,0 +1,158 @@
+:root {
+    --bg-deep: #150d08;
+    --accent-a: #ffb347;
+    --accent-b: #ff6b6b;
+    --accent-c: #ffe14d;
+    --accent-gradient: linear-gradient(135deg, var(--accent-a), var(--accent-b) 55%, var(--accent-c));
+    --text-main: #fbf1e4;
+    --text-dim: rgba(251, 241, 228, 0.65);
+    --card-bg: rgba(255, 179, 71, 0.1);
+    --card-border: rgba(255, 179, 71, 0.25);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-deep);
+    color: var(--text-main);
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', 'Comic Sans', cursive;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.bg-glow {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(45rem 45rem at 15% 10%, rgba(255, 179, 71, 0.18), transparent 60%),
+        radial-gradient(35rem 35rem at 90% 15%, rgba(255, 107, 107, 0.16), transparent 60%),
+        linear-gradient(180deg, rgba(21, 13, 8, 0.9), rgba(21, 13, 8, 0.98));
+}
+
+.back-link {
+    position: fixed;
+    top: 1.25rem;
+    left: 1.25rem;
+    z-index: 2;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    background: rgba(255, 179, 71, 0.08);
+    border: 1px solid var(--card-border);
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    backdrop-filter: blur(10px);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--text-main);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.game-shell {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hud-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.hud-chip {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.hud-chip span {
+    color: var(--accent-c);
+}
+
+.canvas-wrap {
+    position: relative;
+    width: min(88vw, 78vh, 460px);
+    aspect-ratio: 1 / 1;
+    border-radius: 0.9rem;
+    overflow: hidden;
+    box-shadow: 0 25px 60px -25px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    touch-action: none;
+}
+
+#game-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(21, 13, 8, 0.82);
+    backdrop-filter: blur(4px);
+}
+
+.overlay[hidden] {
+    display: none;
+}
+
+.overlay__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    gap: 0.6rem;
+}
+
+.overlay__title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.overlay__desc {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    max-width: 17rem;
+}
+
+.overlay__btn {
+    margin-top: 0.5rem;
+    background: var(--accent-gradient);
+    color: #2a1206;
+    border: none;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.65rem 1.8rem;
+    border-radius: 0.85rem;
+    cursor: pointer;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapid Roll</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/rapid-roll.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <a class="back-link" href="home.html">&larr; Menu</a>
+
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip">Độ sâu: <span id="hud-score">0</span>m</div>
+            <div class="hud-chip">Best: <span id="hud-best">0</span>m</div>
+        </div>
+
+        <div class="phone-frame">
+            <div class="phone-speaker"></div>
+            <div class="canvas-wrap">
+                <canvas id="game-canvas"></canvas>
+                <div class="lcd-grid"></div>
+                <div class="overlay" id="overlay">
+                    <div class="overlay__inner">
+                        <div class="overlay__title" id="overlay-title">Rapid Roll</div>
+                        <div class="overlay__desc" id="overlay-desc">Trái / Phải hoặc A / D để lăn quả bóng, né gai đỏ và đừng để bị bỏ lại phía trên. Nhấn để bắt đầu.</div>
+                        <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="touch-controls" id="touch-controls">
+            <div class="dpad dpad--horizontal">
+                <button type="button" class="dpad-btn dpad-btn--left" data-dir="ArrowLeft" aria-label="Trái">◀</button>
+                <button type="button" class="dpad-btn dpad-btn--right" data-dir="ArrowRight" aria-label="Phải">▶</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/rapid-roll-main.js"></script>
+</body>
+</html>

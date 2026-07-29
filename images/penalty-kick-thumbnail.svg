@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4dff88"/>
+      <stop offset="55%" stop-color="#ffd93d"/>
+      <stop offset="100%" stop-color="#071309"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="360" fill="#071309"/>
+  <rect width="360" height="360" fill="url(#bg)" opacity="0.3"/>
+
+  <rect x="60" y="70" width="240" height="110" fill="none" stroke="#eaffef" stroke-width="4"/>
+  <line x1="180" y1="70" x2="180" y2="180" stroke="#eaffef" stroke-width="1.5" opacity="0.4"/>
+  <line x1="60" y1="125" x2="300" y2="125" stroke="#eaffef" stroke-width="1.5" opacity="0.4"/>
+
+  <g transform="translate(180,150)">
+    <rect x="-18" y="-16" width="36" height="34" fill="#ffd93d"/>
+    <circle cx="0" cy="-26" r="11" fill="#ffcf9e"/>
+    <rect x="-18" y="18" width="10" height="14" fill="#0d3a1a"/>
+    <rect x="8" y="18" width="10" height="14" fill="#0d3a1a"/>
+  </g>
+
+  <circle cx="180" cy="280" r="18" fill="#f4f4f4" stroke="#1a1a1a" stroke-width="2"/>
+  <ellipse cx="180" cy="300" rx="60" ry="14" fill="none" stroke="#eaffef" stroke-width="2" opacity="0.6"/>
+</svg>

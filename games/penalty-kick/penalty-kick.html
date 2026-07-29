@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đá Bóng</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/penalty-kick.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <a class="back-link" href="home.html">&larr; Menu</a>
+
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip">Chuỗi bàn: <span id="hud-score">0</span></div>
+            <div class="hud-chip">Best: <span id="hud-best">0</span></div>
+        </div>
+
+        <div class="canvas-wrap">
+            <canvas id="game-canvas"></canvas>
+            <div class="overlay" id="overlay">
+                <div class="overlay__inner">
+                    <div class="overlay__title" id="overlay-title">Đá Bóng</div>
+                    <div class="overlay__desc" id="overlay-desc">Chạm vào vị trí trong khung thành để sút bóng. Thủ môn sẽ đoán và bay người cản phá, càng ghi nhiều bàn liên tiếp thủ môn càng đoán giỏi hơn! Nhấn để bắt đầu.</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/penalty-kick-main.js"></script>
+</body>
+</html>

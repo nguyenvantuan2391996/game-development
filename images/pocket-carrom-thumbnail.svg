@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb347"/>
+      <stop offset="55%" stop-color="#ff6b6b"/>
+      <stop offset="100%" stop-color="#150d08"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8c48a"/>
+      <stop offset="100%" stop-color="#d1a566"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="360" fill="#150d08"/>
+  <rect width="360" height="360" fill="url(#bg)" opacity="0.35"/>
+
+  <rect x="50" y="50" width="260" height="260" rx="14" fill="url(#board)"/>
+  <rect x="50" y="50" width="260" height="260" rx="14" fill="none" stroke="#5c3a1a" stroke-width="4"/>
+  <circle cx="180" cy="180" r="60" fill="none" stroke="#5c3a1a" stroke-width="2" opacity="0.5"/>
+
+  <circle cx="66" cy="66" r="16" fill="#0a0602"/>
+  <circle cx="294" cy="66" r="16" fill="#0a0602"/>
+  <circle cx="66" cy="294" r="16" fill="#0a0602"/>
+  <circle cx="294" cy="294" r="16" fill="#0a0602"/>
+
+  <circle cx="180" cy="180" r="13" fill="#ff6b6b" stroke="#fff" stroke-width="2"/>
+  <circle cx="150" cy="150" r="11" fill="#fffdf5" stroke="#00000030" stroke-width="1.5"/>
+  <circle cx="210" cy="150" r="11" fill="#2a2a2a" stroke="#ffffff30" stroke-width="1.5"/>
+  <circle cx="150" cy="210" r="11" fill="#2a2a2a" stroke="#ffffff30" stroke-width="1.5"/>
+  <circle cx="210" cy="210" r="11" fill="#fffdf5" stroke="#00000030" stroke-width="1.5"/>
+  <circle cx="130" cy="180" r="11" fill="#fffdf5" stroke="#00000030" stroke-width="1.5"/>
+  <circle cx="230" cy="180" r="11" fill="#2a2a2a" stroke="#ffffff30" stroke-width="1.5"/>
+
+  <circle cx="180" cy="270" r="15" fill="#fffdf5" stroke="#1e5ac8" stroke-width="2.5"/>
+</svg>

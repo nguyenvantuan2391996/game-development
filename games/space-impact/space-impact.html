@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Impact</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/space-impact.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <a class="back-link" href="home.html">&larr; Menu</a>
+
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip">Mạng: <span id="hud-lives">3</span></div>
+            <div class="hud-chip">Điểm: <span id="hud-score">0</span></div>
+            <div class="hud-chip">Best: <span id="hud-best">0</span></div>
+            <div class="hud-chip">Súng: Lv<span id="hud-weapon">1</span></div>
+        </div>
+
+        <div class="phone-frame">
+            <div class="phone-speaker"></div>
+            <div class="canvas-wrap">
+                <canvas id="game-canvas"></canvas>
+                <div class="lcd-grid"></div>
+                <div class="overlay" id="overlay">
+                    <div class="overlay__inner">
+                        <div class="overlay__title" id="overlay-title">Space Impact</div>
+                        <div class="overlay__desc" id="overlay-desc">Mũi tên / WASD để bay 4 hướng, Space để bắn. Nhặt sao vàng để nâng cấp súng. Nhấn để bắt đầu.</div>
+                        <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="touch-controls" id="touch-controls">
+            <div class="dpad">
+                <button type="button" class="dpad-btn dpad-btn--up" data-dir="ArrowUp" aria-label="Lên">▲</button>
+                <button type="button" class="dpad-btn dpad-btn--left" data-dir="ArrowLeft" aria-label="Trái">◀</button>
+                <button type="button" class="dpad-btn dpad-btn--right" data-dir="ArrowRight" aria-label="Phải">▶</button>
+                <button type="button" class="dpad-btn dpad-btn--down" data-dir="ArrowDown" aria-label="Xuống">▼</button>
+            </div>
+            <button type="button" class="fire-btn" id="fire-btn" aria-label="Bắn">BẮN</button>
+        </div>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/space-impact-main.js"></script>
+</body>
+</html>
