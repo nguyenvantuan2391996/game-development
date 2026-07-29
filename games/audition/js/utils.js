@@ -18,9 +18,11 @@ function getRandomInt(max) {
 // same image was already showing (classList re-add alone wouldn't replay it).
 function showJudgement(imgElement, src) {
   imgElement.src = src;
-  imgElement.classList.remove("judgement-pop");
+  imgElement.classList.remove("judgement-pop", "judgement-pop--perfect");
   void imgElement.offsetWidth;
-  imgElement.classList.add("judgement-pop");
+  imgElement.classList.add(
+    src.indexOf("Perfect") !== -1 ? "judgement-pop--perfect" : "judgement-pop"
+  );
 }
 
 function getBestScore(danceType) {

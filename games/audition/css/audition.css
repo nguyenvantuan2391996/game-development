@@ -828,6 +828,39 @@ body::before {
     100% { transform: scale(1); opacity: 1; }
 }
 
+/* Extra-flashy variant for Perfect hits: bigger pop + a glow that blooms
+   outward, so the best judgement reads as clearly better than the rest. */
+.judgement-pop--perfect {
+    animation: judgement-pop-perfect 0.5s ease;
+}
+
+@keyframes judgement-pop-perfect {
+    0% { transform: scale(0.6); opacity: 0.3; filter: drop-shadow(0 0 0 rgba(255, 207, 77, 0)); }
+    50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 26px rgba(255, 207, 77, 0.95)); }
+    100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 8px rgba(255, 207, 77, 0.5)); }
+}
+
+.score-pulse {
+    animation: score-pulse 0.35s ease;
+}
+
+@keyframes score-pulse {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.28); color: var(--accent-a); }
+    100% { transform: scale(1); }
+}
+
+.combo-pop {
+    display: inline-block;
+    animation: combo-pop 0.3s ease;
+}
+
+@keyframes combo-pop {
+    0% { transform: scale(0.75) rotate(-4deg); opacity: 0.5; }
+    55% { transform: scale(1.22) rotate(3deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
 .inline {
     display: inline-flex;
     align-items: center;
@@ -991,4 +1024,99 @@ body::before {
     .home-hero__title {
         font-size: 2.2rem;
     }
+}
+
+/* ------------------------------------------------------------------ */
+/* Touch controls (phones/tablets - no physical keyboard)              */
+/* Mirrors the desktop Numpad 1-9 layout 1:1 (7/9/1/3 diagonals,       */
+/* 8/2/4/6 cardinals, 5 = Space) so the mapping is identical to the    */
+/* keyboard shortcuts already documented on the home screen.           */
+/* ------------------------------------------------------------------ */
+.touch-controls {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 15;
+    display: none;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(180deg, transparent, rgba(11, 10, 31, 0.9) 45%);
+    pointer-events: none;
+}
+
+.touch-controls .npad,
+.touch-controls__side {
+    pointer-events: auto;
+}
+
+@media (hover: none), (pointer: coarse) {
+    .touch-controls {
+        display: flex;
+    }
+}
+
+.npad {
+    display: grid;
+    grid-template-columns: repeat(3, 3.1rem);
+    grid-template-rows: repeat(3, 3.1rem);
+    gap: 0.45rem;
+}
+
+.npad-btn {
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+    border-radius: 0.85rem;
+    font-size: 1.2rem;
+    backdrop-filter: blur(10px);
+    touch-action: none;
+    cursor: pointer;
+    transition: transform 0.12s ease;
+}
+
+.npad-btn--5 {
+    background: var(--accent-gradient);
+    color: #1a1330;
+    font-weight: 800;
+    border-color: transparent;
+    box-shadow: 0 0 18px rgba(255, 61, 154, 0.5);
+}
+
+.npad-btn:active,
+.npad-btn.is-pressed {
+    background: var(--accent-gradient);
+    color: #1a1330;
+    border-color: transparent;
+    transform: scale(0.9);
+}
+
+.touch-controls__side {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.side-btn {
+    width: 3.1rem;
+    height: 3.1rem;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+    font-size: 1.15rem;
+    touch-action: none;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: transform 0.12s ease;
+}
+
+.side-btn:active,
+.side-btn.is-pressed {
+    background: var(--accent-gradient);
+    color: #1a1330;
+    border-color: transparent;
+    transform: scale(0.9);
 }

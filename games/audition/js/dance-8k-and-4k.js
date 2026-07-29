@@ -52,7 +52,7 @@ function updatePerfectStreak(isPerfect) {
       PERFECT_STREAK_BONUS_STEP * (perfectStreak - 1),
       PERFECT_STREAK_BONUS_CAP
     );
-    scoreElement.textContent = score;
+    updateScoreDisplay();
   }
   if (perfectStreakElement) {
     perfectStreakElement.textContent =
@@ -76,7 +76,20 @@ function updateCombo(hit) {
   if (comboCount > maxCombo) maxCombo = comboCount;
   if (comboElement) {
     comboElement.textContent = comboCount > 1 ? comboCount + "x combo" : "";
+    if (hit && comboCount > 1) {
+      comboElement.classList.remove("combo-pop");
+      void comboElement.offsetWidth;
+      comboElement.classList.add("combo-pop");
+    }
   }
+}
+
+// Bumps the score number with a quick pulse so increases are felt, not just read.
+function updateScoreDisplay() {
+  scoreElement.textContent = score;
+  scoreElement.classList.remove("score-pulse");
+  void scoreElement.offsetWidth;
+  scoreElement.classList.add("score-pulse");
 }
 
 function compareKeyPressAndRandom(key) {
@@ -175,7 +188,7 @@ function setScore(pos) {
     updateCombo(false);
     updatePerfectStreak(false);
   }
-  scoreElement.textContent = score;
+  updateScoreDisplay();
 }
 
 function move() {
@@ -227,21 +240,13 @@ function move() {
   boxElement.style.left = pos + "px";
 }
 
-// Event press key
-document.body.onkeyup = function (e) {
-  if (e.code === "Escape") {
-    togglePause();
-    return;
-  }
-
-  if (isPaused || isCountingDown) {
-    return;
-  }
-
+// Shared by the real keyup listener below and by the on-screen touch pad
+// (see initTouchControls), so both input sources drive the exact same logic.
+function handleGameKeyCode(code) {
   switch (typeDance) {
     case "4k":
     case "8k":
-      if (e.code === "Space" && count >= MIN_COUNT_TO_PLAY && !isSpaced) {
+      if (code === "Space" && count >= MIN_COUNT_TO_PLAY && !isSpaced) {
         isSpaced = true;
         setScore(pos);
         hide("box");
@@ -257,33 +262,33 @@ document.body.onkeyup = function (e) {
       }
 
       // Key dance
-      if (e.code === "ArrowUp" || e.code === "Numpad8") {
+      if (code === "ArrowUp" || code === "Numpad8") {
         compareKeyPressAndRandom("up");
       }
-      if (e.code === "ArrowDown" || e.code === "Numpad2") {
+      if (code === "ArrowDown" || code === "Numpad2") {
         compareKeyPressAndRandom("down");
       }
-      if (e.code === "ArrowRight" || e.code === "Numpad6") {
+      if (code === "ArrowRight" || code === "Numpad6") {
         compareKeyPressAndRandom("right");
       }
-      if (e.code === "ArrowLeft" || e.code === "Numpad4") {
+      if (code === "ArrowLeft" || code === "Numpad4") {
         compareKeyPressAndRandom("left");
       }
-      if (e.code === "Numpad7") {
+      if (code === "Numpad7") {
         compareKeyPressAndRandom("left-up");
       }
-      if (e.code === "Numpad9") {
+      if (code === "Numpad9") {
         compareKeyPressAndRandom("right-up");
       }
-      if (e.code === "Numpad1") {
+      if (code === "Numpad1") {
         compareKeyPressAndRandom("left-down");
       }
-      if (e.code === "Numpad3") {
+      if (code === "Numpad3") {
         compareKeyPressAndRandom("right-down");
       }
 
       // Key turn on, turn off reverse
-      if (e.code === "NumpadDecimal") {
+      if (code === "NumpadDecimal") {
         isReverse = !isReverse;
         if (isReverse) {
           document.getElementById("reverse").textContent = "Reverse";
@@ -294,7 +299,7 @@ document.body.onkeyup = function (e) {
       }
       break;
     case "beat-up":
-      if (e.code === "Space" || e.code === "Numpad5") {
+      if (code === "Space" || code === "Numpad5") {
         hide("box-beat-up");
         setScoreBeatUpSpace(posSpaceBeatUp);
         setTimeout(function () {
@@ -304,33 +309,87 @@ document.body.onkeyup = function (e) {
       }
 
       // Key dance
-      if (e.code === "ArrowLeft" || e.code === "Numpad4") {
+      if (code === "ArrowLeft" || code === "Numpad4") {
         setScoreBeatUpLeft(posLeft);
         posLeft = 0;
       }
-      if (e.code === "Numpad7") {
+      if (code === "Numpad7") {
         setScoreBeatUpLeft(posLeftUp);
         posLeftUp = 0;
       }
-      if (e.code === "Numpad1") {
+      if (code === "Numpad1") {
         setScoreBeatUpLeft(posLeftDown);
         posLeftDown = 0;
       }
-      if (e.code === "ArrowRight" || e.code === "Numpad6") {
+      if (code === "ArrowRight" || code === "Numpad6") {
         setScoreBeatUpRight(posRight);
         posRight = 0;
       }
-      if (e.code === "Numpad9") {
+      if (code === "Numpad9") {
         setScoreBeatUpRight(posRightUp);
         posRightUp = 0;
       }
-      if (e.code === "Numpad3") {
+      if (code === "Numpad3") {
         setScoreBeatUpRight(posRightDown);
         posRightDown = 0;
       }
       break;
   }
+}
+
+// Event press key
+document.body.onkeyup = function (e) {
+  if (e.code === "Escape") {
+    togglePause();
+    return;
+  }
+
+  if (isPaused || isCountingDown) {
+    return;
+  }
+
+  handleGameKeyCode(e.code);
 };
+
+// On-screen numpad-style pad (7/9/1/3 diagonals, 8/2/4/6 cardinals, center
+// = Space) mirroring the desktop Numpad shortcuts 1:1, so phones/tablets
+// without a physical keyboard can still play. Buttons irrelevant to the
+// current dance type (e.g. diagonals in 4k) are hidden once typeDance is known.
+function initTouchControls() {
+  const touchControls = document.getElementById("touch-controls");
+  if (!touchControls) return;
+
+  touchControls.querySelectorAll("[data-code]").forEach(function (btn) {
+    const modes = btn.dataset.modes;
+    if (modes && modes.split(",").indexOf(typeDance) === -1) {
+      btn.style.display = "none";
+      return;
+    }
+    const code = btn.dataset.code;
+    const press = function (e) {
+      e.preventDefault();
+      btn.classList.add("is-pressed");
+      if (isPaused || isCountingDown) return;
+      handleGameKeyCode(code);
+    };
+    const release = function (e) {
+      e.preventDefault();
+      btn.classList.remove("is-pressed");
+    };
+    btn.addEventListener("pointerdown", press);
+    btn.addEventListener("pointerup", release);
+    btn.addEventListener("pointercancel", release);
+    btn.addEventListener("pointerleave", release);
+  });
+
+  const pauseBtn = document.getElementById("touch-pause-btn");
+  if (pauseBtn) {
+    pauseBtn.addEventListener("pointerdown", function (e) {
+      e.preventDefault();
+      togglePause();
+    });
+  }
+}
 
 function togglePause() {
   if (isCountingDown || !gameLoopControl.start) {
@@ -470,6 +529,7 @@ async function initAudio() {
     gameLoopControl.stop = stopMoveLoop;
   }
 
+  initTouchControls();
   startCountdownThenPlay();
 }
 

@@ -197,7 +197,7 @@ function setScoreBeatUpSpace(pos) {
     updateCombo(false);
     updatePerfectStreak(false);
   }
-  scoreElement.textContent = score;
+  updateScoreDisplay();
 }
 
 // 370 - 450
@@ -232,7 +232,7 @@ function setScoreBeatUpLeft(pos) {
     updateCombo(false);
     updatePerfectStreak(false);
   }
-  scoreElement.textContent = score;
+  updateScoreDisplay();
 }
 
 // 0 - 80
@@ -267,5 +267,5 @@ function setScoreBeatUpRight(pos) {
     updateCombo(false);
     updatePerfectStreak(false);
   }
-  scoreElement.textContent = score;
+  updateScoreDisplay();
 }
