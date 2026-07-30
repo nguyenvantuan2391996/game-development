@@ -1,4 +1,7 @@
 (function () {
+    const params = new URLSearchParams(window.location.search);
+    const mode = params.get("mode") === "2p" ? "2p" : "cpu";
+
     const canvas = document.getElementById("game-canvas");
     const ctx = canvas.getContext("2d");
     canvas.width = GAME_WIDTH;
@@ -6,14 +9,28 @@
 
     const hudPlayerScore = document.getElementById("hud-player-score");
     const hudCpuScore = document.getElementById("hud-cpu-score");
+    const hudPlayerLabel = document.getElementById("hud-player-label");
+    const hudCpuLabel = document.getElementById("hud-cpu-label");
+    const hudBestChip = document.getElementById("hud-best-chip");
     const hudBest = document.getElementById("hud-best");
     const overlay = document.getElementById("overlay");
     const overlayTitle = document.getElementById("overlay-title");
     const overlayDesc = document.getElementById("overlay-desc");
     const overlayBtn = document.getElementById("overlay-btn");
+    const touchControls = document.getElementById("touch-controls");
+    const twoPlayerNote = document.getElementById("two-player-note");
 
     let best = Number(localStorage.getItem(BEST_SCORE_KEY)) || 0;
     hudBest.textContent = best;
+
+    if (mode === "2p") {
+        hudPlayerLabel.textContent = "Người 1";
+        hudCpuLabel.textContent = "Người 2";
+        hudBestChip.style.display = "none";
+        if (touchControls) touchControls.style.display = "none";
+        if (twoPlayerNote) twoPlayerNote.hidden = false;
+        overlayDesc.textContent = "Người 1: ◀ ▶ · Người 2: A / D. Đấu đến 7 điểm trước. Nhấn để bắt đầu.";
+    }
 
     const keys = {};
     let state = "ready";
@@ -94,11 +111,19 @@
 
     function triggerGameOver() {
         state = "gameover";
+        const won = playerScore > cpuScore;
+        if (mode === "2p") {
+            showOverlay(
+                won ? "Người 1 thắng!" : "Người 2 thắng!",
+                `Tỉ số: ${playerScore} - ${cpuScore}. Nhấn để chơi lại.`,
+                "Chơi lại"
+            );
+            return;
+        }
         if (playerScore > best) {
             best = playerScore;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        const won = playerScore > cpuScore;
         showOverlay(
             won ? "Bạn thắng!" : "Máy thắng!",
             `Tỉ số: ${playerScore} - ${cpuScore}. Nhấn để chơi lại.`,
@@ -122,14 +147,21 @@
     }
 
     function updateWorld(dt, dtMs) {
-        if (keys.ArrowLeft || keys.a || keys.A) playerPaddle.x -= PLAYER_SPEED * dt;
-        if (keys.ArrowRight || keys.d || keys.D) playerPaddle.x += PLAYER_SPEED * dt;
-        playerPaddle.x = clamp(playerPaddle.x, 0, GAME_WIDTH - PADDLE_WIDTH);
+        if (mode === "2p") {
+            if (keys.ArrowLeft) playerPaddle.x -= PLAYER_SPEED * dt;
+            if (keys.ArrowRight) playerPaddle.x += PLAYER_SPEED * dt;
+            if (keys.a || keys.A) cpuPaddle.x -= PLAYER_SPEED * dt;
+            if (keys.d || keys.D) cpuPaddle.x += PLAYER_SPEED * dt;
+        } else {
+            if (keys.ArrowLeft || keys.a || keys.A) playerPaddle.x -= PLAYER_SPEED * dt;
+            if (keys.ArrowRight || keys.d || keys.D) playerPaddle.x += PLAYER_SPEED * dt;
 
-        const cpuTarget = ball.x - PADDLE_WIDTH / 2;
-        if (Math.abs(cpuPaddle.x - cpuTarget) > CPU_REACTION_DEADZONE) {
-            cpuPaddle.x += Math.sign(cpuTarget - cpuPaddle.x) * CPU_SPEED * dt;
+            const cpuTarget = ball.x - PADDLE_WIDTH / 2;
+            if (Math.abs(cpuPaddle.x - cpuTarget) > CPU_REACTION_DEADZONE) {
+                cpuPaddle.x += Math.sign(cpuTarget - cpuPaddle.x) * CPU_SPEED * dt;
+            }
         }
+        playerPaddle.x = clamp(playerPaddle.x, 0, GAME_WIDTH - PADDLE_WIDTH);
         cpuPaddle.x = clamp(cpuPaddle.x, 0, GAME_WIDTH - PADDLE_WIDTH);
 
         if (paused) {

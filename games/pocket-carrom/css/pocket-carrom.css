@@ -156,3 +156,87 @@ body {
     border-radius: 0.85rem;
     cursor: pointer;
 }
+
+.touch-hint {
+    display: none;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    padding: 0.5rem 0.9rem;
+    max-width: 20rem;
+}
+
+@media (hover: none), (pointer: coarse) {
+    .touch-hint {
+        display: block;
+    }
+}
+
+.shot-controls {
+    width: 100%;
+    max-width: 22rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.shot-controls__power {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+.shot-controls__power label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+.shot-controls__power label span {
+    color: var(--accent-c);
+    font-weight: 700;
+}
+
+#power-slider {
+    width: 100%;
+    height: 1.6rem;
+    accent-color: var(--accent-a);
+    cursor: pointer;
+    touch-action: pan-x;
+}
+
+.shoot-btn {
+    flex-shrink: 0;
+    background: var(--accent-gradient);
+    color: #2a1206;
+    border: none;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    padding: 0.85rem 1.6rem;
+    border-radius: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 15px 35px -15px rgba(255, 179, 71, 0.6);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.shoot-btn:active {
+    transform: scale(0.95);
+}
+
+.shoot-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+    box-shadow: none;
+}

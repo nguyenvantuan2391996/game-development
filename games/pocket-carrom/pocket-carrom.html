@@ -26,10 +26,20 @@
             <div class="overlay" id="overlay">
                 <div class="overlay__inner">
                     <div class="overlay__title" id="overlay-title">Pocket Carrom</div>
-                    <div class="overlay__desc" id="overlay-desc">Kéo từ quân cái (trắng lớn) ra xa để ngắm và chọn lực, thả ra để bắn. Đưa quân trắng của bạn vào lỗ để ghi điểm và được đánh tiếp. Nhấn để bắt đầu.</div>
+                    <div class="overlay__desc" id="overlay-desc">Kéo từ quân cái (trắng lớn) ra xa để ngắm hướng, chỉnh lực bằng thanh trượt rồi nhấn Bắn. Đưa quân trắng của bạn vào lỗ để ghi điểm và được đánh tiếp. Nhấn để bắt đầu.</div>
                     <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
                 </div>
             </div>
+        </div>
+
+        <div class="touch-hint" id="touch-hint">👆 Kéo quân trắng lớn để ngắm hướng, chỉnh lực rồi nhấn Bắn</div>
+
+        <div class="shot-controls" id="shot-controls">
+            <div class="shot-controls__power">
+                <label for="power-slider">Lực bắn: <span id="power-label">50%</span></label>
+                <input type="range" id="power-slider" min="0" max="100" value="50" step="1">
+            </div>
+            <button type="button" class="shoot-btn" id="shoot-btn" disabled>BẮN</button>
         </div>
     </div>
 

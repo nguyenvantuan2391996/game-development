@@ -1,78 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<link rel="stylesheet" href="css/rock-paper-scissors.css">
-
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kéo Búa Bao</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/rock-paper-scissors.css">
     <script src="/game-development/js/block-devtools.js"></script>
 </head>
 <body>
-<form>
+    <div class="bg-glow"></div>
 
-    <input type="radio" id="rock-rock" name="rock-paper-scissors">
-    <input type="radio" id="rock-paper" name="rock-paper-scissors">
-    <input type="radio" id="rock-scissors" name="rock-paper-scissors">
-    <input type="radio" id="paper-rock" name="rock-paper-scissors">
-    <input type="radio" id="paper-paper" name="rock-paper-scissors">
-    <input type="radio" id="paper-scissors" name="rock-paper-scissors">
-    <input type="radio" id="scissors-rock" name="rock-paper-scissors">
-    <input type="radio" id="scissors-paper" name="rock-paper-scissors">
-    <input type="radio" id="scissors-scissors" name="rock-paper-scissors">
+    <a class="back-link" href="home.html">&larr; Menu</a>
 
-    <div>
-        <h1>CSS Rock-Paper-Scissors</h1>
-        <div id="hands">
-            <div class="hand" id="computer-hand">
-                <div class="fist"></div>
-                <div class="finger finger-1"></div>
-                <div class="finger finger-2"></div>
-                <div class="finger finger-3"></div>
-                <div class="finger finger-4"></div>
-                <div class="thumb"></div>
-                <div class="arm"></div>
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip">Bạn: <span id="hud-player-score">0</span></div>
+            <div class="hud-chip">Máy: <span id="hud-ai-score">0</span></div>
+            <div class="hud-chip">Hòa: <span id="hud-tie-score">0</span></div>
+            <div class="hud-chip">Chuỗi thắng: <span id="hud-streak">0</span></div>
+            <div class="hud-chip">Best: <span id="hud-best">0</span></div>
+        </div>
+
+        <div class="arena">
+            <div class="hand-panel">
+                <div class="hand-panel__label">Máy (AI)</div>
+                <div class="hand-display" id="ai-hand">🤖</div>
+                <div class="hand-panel__note" id="ai-confidence"></div>
             </div>
 
-            <div class="hand" id="user-hand">
-                <div class="fist"></div>
-                <div class="finger finger-1"></div>
-                <div class="finger finger-2"></div>
-                <div class="finger finger-3"></div>
-                <div class="finger finger-4"></div>
-                <div class="thumb"></div>
-                <div class="arm"></div>
-            </div>
+            <div class="vs-badge">VS</div>
 
-            <div id="icons">
-                <div>
-                    <label for="rock-rock">✊</label>
-                    <label for="paper-rock">✊</label>
-                    <label for="scissors-rock">✊</label>
-                </div>
-                <div>
-                    <label for="rock-paper">🖐️</label>
-                    <label for="paper-paper">🖐️</label>
-                    <label for="scissors-paper">🖐️</label>
-                </div>
-                <div>
-                    <label for="rock-scissors">✌</label>
-                    <label for="paper-scissors">✌</label>
-                    <label for="scissors-scissors">✌</label>
-                </div>
+            <div class="hand-panel">
+                <div class="hand-panel__label">Bạn</div>
+                <div class="hand-display" id="player-hand">❓</div>
+                <div class="hand-panel__note">&nbsp;</div>
             </div>
         </div>
+
+        <div class="result-banner" id="result-banner" hidden></div>
+
+        <div class="choice-row">
+            <button type="button" class="choice-btn" data-move="rock">
+                <span class="choice-btn__emoji">✊</span>
+                <span class="choice-btn__label">Búa</span>
+            </button>
+            <button type="button" class="choice-btn" data-move="paper">
+                <span class="choice-btn__emoji">✋</span>
+                <span class="choice-btn__label">Bao</span>
+            </button>
+            <button type="button" class="choice-btn" data-move="scissors">
+                <span class="choice-btn__emoji">✌️</span>
+                <span class="choice-btn__label">Kéo</span>
+            </button>
+        </div>
+
+        <button type="button" class="reset-btn" id="btn-reset-ai">Xoá học & học lại</button>
     </div>
 
-    <div id="message">
-        <h2></h2>
-        <input type="reset" value="Refresh Round" />
-    </div>
-
-</form>
+    <script src="js/constants.js"></script>
+    <script src="js/rps-ai.js"></script>
+    <script src="js/rock-paper-scissors-main.js"></script>
 </body>
 </html>
-
-<script>
-    function handleClick() {}
-</script>

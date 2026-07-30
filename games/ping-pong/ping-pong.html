@@ -16,9 +16,9 @@
 
     <div class="game-shell">
         <div class="hud-bar">
-            <div class="hud-chip">Bạn: <span id="hud-player-score">0</span></div>
-            <div class="hud-chip">Máy: <span id="hud-cpu-score">0</span></div>
-            <div class="hud-chip">Best: <span id="hud-best">0</span></div>
+            <div class="hud-chip"><span id="hud-player-label">Bạn</span>: <span id="hud-player-score">0</span></div>
+            <div class="hud-chip"><span id="hud-cpu-label">Máy</span>: <span id="hud-cpu-score">0</span></div>
+            <div class="hud-chip" id="hud-best-chip">Best: <span id="hud-best">0</span></div>
         </div>
 
         <div class="canvas-wrap">
@@ -38,6 +38,7 @@
                 <button type="button" class="dpad-btn dpad-btn--right" data-dir="ArrowRight" aria-label="Phải">▶</button>
             </div>
         </div>
+        <div class="two-player-note" id="two-player-note" hidden>Chế độ 2 người: Người 1 dùng ◀ ▶, Người 2 dùng phím A / D</div>
     </div>
 
     <script src="js/constants.js"></script>

@@ -24,6 +24,7 @@
     let enemies = [];
     let boss = null;
     let bombs = [];
+    let bombUnderPlayer = null;
     let explosions = [];
     let powerups = [];
     let score = 0;
@@ -151,6 +152,7 @@
     function startGame() {
         map = new BombermanMap();
         bombs = [];
+        bombUnderPlayer = null;
         explosions = [];
         powerups = [];
         enemies = [];
@@ -247,7 +249,14 @@
         if (dir) {
             player.dir = dir;
             const others = allEntities().filter((e) => e !== player);
-            moveEntity(player, dir.x * player.speed * dt, dir.y * player.speed * dt, others, null);
+            moveEntity(player, dir.x * player.speed * dt, dir.y * player.speed * dt, others, bombUnderPlayer);
+        }
+
+        if (
+            bombUnderPlayer &&
+            !rectsOverlap(player.x, player.y, player.size, player.size, bombUnderPlayer.col * TILE, bombUnderPlayer.row * TILE, TILE, TILE)
+        ) {
+            bombUnderPlayer = null;
         }
 
         const spacePressed = !!keys[" "];
@@ -261,7 +270,9 @@
         const row = player.gridRow;
         if (bombs.length >= player.maxBombs) return;
         if (bombs.some((b) => b.col === col && b.row === row)) return;
-        bombs.push(new Bomb(col, row, player.flameRange, placedAt));
+        const bomb = new Bomb(col, row, player.flameRange, placedAt);
+        bombs.push(bomb);
+        bombUnderPlayer = bomb;
     }
 
     function updateEnemyAI(enemy, dt, dtMs) {
@@ -422,6 +433,7 @@
         const pos = tileToPixelCenter(PLAYER_SPAWN.col, PLAYER_SPAWN.row, PLAYER_SIZE);
         player.x = pos.x;
         player.y = pos.y;
+        bombUnderPlayer = null;
         player.invulnerable = true;
         setTimeout(() => {
             if (player) player.invulnerable = false;

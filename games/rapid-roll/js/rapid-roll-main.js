@@ -192,7 +192,7 @@
         camera.y = Math.max(camera.y + scrollSpeed * dt, followTarget);
 
         const screenY = ball.worldY - camera.y;
-        if (screenY < -BALL_RADIUS * 2) {
+        if (maxDepth > DEATH_CHECK_MIN_DEPTH && screenY < -BALL_RADIUS * 2) {
             triggerGameOver("Bạn đã bị bỏ lại phía sau!");
             return;
         }

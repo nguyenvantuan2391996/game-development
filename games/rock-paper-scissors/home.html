@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<link rel="stylesheet" href="css/home.css">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Game development</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kéo Búa Bao</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
     <script src="/game-development/js/block-devtools.js"></script>
 </head>
 <body>
-<div class="boxes">
-    <div class="box" style="border-radius: 50%;"><img onclick={{joinRoom(1)}} src="images/room-1.png" alt="room-1" style="width: 360px; height: 360px"></div>
-    <div class="box" style="border-radius: 50%;"><img onclick={{joinRoom(2)}} src="images/room-2.png" alt="room-2" style="width: 360px; height: 360px"></div>
-    <div class="box" style="border-radius: 50%;"><img onclick={{joinRoom(3)}} src="images/room-3.png" alt="room-3" style="width: 360px; height: 360px"></div>
-    <div class="box" style="border-radius: 50%;"><img onclick={{joinRoom(4)}} src="images/room-4.png" alt="room-4" style="width: 360px; height: 360px"></div>
-</div>
+    <div class="bg-glow"></div>
 
+    <div class="home-shell">
+        <div class="home-hero">
+            <span class="home-hero__eyebrow">Classic + AI game</span>
+            <h1 class="home-hero__title">KÉO BÚA BAO</h1>
+            <p class="home-hero__subtitle">Đấu với máy — AI học cách bạn ra tay qua từng ván (Markov Chain + Pattern Matching) và ngày càng đoán đúng hơn!</p>
+        </div>
+
+        <div class="best-score">
+            Chuỗi thắng tốt nhất: <span id="best-score-value">0</span>
+        </div>
+
+        <a class="button" id="btn-play" href="rock-paper-scissors.html">Bắt đầu</a>
+        <a class="back-link" href="/game-development/home.html">&larr; Về trang chủ</a>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/home.js"></script>
 </body>
 </html>
-
-<script type="text/javascript" src="js/home.js"></script>

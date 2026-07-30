@@ -11,6 +11,9 @@
     const overlayTitle = document.getElementById("overlay-title");
     const overlayDesc = document.getElementById("overlay-desc");
     const overlayBtn = document.getElementById("overlay-btn");
+    const powerSlider = document.getElementById("power-slider");
+    const powerLabel = document.getElementById("power-label");
+    const shootBtn = document.getElementById("shoot-btn");
 
     let best = Number(localStorage.getItem(BEST_SCORE_KEY)) || 0;
 
@@ -40,6 +43,16 @@
 
     let isDragging = false;
     let dragPos = { x: 0, y: 0 };
+
+    // Aiming is decoupled from firing: dragging the striker (or the power
+    // slider) only updates the locked-in aim/power; the shot only actually
+    // fires when the "Bắn" button is pressed. This gives touch players a
+    // second, more forgiving chance to fine-tune power before committing,
+    // instead of having to nail direction+power in one continuous drag.
+    let aimReady = false;
+    let aimDirX = 0;
+    let aimDirY = -1;
+    let shotPower = 0.5;
 
     function randomBetween(min, max) {
         return min + Math.random() * (max - min);
@@ -82,6 +95,14 @@
     function resetStrikerForTurn() {
         const base = turn === "player" ? playerBaseline : cpuBaseline;
         striker = { id: "striker", color: "cream", radius: STRIKER_RADIUS, x: base.x, y: base.y, vx: 0, vy: 0, active: true };
+        aimReady = false;
+        updateShootControls();
+    }
+
+    function updateShootControls() {
+        const canAim = state === "playing" && turn === "player" && phase === "aim" && !!striker;
+        powerSlider.disabled = !canAim;
+        shootBtn.disabled = !(canAim && aimReady);
     }
 
     function allPieces() {
@@ -227,6 +248,8 @@
 
     function finishGame() {
         state = "gameover";
+        aimReady = false;
+        updateShootControls();
         const totalBest = Math.max(playerScore, best);
         if (totalBest > best) {
             best = totalBest;
@@ -338,20 +361,42 @@
 
         const dx = dragPos.x - striker.x;
         const dy = dragPos.y - striker.y;
-        const pullDist = Math.min(MAX_PULL_DISTANCE, Math.hypot(dx, dy));
-        const power = pullDist / MAX_PULL_DISTANCE;
-        if (power < 0.06) return;
+        const pullLen = Math.hypot(dx, dy);
+        if (pullLen < 4) return;
 
-        const pullLen = Math.hypot(dx, dy) || 1;
-        const shotDirX = -dx / pullLen;
-        const shotDirY = -dy / pullLen;
-        const speed = MIN_SHOT_SPEED + power * (MAX_SHOT_SPEED - MIN_SHOT_SPEED);
+        const pullDist = Math.min(MAX_PULL_DISTANCE, pullLen);
+        shotPower = pullDist / MAX_PULL_DISTANCE;
+        aimDirX = -dx / pullLen;
+        aimDirY = -dy / pullLen;
+        aimReady = true;
 
-        striker.vx = shotDirX * speed;
-        striker.vy = shotDirY * speed;
+        powerSlider.value = String(Math.round(shotPower * 100));
+        updatePowerLabel();
+        updateShootControls();
+    });
+
+    function updatePowerLabel() {
+        powerLabel.textContent = Math.round(shotPower * 100) + "%";
+    }
+
+    function fireShot() {
+        if (state !== "playing" || turn !== "player" || phase !== "aim" || !striker || !aimReady) return;
+
+        const speed = MIN_SHOT_SPEED + shotPower * (MAX_SHOT_SPEED - MIN_SHOT_SPEED);
+        striker.vx = aimDirX * speed;
+        striker.vy = aimDirY * speed;
         pottedThisTurn = [];
         phase = "moving";
+        aimReady = false;
+        updateShootControls();
+    }
+
+    powerSlider.addEventListener("input", () => {
+        shotPower = Number(powerSlider.value) / 100;
+        updatePowerLabel();
     });
+
+    shootBtn.addEventListener("click", fireShot);
 
     overlayBtn.addEventListener("click", startGame);
 
@@ -432,15 +477,33 @@
     }
 
     function drawAimLine() {
-        if (!isDragging || !striker) return;
-        const dx = dragPos.x - striker.x;
-        const dy = dragPos.y - striker.y;
-        const pullLen = Math.min(MAX_PULL_DISTANCE, Math.hypot(dx, dy));
-        const dirLen = Math.hypot(dx, dy) || 1;
-        const power = pullLen / MAX_PULL_DISTANCE;
+        if (!striker) return;
 
-        const shotDirX = -dx / dirLen;
-        const shotDirY = -dy / dirLen;
+        let shotDirX;
+        let shotDirY;
+        let power;
+        let handleX;
+        let handleY;
+
+        if (isDragging) {
+            const dx = dragPos.x - striker.x;
+            const dy = dragPos.y - striker.y;
+            const pullLen = Math.min(MAX_PULL_DISTANCE, Math.hypot(dx, dy));
+            const dirLen = Math.hypot(dx, dy) || 1;
+            power = pullLen / MAX_PULL_DISTANCE;
+            shotDirX = -dx / dirLen;
+            shotDirY = -dy / dirLen;
+            handleX = striker.x - dx * (pullLen / dirLen);
+            handleY = striker.y - dy * (pullLen / dirLen);
+        } else if (aimReady) {
+            shotDirX = aimDirX;
+            shotDirY = aimDirY;
+            power = shotPower;
+            handleX = striker.x - shotDirX * shotPower * MAX_PULL_DISTANCE;
+            handleY = striker.y - shotDirY * shotPower * MAX_PULL_DISTANCE;
+        } else {
+            return;
+        }
 
         const color = power < 0.4 ? "#4dff88" : power < 0.75 ? "#ffe14d" : "#ff5252";
 
@@ -456,7 +519,7 @@
 
         ctx.beginPath();
         ctx.fillStyle = color;
-        ctx.arc(striker.x - dx * (pullLen / dirLen), striker.y - dy * (pullLen / dirLen), 5, 0, Math.PI * 2);
+        ctx.arc(handleX, handleY, 5, 0, Math.PI * 2);
         ctx.fill();
     }
 
@@ -502,5 +565,6 @@
     }
 
     coins = createCoins();
+    updateShootControls();
     render();
 })();

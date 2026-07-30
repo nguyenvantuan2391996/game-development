@@ -157,6 +157,17 @@ body {
 .dpad--horizontal .dpad-btn--left { top: 0; left: 0; }
 .dpad--horizontal .dpad-btn--right { top: 0; left: 8.9rem; }
 
+.two-player-note {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-align: center;
+    max-width: 20rem;
+}
+
+.two-player-note[hidden] {
+    display: none;
+}
+
 .overlay {
     position: absolute;
     inset: 0;
