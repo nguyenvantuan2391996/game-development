@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <rect width="360" height="360" fill="#0b0a1f"/>
+  <rect width="360" height="360" fill="rgba(255,207,77,0.10)"/>
+
+  <g transform="translate(150,195)">
+    <rect x="-50" y="-70" width="100" height="140" rx="10" fill="#ffcf4d"/>
+    <rect x="-50" y="-84" width="100" height="18" rx="8" fill="rgba(255,255,255,0.9)"/>
+    <path d="M50 -40 a30 30 0 0 1 0 60 h-14 v-60 z" fill="none" stroke="#ffcf4d" stroke-width="12"/>
+    <rect x="-38" y="-40" width="10" height="90" fill="rgba(255,255,255,0.25)"/>
+  </g>
+
+  <g transform="translate(258,95)">
+    <circle r="20" fill="#ff8a3d"/>
+    <circle cy="-16" r="9" fill="rgba(255,255,255,0.85)"/>
+  </g>
+
+  <g transform="translate(300,175)">
+    <circle r="14" fill="#ffd54d"/>
+    <circle r="17" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+  </g>
+
+  <g transform="translate(90,270)">
+    <circle r="16" fill="#8a8a9a"/>
+    <line x1="-8" y1="-8" x2="8" y2="8" stroke="rgba(230,57,70,0.9)" stroke-width="3"/>
+    <line x1="8" y1="-8" x2="-8" y2="8" stroke="rgba(230,57,70,0.9)" stroke-width="3"/>
+  </g>
+</svg>

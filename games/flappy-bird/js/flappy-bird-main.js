@@ -9,6 +9,19 @@ const PIPE_SPEED = 180;
 const PIPE_SPAWN_MS = 1400;
 const BIRD_RADIUS = 16;
 const BEST_SCORE_KEY = "flappyBirdBestScore";
+const BEST_SCORE_AI_KEY = "flappyBirdBestScoreAI";
+const Q_TABLE_KEY = "flappyBirdQTable";
+const Q_EPISODE_KEY = "flappyBirdQEpisode";
+const Q_EPSILON_KEY = "flappyBirdQEpsilon";
+
+const urlParams = new URLSearchParams(window.location.search);
+const MODE = urlParams.get("mode") === "ai" ? "ai" : "normal";
+
+// Survives Scene.restart() (which throws away the old Scene instance),
+// so training keeps its Q-table/episode count across every AI "death".
+let sharedAgent = null;
+let activeScene = null;
+let currentTimeScale = 1;
 
 class FlappyScene extends Phaser.Scene {
     constructor() {
@@ -16,9 +29,22 @@ class FlappyScene extends Phaser.Scene {
     }
 
     create() {
+        activeScene = this;
+        this.mode = MODE;
         this.state = "ready";
         this.score = 0;
-        this.best = Number(localStorage.getItem(BEST_SCORE_KEY)) || 0;
+        this.bestKey = this.mode === "ai" ? BEST_SCORE_AI_KEY : BEST_SCORE_KEY;
+        this.best = Number(localStorage.getItem(this.bestKey)) || 0;
+
+        if (this.mode === "ai") {
+            if (!sharedAgent) {
+                sharedAgent = new QLearningAgent([0, 1], Q_TABLE_KEY, Q_EPISODE_KEY, Q_EPSILON_KEY);
+            }
+            this.agent = sharedAgent;
+            this.pendingState = null;
+            this.time.timeScale = currentTimeScale;
+            this.physics.world.timeScale = currentTimeScale;
+        }
 
         this.createTextures();
         this.createBackground();
@@ -58,20 +84,91 @@ class FlappyScene extends Phaser.Scene {
             .setOrigin(1, 0)
             .setDepth(10);
 
-        this.input.on("pointerdown", () => this.handleInput());
-        this.input.keyboard.on("keydown-SPACE", () => this.handleInput());
-
         this.physics.add.collider(this.bird, this.groundBody, () => this.gameOver());
         this.physics.add.overlap(this.bird, this.pipes, () => this.gameOver());
 
-        this.floatTween = this.tweens.add({
-            targets: this.bird,
-            y: this.bird.y + 12,
-            duration: 500,
-            yoyo: true,
-            repeat: -1,
-            ease: "Sine.easeInOut",
+        if (this.mode === "ai") {
+            this.messageText.setVisible(false);
+            this.updateAiHud();
+            this.startGame();
+        } else {
+            this.input.on("pointerdown", () => this.handleInput());
+            this.input.keyboard.on("keydown-SPACE", () => this.handleInput());
+
+            this.floatTween = this.tweens.add({
+                targets: this.bird,
+                y: this.bird.y + 12,
+                duration: 500,
+                yoyo: true,
+                repeat: -1,
+                ease: "Sine.easeInOut",
+            });
+        }
+    }
+
+    updateAiHud() {
+        const episodeEl = document.getElementById("hud-episode");
+        const epsilonEl = document.getElementById("hud-epsilon");
+        if (episodeEl) episodeEl.textContent = this.agent.episode;
+        if (epsilonEl) epsilonEl.textContent = this.agent.epsilon.toFixed(2);
+    }
+
+    getNextPipe() {
+        let nearest = null;
+        this.pipes.getChildren().forEach((pipe) => {
+            if (!pipe.isTopPipe || pipe.scored) return;
+            if (!nearest || pipe.x < nearest.x) nearest = pipe;
         });
+        if (!nearest) return null;
+        return { x: nearest.x, gapCenterY: nearest.height + PIPE_GAP / 2 };
+    }
+
+    aiUpdate() {
+        if (this.state === "ready") {
+            this.startGame();
+            return;
+        }
+
+        if (this.pendingState !== null) {
+            const died = this.state === "gameover";
+            const nextPipe = died ? null : this.getNextPipe();
+            let reward;
+            if (died) {
+                reward = -10;
+            } else if (this.score > this.pendingScore) {
+                reward = 10;
+            } else {
+                const newDy = nextPipe ? Math.abs(this.bird.y - nextPipe.gapCenterY) : this.pendingDy;
+                reward = newDy < this.pendingDy ? 1 : -1;
+            }
+            const nextState = died ? this.pendingState : getFlappyState(this.bird, nextPipe);
+            this.agent.learn(this.pendingState, this.pendingAction, reward, nextState, died);
+            this.pendingState = null;
+        }
+
+        if (this.state === "gameover") {
+            this.agent.episode += 1;
+            this.agent.decayEpsilon();
+            if (this.agent.episode % 20 === 0) this.agent.save();
+            this.updateAiHud();
+            this.time.delayedCall(80, () => {
+                if (this.scene) this.scene.restart();
+            });
+            return;
+        }
+
+        const nextPipe = this.getNextPipe();
+        if (!nextPipe) return;
+
+        const state = getFlappyState(this.bird, nextPipe);
+        const actionIndex = this.agent.chooseAction(state);
+        if (this.agent.actions[actionIndex] === 1) this.flap();
+
+        this.pendingState = state;
+        this.pendingAction = actionIndex;
+        this.pendingScore = this.score;
+        this.pendingDy = Math.abs(this.bird.y - nextPipe.gapCenterY);
+        this.updateAiHud();
     }
 
     createTextures() {
@@ -205,12 +302,14 @@ class FlappyScene extends Phaser.Scene {
 
         if (this.score > this.best) {
             this.best = this.score;
-            localStorage.setItem(BEST_SCORE_KEY, String(this.best));
+            localStorage.setItem(this.bestKey, String(this.best));
         }
         this.bestText.setText(`Best: ${this.best}`);
 
-        this.messageText.setText(`Game Over!\nĐiểm: ${this.score}\nChạm để chơi lại`);
-        this.messageText.setVisible(true);
+        if (this.mode !== "ai") {
+            this.messageText.setText(`Game Over!\nĐiểm: ${this.score}\nChạm để chơi lại`);
+            this.messageText.setVisible(true);
+        }
     }
 
     restart() {
@@ -218,26 +317,30 @@ class FlappyScene extends Phaser.Scene {
     }
 
     update() {
-        if (this.state !== "playing") return;
+        if (this.state === "playing") {
+            const velocityY = this.bird.body.velocity.y;
+            this.bird.angle = Phaser.Math.Clamp(velocityY * 0.06, -20, 90);
 
-        const velocityY = this.bird.body.velocity.y;
-        this.bird.angle = Phaser.Math.Clamp(velocityY * 0.06, -20, 90);
+            if (this.bird.y - BIRD_RADIUS <= 0) {
+                this.bird.y = BIRD_RADIUS;
+                this.bird.body.setVelocityY(0);
+            }
 
-        if (this.bird.y - BIRD_RADIUS <= 0) {
-            this.bird.y = BIRD_RADIUS;
-            this.bird.body.setVelocityY(0);
+            this.pipes.getChildren().forEach((pipe) => {
+                if (pipe.x < -PIPE_WIDTH) {
+                    pipe.destroy();
+                    return;
+                }
+                if (!pipe.scored && pipe.isTopPipe && pipe.x + PIPE_WIDTH / 2 < this.bird.x) {
+                    pipe.scored = true;
+                    this.addScore();
+                }
+            });
         }
 
-        this.pipes.getChildren().forEach((pipe) => {
-            if (pipe.x < -PIPE_WIDTH) {
-                pipe.destroy();
-                return;
-            }
-            if (!pipe.scored && pipe.isTopPipe && pipe.x + PIPE_WIDTH / 2 < this.bird.x) {
-                pipe.scored = true;
-                this.addScore();
-            }
-        });
+        if (this.mode === "ai") {
+            this.aiUpdate();
+        }
     }
 }
 
@@ -262,3 +365,32 @@ const config = {
 };
 
 new Phaser.Game(config);
+
+if (MODE === "ai") {
+    const aiControls = document.getElementById("ai-controls");
+    const episodeChip = document.getElementById("hud-episode-chip");
+    const epsilonChip = document.getElementById("hud-epsilon-chip");
+    if (aiControls) aiControls.style.display = "flex";
+    if (episodeChip) episodeChip.style.display = "inline-flex";
+    if (epsilonChip) epsilonChip.style.display = "inline-flex";
+
+    document.querySelectorAll(".speed-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".speed-btn").forEach((b) => b.classList.remove("speed-btn--active"));
+            btn.classList.add("speed-btn--active");
+            currentTimeScale = Number(btn.dataset.scale);
+            if (activeScene) {
+                activeScene.time.timeScale = currentTimeScale;
+                activeScene.physics.world.timeScale = currentTimeScale;
+            }
+        });
+    });
+
+    const resetBtn = document.getElementById("btn-reset-ai");
+    if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+            if (sharedAgent) sharedAgent.resetLearning();
+            if (activeScene) activeScene.scene.restart();
+        });
+    }
+}

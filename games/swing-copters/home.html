@@ -14,16 +14,29 @@
 
     <div class="home-shell">
         <div class="home-hero">
-            <span class="home-hero__eyebrow">Arcade game</span>
+            <span class="home-hero__eyebrow">Classic + AI game</span>
             <h1 class="home-hero__title">SWING COPTERS</h1>
-            <p class="home-hero__subtitle">Chạm hoặc nhấn Space để đổi hướng bay, len qua khoảng trống của các thanh chắn!</p>
+            <p class="home-hero__subtitle">Chọn chế độ: tự chơi bằng Space, hoặc xem AI tự học bằng Q-learning</p>
+        </div>
+
+        <div class="mode-grid">
+            <div class="mode-card mode-card--active" data-mode="normal">
+                <i class="mode-card__icon">🎮</i>
+                <div class="mode-card__title">Bình thường</div>
+                <div class="mode-card__desc">Chạm hoặc nhấn Space để đổi hướng bay</div>
+            </div>
+            <div class="mode-card" data-mode="ai">
+                <i class="mode-card__icon">🤖</i>
+                <div class="mode-card__title">AI Q-learning</div>
+                <div class="mode-card__desc">AI tự chơi và tự học qua từng lượt (episode)</div>
+            </div>
         </div>
 
         <div class="best-score">
             Điểm cao nhất: <span id="best-score-value">0</span>
         </div>
 
-        <a class="button" id="btn-play" href="swing-copters.html">Bắt đầu</a>
+        <button type="button" class="button" id="btn-play">Bắt đầu</button>
         <a class="back-link" href="/game-development/home.html">&larr; Về trang chủ</a>
     </div>
 

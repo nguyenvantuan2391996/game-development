@@ -9,6 +9,19 @@ const BEAM_THICKNESS = 20;
 const BEAM_MARGIN = 45;
 const BEAM_SPAWN_MS = 1350;
 const BEST_SCORE_KEY = "swingCoptersBestScore";
+const BEST_SCORE_AI_KEY = "swingCoptersBestScoreAI";
+const Q_TABLE_KEY = "swingCoptersQTable";
+const Q_EPISODE_KEY = "swingCoptersQEpisode";
+const Q_EPSILON_KEY = "swingCoptersQEpsilon";
+
+const urlParams = new URLSearchParams(window.location.search);
+const MODE = urlParams.get("mode") === "ai" ? "ai" : "normal";
+
+// Survives Scene.restart() (which throws away the old Scene instance),
+// so training keeps its Q-table/episode count across every AI "death".
+let sharedAgent = null;
+let activeScene = null;
+let currentTimeScale = 1;
 
 class SwingCoptersScene extends Phaser.Scene {
     constructor() {
@@ -16,11 +29,24 @@ class SwingCoptersScene extends Phaser.Scene {
     }
 
     create() {
+        activeScene = this;
+        this.mode = MODE;
         this.state = "ready";
         this.score = 0;
-        this.best = Number(localStorage.getItem(BEST_SCORE_KEY)) || 0;
+        this.bestKey = this.mode === "ai" ? BEST_SCORE_AI_KEY : BEST_SCORE_KEY;
+        this.best = Number(localStorage.getItem(this.bestKey)) || 0;
         this.riseSpeed = RISE_SPEED_BASE;
         this.direction = 1;
+
+        if (this.mode === "ai") {
+            if (!sharedAgent) {
+                sharedAgent = new QLearningAgent([0, 1], Q_TABLE_KEY, Q_EPISODE_KEY, Q_EPSILON_KEY);
+            }
+            this.agent = sharedAgent;
+            this.pendingState = null;
+            this.time.timeScale = currentTimeScale;
+            this.physics.world.timeScale = currentTimeScale;
+        }
 
         this.createTextures();
         this.createBackground();
@@ -59,10 +85,86 @@ class SwingCoptersScene extends Phaser.Scene {
             .setOrigin(1, 0)
             .setDepth(10);
 
-        this.input.on("pointerdown", () => this.handleInput());
-        this.input.keyboard.on("keydown-SPACE", () => this.handleInput());
-
         this.physics.add.overlap(this.character, this.beams, () => this.gameOver());
+
+        if (this.mode === "ai") {
+            this.messageText.setVisible(false);
+            this.updateAiHud();
+            this.startGame();
+        } else {
+            this.input.on("pointerdown", () => this.handleInput());
+            this.input.keyboard.on("keydown-SPACE", () => this.handleInput());
+        }
+    }
+
+    updateAiHud() {
+        const episodeEl = document.getElementById("hud-episode");
+        const epsilonEl = document.getElementById("hud-epsilon");
+        if (episodeEl) episodeEl.textContent = this.agent.episode;
+        if (epsilonEl) epsilonEl.textContent = this.agent.epsilon.toFixed(2);
+    }
+
+    getNextBeam() {
+        let nearest = null;
+        this.beams.getChildren().forEach((beam) => {
+            if (!beam.isPrimary || beam.scored) return;
+            if (!nearest || beam.y > nearest.y) nearest = beam;
+        });
+        if (!nearest) return null;
+        const gapStart = nearest.width;
+        return { y: nearest.y, gapCenterX: gapStart + BEAM_GAP / 2 };
+    }
+
+    aiFlip() {
+        this.direction *= -1;
+        this.character.body.setVelocityX(this.direction * HORIZONTAL_SPEED);
+        this.tweens.add({ targets: this.character, angle: this.direction * 15, duration: 150 });
+    }
+
+    aiUpdate() {
+        if (this.state === "ready") {
+            this.startGame();
+            return;
+        }
+
+        if (this.pendingState !== null) {
+            const died = this.state === "gameover";
+            const nextBeam = died ? null : this.getNextBeam();
+            let reward;
+            if (died) {
+                reward = -10;
+            } else if (this.score > this.pendingScore) {
+                reward = 10;
+            } else {
+                const newDx = nextBeam ? Math.abs(this.character.x - nextBeam.gapCenterX) : this.pendingDx;
+                reward = newDx < this.pendingDx ? 1 : -1;
+            }
+            const nextState = died ? this.pendingState : getSwingState(this.character, this.direction, nextBeam);
+            this.agent.learn(this.pendingState, this.pendingAction, reward, nextState, died);
+            this.pendingState = null;
+        }
+
+        if (this.state === "gameover") {
+            this.agent.episode += 1;
+            this.agent.decayEpsilon();
+            if (this.agent.episode % 20 === 0) this.agent.save();
+            this.updateAiHud();
+            this.time.delayedCall(80, () => {
+                if (this.scene) this.scene.restart();
+            });
+            return;
+        }
+
+        const nextBeam = this.getNextBeam();
+        const state = getSwingState(this.character, this.direction, nextBeam);
+        const actionIndex = this.agent.chooseAction(state);
+        if (this.agent.actions[actionIndex] === 1) this.aiFlip();
+
+        this.pendingState = state;
+        this.pendingAction = actionIndex;
+        this.pendingScore = this.score;
+        this.pendingDx = nextBeam ? Math.abs(this.character.x - nextBeam.gapCenterX) : 0;
+        this.updateAiHud();
     }
 
     createTextures() {
@@ -199,12 +301,14 @@ class SwingCoptersScene extends Phaser.Scene {
 
         if (this.score > this.best) {
             this.best = this.score;
-            localStorage.setItem(BEST_SCORE_KEY, String(this.best));
+            localStorage.setItem(this.bestKey, String(this.best));
         }
         this.bestText.setText(`Best: ${this.best}`);
 
-        this.messageText.setText(`Game Over!\nĐiểm: ${this.score}\nChạm để chơi lại`);
-        this.messageText.setVisible(true);
+        if (this.mode !== "ai") {
+            this.messageText.setText(`Game Over!\nĐiểm: ${this.score}\nChạm để chơi lại`);
+            this.messageText.setVisible(true);
+        }
     }
 
     restart() {
@@ -212,23 +316,26 @@ class SwingCoptersScene extends Phaser.Scene {
     }
 
     update() {
-        if (this.state !== "playing") return;
-
-        if (this.character.x - CHAR_RADIUS <= 0 || this.character.x + CHAR_RADIUS >= GAME_WIDTH) {
-            this.gameOver();
-            return;
+        if (this.state === "playing") {
+            if (this.character.x - CHAR_RADIUS <= 0 || this.character.x + CHAR_RADIUS >= GAME_WIDTH) {
+                this.gameOver();
+            } else {
+                this.beams.getChildren().forEach((beam) => {
+                    if (beam.y > GAME_HEIGHT + BEAM_THICKNESS) {
+                        beam.destroy();
+                        return;
+                    }
+                    if (beam.isPrimary && !beam.scored && beam.y > CHAR_Y) {
+                        beam.scored = true;
+                        this.addScore();
+                    }
+                });
+            }
         }
 
-        this.beams.getChildren().forEach((beam) => {
-            if (beam.y > GAME_HEIGHT + BEAM_THICKNESS) {
-                beam.destroy();
-                return;
-            }
-            if (beam.isPrimary && !beam.scored && beam.y > CHAR_Y) {
-                beam.scored = true;
-                this.addScore();
-            }
-        });
+        if (this.mode === "ai") {
+            this.aiUpdate();
+        }
     }
 }
 
@@ -253,3 +360,32 @@ const config = {
 };
 
 new Phaser.Game(config);
+
+if (MODE === "ai") {
+    const aiControls = document.getElementById("ai-controls");
+    const episodeChip = document.getElementById("hud-episode-chip");
+    const epsilonChip = document.getElementById("hud-epsilon-chip");
+    if (aiControls) aiControls.style.display = "flex";
+    if (episodeChip) episodeChip.style.display = "inline-flex";
+    if (epsilonChip) epsilonChip.style.display = "inline-flex";
+
+    document.querySelectorAll(".speed-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".speed-btn").forEach((b) => b.classList.remove("speed-btn--active"));
+            btn.classList.add("speed-btn--active");
+            currentTimeScale = Number(btn.dataset.scale);
+            if (activeScene) {
+                activeScene.time.timeScale = currentTimeScale;
+                activeScene.physics.world.timeScale = currentTimeScale;
+            }
+        });
+    });
+
+    const resetBtn = document.getElementById("btn-reset-ai");
+    if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+            if (sharedAgent) sharedAgent.resetLearning();
+            if (activeScene) activeScene.scene.restart();
+        });
+    }
+}

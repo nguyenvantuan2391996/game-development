@@ -13,10 +13,23 @@ I will be super happy if you could help me endorse some skills or knowledge on m
 - Link home : [Games](https://nguyenvantuan2391996.github.io/game-development/home.html)
 
 # Games were developed
-- Game Audition : [Audition](https://nguyenvantuan2391996.github.io/game-development/games/audition/home.html)
-- Game Caro : [Caro](https://nguyenvantuan2391996.github.io/game-development/games/caro/home.html)
-- Game Plan and Zombie : [Plan and Zombie](https://nguyenvantuan2391996.github.io/game-development/games/plan-and-zombie/home.html)
-- Game Rock Paper Scissors : [Rock Paper Scissors](https://nguyenvantuan2391996.github.io/game-development/games/rock-paper-scissors/home.html)
+Each game also has its own `README.md` (linked below) with feature details, how to run it locally, and a file overview.
+
+| Game | Play | Docs |
+| --- | --- | --- |
+| Audition | [Play](https://nguyenvantuan2391996.github.io/game-development/games/audition/home.html) | [README](games/audition/README.md) |
+| Caro | [Play](https://nguyenvantuan2391996.github.io/game-development/games/caro/home.html) | [README](games/caro/README.md) |
+| Plan and Zombie | [Play](https://nguyenvantuan2391996.github.io/game-development/games/plan-and-zombie/home.html) | [README](games/plan-and-zombie/README.md) |
+| Rock Paper Scissors | [Play](https://nguyenvantuan2391996.github.io/game-development/games/rock-paper-scissors/home.html) | [README](games/rock-paper-scissors/README.md) |
+| Flappy Bird | [Play](https://nguyenvantuan2391996.github.io/game-development/games/flappy-bird/home.html) | [README](games/flappy-bird/README.md) |
+| Snake (Rắn săn mồi) | [Play](https://nguyenvantuan2391996.github.io/game-development/games/snake/home.html) | [README](games/snake/README.md) |
+| Swing Copters | [Play](https://nguyenvantuan2391996.github.io/game-development/games/swing-copters/home.html) | [README](games/swing-copters/README.md) |
+| Tank 1990 (Bắn Tank 1990) | [Play](https://nguyenvantuan2391996.github.io/game-development/games/tank-1990/home.html) | [README](games/tank-1990/README.md) |
+| Road Fighter | [Play](https://nguyenvantuan2391996.github.io/game-development/games/road-fighter/home.html) | [README](games/road-fighter/README.md) |
+| Xiangqi (Cờ Tướng) | [Play](https://nguyenvantuan2391996.github.io/game-development/games/xiangqi/home.html) | [README](games/xiangqi/README.md) |
+| Bomberman | [Play](https://nguyenvantuan2391996.github.io/game-development/games/bomberman/home.html) | [README](games/bomberman/README.md) |
+| Chess (Cờ Vua) | [Play](https://nguyenvantuan2391996.github.io/game-development/games/chess/home.html) | [README](games/chess/README.md) |
+| Pooyan | [Play](https://nguyenvantuan2391996.github.io/game-development/games/pooyan/home.html) | [README](games/pooyan/README.md) |
 
 # Applications were developed
 - Music Player: [Music Player](https://nguyenvantuan2391996.github.io/game-development/applications/music-player/home.html)

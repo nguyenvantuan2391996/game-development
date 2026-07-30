@@ -14,9 +14,26 @@
 
     <a class="back-link" href="home.html">&larr; Menu</a>
 
-    <div id="game-container"></div>
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip hud-chip--ai" id="hud-episode-chip">Episode: <span id="hud-episode">0</span></div>
+            <div class="hud-chip hud-chip--ai" id="hud-epsilon-chip">Epsilon: <span id="hud-epsilon">1.00</span></div>
+        </div>
+
+        <div id="game-container"></div>
+
+        <div class="ai-controls" id="ai-controls">
+            <span class="ai-controls__label">Tốc độ:</span>
+            <button type="button" class="speed-btn" data-scale="2">Chậm</button>
+            <button type="button" class="speed-btn speed-btn--active" data-scale="1">Vừa</button>
+            <button type="button" class="speed-btn" data-scale="0.5">Nhanh</button>
+            <button type="button" class="speed-btn" data-scale="0.25">Turbo</button>
+            <button type="button" class="reset-btn" id="btn-reset-ai">Xoá học & học lại</button>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <script src="js/q-learning-agent.js"></script>
     <script src="js/flappy-bird-main.js"></script>
 </body>
 </html>
