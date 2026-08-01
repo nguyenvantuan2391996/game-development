@@ -112,7 +112,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Game Over", `Bạn đã leo cao ${score}m. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `You climbed ${score}m. Press to play again.`, "Play Again");
     }
 
     function showOverlay(title, desc, btnLabel) {

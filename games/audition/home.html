@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audition - Nơi cảm xúc thăng hoa</title>
+    <title>Audition - Where Emotions Come Alive</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
         <div class="home-hero">
             <span class="home-hero__eyebrow">Rhythm dance game</span>
             <h1 class="home-hero__title">AUDITION</h1>
-            <p class="home-hero__subtitle">Nơi cảm xúc thăng hoa</p>
+            <p class="home-hero__subtitle">Where emotions come alive</p>
         </div>
 
         <div class="guide-strip">
@@ -29,21 +29,21 @@
             <div class="guide-chip"><span class="guide-arrows">⬆ ⬇ ⬅ ➡</span><span>Up / Down / Left / Right</span></div>
             <div class="guide-chip"><span class="guide-arrows">↖ ↙ ↗ ↘</span><span>Diagonals</span></div>
             <div class="guide-chip"><kbd>Esc</kbd><span>Pause</span></div>
-            <div class="guide-chip"><span class="guide-arrows">📱</span><span>Trên điện thoại: dùng nút chạm trong game</span></div>
+            <div class="guide-chip"><span class="guide-arrows">📱</span><span>On mobile: use the on-screen touch controls</span></div>
         </div>
 
         <section class="select-section">
-            <h2 class="select-section__title">1. Chọn bài hát</h2>
+            <h2 class="select-section__title">1. Choose a song</h2>
 
             <div class="song-search">
                 <i class="fa-solid fa-magnifying-glass song-search__icon"></i>
-                <input type="text" id="song-search-input" class="song-search__input" placeholder="Tìm bài hát (Jamendo)..." autocomplete="off">
+                <input type="text" id="song-search-input" class="song-search__input" placeholder="Search for a song (Jamendo)..." autocomplete="off">
                 <span id="song-search-status" class="song-search__status"></span>
             </div>
 
             <div class="local-folder-group">
                 <button type="button" id="btn-pick-local-folder" class="local-folder-btn">
-                    <i class="fa-solid fa-folder-open"></i> Chọn nhạc từ máy tính
+                    <i class="fa-solid fa-folder-open"></i> Choose music from your computer
                 </button>
                 <input type="file" id="local-folder-input" webkitdirectory multiple hidden>
                 <span id="local-folder-status" class="song-search__status"></span>
@@ -78,24 +78,24 @@
         </section>
 
         <section class="select-section">
-            <h2 class="select-section__title">2. Chọn kiểu nhảy</h2>
+            <h2 class="select-section__title">2. Choose a dance mode</h2>
             <div class="card-grid dance-grid">
                 <div class="dance-card" data-value="4k">
                     <i class="fa-solid fa-arrows-up-down-left-right dance-card__icon"></i>
                     <div class="dance-card__title">4K Dance</div>
-                    <div class="dance-card__desc">4 phím cơ bản</div>
+                    <div class="dance-card__desc">4 basic keys</div>
                     <div class="dance-card__best">Best: 0</div>
                 </div>
                 <div class="dance-card" data-value="8k">
                     <i class="fa-solid fa-compass dance-card__icon"></i>
                     <div class="dance-card__title">8K Dance</div>
-                    <div class="dance-card__desc">4 phím + chéo</div>
+                    <div class="dance-card__desc">4 keys + diagonals</div>
                     <div class="dance-card__best">Best: 0</div>
                 </div>
                 <div class="dance-card" data-value="beat-up">
                     <i class="fa-solid fa-bolt dance-card__icon"></i>
                     <div class="dance-card__title">Beat-up Dance</div>
-                    <div class="dance-card__desc">Bắt nhịp liên tục</div>
+                    <div class="dance-card__desc">Continuous beat matching</div>
                     <div class="dance-card__best">Best: 0</div>
                 </div>
             </div>

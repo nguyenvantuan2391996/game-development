@@ -24,12 +24,12 @@
     hudBest.textContent = best;
 
     if (mode === "2p") {
-        hudPlayerLabel.textContent = "Người 1";
-        hudCpuLabel.textContent = "Người 2";
+        hudPlayerLabel.textContent = "Player 1";
+        hudCpuLabel.textContent = "Player 2";
         hudBestChip.style.display = "none";
         if (touchControls) touchControls.style.display = "none";
         if (twoPlayerNote) twoPlayerNote.hidden = false;
-        overlayDesc.textContent = "Người 1: ◀ ▶ · Người 2: A / D. Đấu đến 7 điểm trước. Nhấn để bắt đầu.";
+        overlayDesc.textContent = "Player 1: ◀ ▶ · Player 2: A / D. First to 7 points wins. Press to start.";
     }
 
     const keys = {};
@@ -114,9 +114,9 @@
         const won = playerScore > cpuScore;
         if (mode === "2p") {
             showOverlay(
-                won ? "Người 1 thắng!" : "Người 2 thắng!",
-                `Tỉ số: ${playerScore} - ${cpuScore}. Nhấn để chơi lại.`,
-                "Chơi lại"
+                won ? "Player 1 wins!" : "Player 2 wins!",
+                `Score: ${playerScore} - ${cpuScore}. Press to play again.`,
+                "Play Again"
             );
             return;
         }
@@ -125,9 +125,9 @@
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
         showOverlay(
-            won ? "Bạn thắng!" : "Máy thắng!",
-            `Tỉ số: ${playerScore} - ${cpuScore}. Nhấn để chơi lại.`,
-            "Chơi lại"
+            won ? "You win!" : "CPU wins!",
+            `Score: ${playerScore} - ${cpuScore}. Press to play again.`,
+            "Play Again"
         );
     }
 

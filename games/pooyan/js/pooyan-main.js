@@ -143,7 +143,7 @@
         if (invulnerable) return;
         lives -= 1;
         if (lives <= 0) {
-            triggerGameOver("Bạn đã hết mạng!");
+            triggerGameOver("You ran out of lives!");
         } else {
             invulnerable = true;
             setTimeout(() => {
@@ -234,7 +234,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Game Over", `${reason} Điểm: ${score}. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `${reason} Score: ${score}. Tap to play again.`, "Play again");
     }
 
     function showOverlay(title, desc, btnLabel) {

@@ -149,7 +149,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Hết ngày!", `Bạn đã bay được ${scoreDistance}m và nhặt ${gemBonus / GEM_SCORE} viên ngọc. Điểm: ${score}.`, "Chơi lại");
+        showOverlay("Day's Over!", `You flew ${scoreDistance}m and collected ${gemBonus / GEM_SCORE} gems. Score: ${score}.`, "Play Again");
     }
 
     function showOverlay(title, desc, btnLabel) {

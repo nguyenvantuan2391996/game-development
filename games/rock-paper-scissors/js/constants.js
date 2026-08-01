@@ -1,9 +1,9 @@
 const MOVES = ["rock", "paper", "scissors"];
 
 const MOVE_LABELS = {
-    rock: "Búa",
-    paper: "Bao",
-    scissors: "Kéo",
+    rock: "Rock",
+    paper: "Paper",
+    scissors: "Scissors",
 };
 
 const MOVE_EMOJI = {

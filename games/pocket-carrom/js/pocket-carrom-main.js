@@ -46,7 +46,7 @@
 
     // Aiming is decoupled from firing: dragging the striker (or the power
     // slider) only updates the locked-in aim/power; the shot only actually
-    // fires when the "Bắn" button is pressed. This gives touch players a
+    // fires when the "Shoot" button is pressed. This gives touch players a
     // second, more forgiving chance to fine-tune power before committing,
     // instead of having to nail direction+power in one continuous drag.
     let aimReady = false;
@@ -256,10 +256,10 @@
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
         let resultText;
-        if (playerScore > cpuScore) resultText = "Bạn đã thắng!";
-        else if (playerScore < cpuScore) resultText = "Máy đã thắng!";
-        else resultText = "Hòa!";
-        showOverlay("Kết thúc ván!", `${resultText} Bạn: ${playerScore} - Máy: ${cpuScore}. Nhấn để chơi lại.`, "Chơi lại");
+        if (playerScore > cpuScore) resultText = "You won!";
+        else if (playerScore < cpuScore) resultText = "CPU won!";
+        else resultText = "Draw!";
+        showOverlay("Match over!", `${resultText} You: ${playerScore} - CPU: ${cpuScore}. Tap to play again.`, "Play again");
     }
 
     function showOverlay(title, desc, btnLabel) {
@@ -536,7 +536,7 @@
         if (state === "gameover") {
             hudTurn.textContent = "--";
         } else {
-            hudTurn.textContent = turn === "player" ? "Bạn" : "Máy";
+            hudTurn.textContent = turn === "player" ? "You" : "CPU";
         }
     }
 

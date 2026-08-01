@@ -67,7 +67,7 @@ squareToggle.addEventListener("change", () => {
 
 function handleLetGo() {
   if (selectedRows === null || (!squareMode && selectedColumns === null)) {
-    AlertError("Vui lòng chọn kích thước bàn chơi");
+    AlertError("Please choose a board size");
     return;
   }
 

@@ -169,7 +169,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Game Over", `${reason} Điểm: ${score}. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `${reason} Score: ${score}. Press to play again.`, "Play Again");
     }
 
     function showOverlay(title, desc, btnLabel) {
@@ -202,7 +202,7 @@
                             cx - CAR_WIDTH / 2, 0, CAR_WIDTH, 1
                         )
                     ) {
-                        die("Bạn đã va vào xe!");
+                        die("You were hit by a car!");
                         break;
                     }
                 }
@@ -217,11 +217,11 @@
                     }
                 }
                 if (!onLog) {
-                    die("Bạn đã rơi xuống nước!");
+                    die("You fell into the water!");
                 } else {
                     const px = player.col * CELL + CELL / 2 + player.offsetX;
                     if (px < -CELL / 2 || px > GAME_WIDTH + CELL / 2) {
-                        die("Bạn đã trôi ra khỏi màn hình!");
+                        die("You drifted off screen!");
                     }
                 }
             }

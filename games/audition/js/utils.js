@@ -122,19 +122,19 @@ function showScoreSummary({ score, best, isNewBest, maxCombo, judgementCounts, o
     '<div class="modal-panel summary-panel">' +
     '<div class="summary-rank ' + rank.className + '">' + rank.letter + "</div>" +
     '<div class="modal-icon modal-icon--' + (isNewBest ? "trophy" : "success") + '"></div>' +
-    '<p class="modal-title">' + (isNewBest ? "Kỷ lục mới!" : "Hoàn thành bài hát!") + "</p>" +
+    '<p class="modal-title">' + (isNewBest ? "New record!" : "Song complete!") + "</p>" +
     '<div class="summary-score">' +
     '<span class="summary-score__value">' + score + "</span>" +
-    '<span class="summary-score__label">điểm</span>' +
+    '<span class="summary-score__label">points</span>' +
     "</div>" +
     '<div class="summary-stats">' +
-    '<div class="stat-chip"><span class="stat-chip__label">Cao nhất</span><span class="stat-chip__value">' + best + "</span></div>" +
-    '<div class="stat-chip"><span class="stat-chip__label">Combo cao nhất</span><span class="stat-chip__value">' + (maxCombo || 0) + "x</span></div>" +
+    '<div class="stat-chip"><span class="stat-chip__label">Best</span><span class="stat-chip__value">' + best + "</span></div>" +
+    '<div class="stat-chip"><span class="stat-chip__label">Best combo</span><span class="stat-chip__value">' + (maxCombo || 0) + "x</span></div>" +
     "</div>" +
     '<div class="judgement-breakdown">' + breakdownHtml + "</div>" +
     '<div class="modal-actions">' +
-    '<button type="button" class="overlay-btn summary-replay-btn">Chơi lại</button>' +
-    '<button type="button" class="overlay-btn overlay-btn--ghost summary-home-btn">Về trang chủ</button>' +
+    '<button type="button" class="overlay-btn summary-replay-btn">Play again</button>' +
+    '<button type="button" class="overlay-btn overlay-btn--ghost summary-home-btn">Back to home</button>' +
     "</div>" +
     "</div></div>";
   document.body.appendChild(overlay);

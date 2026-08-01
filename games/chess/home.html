@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cờ Vua</title>
+    <title>Chess</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/home.css">
@@ -15,25 +15,25 @@
     <div class="home-shell">
         <div class="home-hero">
             <span class="home-hero__eyebrow">Board game</span>
-            <h1 class="home-hero__title">CỜ VUA</h1>
-            <p class="home-hero__subtitle">Chọn chế độ chơi: 2 người trên cùng máy, hoặc đối đầu với AI (Minimax + cắt tỉa Alpha-Beta)</p>
+            <h1 class="home-hero__title">CHESS</h1>
+            <p class="home-hero__subtitle">Choose a game mode: 2 players on the same device, or face off against the AI (Minimax + Alpha-Beta pruning)</p>
         </div>
 
         <div class="mode-grid">
             <div class="mode-card mode-card--active" data-mode="human">
                 <i class="mode-card__icon">🧑‍🤝‍🧑</i>
-                <div class="mode-card__title">2 người</div>
-                <div class="mode-card__desc">Thay phiên đánh trên cùng một máy</div>
+                <div class="mode-card__title">2 Players</div>
+                <div class="mode-card__desc">Take turns on the same device</div>
             </div>
             <div class="mode-card" data-mode="ai">
                 <i class="mode-card__icon">🤖</i>
-                <div class="mode-card__title">Đấu với máy</div>
-                <div class="mode-card__desc">Bạn cầm Trắng, AI cầm Đen (Minimax + Alpha-Beta)</div>
+                <div class="mode-card__title">Vs Computer</div>
+                <div class="mode-card__desc">You play White, AI plays Black (Minimax + Alpha-Beta)</div>
             </div>
         </div>
 
-        <button type="button" class="button" id="btn-play">Bắt đầu</button>
-        <a class="back-link" href="/game-development/home.html">&larr; Về trang chủ</a>
+        <button type="button" class="button" id="btn-play">Start</button>
+        <a class="back-link" href="/game-development/home.html">&larr; Back to home</a>
     </div>
 
     <script src="js/chess-home.js"></script>

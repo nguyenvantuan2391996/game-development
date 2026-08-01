@@ -139,7 +139,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Game Over", `Điểm: ${score}. Cấp: ${level}. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `Score: ${score}. Level: ${level}. Tap to play again.`, "Play again");
     }
 
     function showOverlay(title, desc, btnLabel) {

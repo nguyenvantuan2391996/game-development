@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,34 +16,34 @@
 
     <div class="game-shell">
         <div class="hud-bar">
-            <div class="hud-chip">Mạng: <span id="hud-lives">3</span></div>
-            <div class="hud-chip">Điểm: <span id="hud-score">0</span></div>
+            <div class="hud-chip">Lives: <span id="hud-lives">3</span></div>
+            <div class="hud-chip">Score: <span id="hud-score">0</span></div>
             <div class="hud-chip">Best: <span id="hud-best">0</span></div>
             <div class="hud-chip">Wave: <span id="hud-wave">1</span></div>
-            <div class="hud-chip">Bom: <span id="hud-bombs">1/1</span></div>
-            <div class="hud-chip">Lửa: <span id="hud-flame">1</span></div>
+            <div class="hud-chip">Bombs: <span id="hud-bombs">1/1</span></div>
+            <div class="hud-chip">Flame: <span id="hud-flame">1</span></div>
         </div>
 
         <div class="canvas-wrap">
             <canvas id="game-canvas"></canvas>
-            <div class="boss-banner" id="boss-banner" hidden>BOSS XUẤT HIỆN!</div>
+            <div class="boss-banner" id="boss-banner" hidden>BOSS INCOMING!</div>
             <div class="overlay" id="overlay">
                 <div class="overlay__inner">
                     <div class="overlay__title" id="overlay-title">Bomberman</div>
-                    <div class="overlay__desc" id="overlay-desc">Mũi tên/WASD di chuyển, Space đặt bom. Nhấn để bắt đầu.</div>
-                    <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
+                    <div class="overlay__desc" id="overlay-desc">Arrow keys/WASD to move, Space to place a bomb. Tap to start.</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Start</button>
                 </div>
             </div>
         </div>
 
         <div class="touch-controls" id="touch-controls">
             <div class="dpad">
-                <button type="button" class="dpad-btn dpad-btn--up" data-dir="ArrowUp" aria-label="Lên">▲</button>
-                <button type="button" class="dpad-btn dpad-btn--left" data-dir="ArrowLeft" aria-label="Trái">◀</button>
-                <button type="button" class="dpad-btn dpad-btn--right" data-dir="ArrowRight" aria-label="Phải">▶</button>
-                <button type="button" class="dpad-btn dpad-btn--down" data-dir="ArrowDown" aria-label="Xuống">▼</button>
+                <button type="button" class="dpad-btn dpad-btn--up" data-dir="ArrowUp" aria-label="Up">▲</button>
+                <button type="button" class="dpad-btn dpad-btn--left" data-dir="ArrowLeft" aria-label="Left">◀</button>
+                <button type="button" class="dpad-btn dpad-btn--right" data-dir="ArrowRight" aria-label="Right">▶</button>
+                <button type="button" class="dpad-btn dpad-btn--down" data-dir="ArrowDown" aria-label="Down">▼</button>
             </div>
-            <button type="button" class="fire-btn" id="bomb-btn" aria-label="Đặt bom">BOM</button>
+            <button type="button" class="fire-btn" id="bomb-btn" aria-label="Place bomb">BOMB</button>
         </div>
     </div>
 

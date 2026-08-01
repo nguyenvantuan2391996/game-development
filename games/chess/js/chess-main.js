@@ -35,7 +35,7 @@
     let aiThinking = false;
 
     function colorLabel(color) {
-        return color === WHITE ? "Trắng" : "Đen";
+        return color === WHITE ? "White" : "Black";
     }
 
     function toPixel(r, c) {
@@ -130,9 +130,9 @@
             const inCheck = isChessInCheck(board, turn);
             if (inCheck) {
                 const winner = opponentColor(turn);
-                showOverlay("Chiếu bí!", `${colorLabel(winner)} thắng.`, "Chơi lại");
+                showOverlay("Checkmate!", `${colorLabel(winner)} wins.`, "Play Again");
             } else {
-                showOverlay("Hết cờ (Stalemate)", "Không còn nước đi hợp lệ. Hòa cờ.", "Chơi lại");
+                showOverlay("Stalemate", "No legal moves left. It's a draw.", "Play Again");
             }
             return true;
         }

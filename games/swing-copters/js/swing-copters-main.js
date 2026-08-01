@@ -66,7 +66,7 @@ class SwingCoptersScene extends Phaser.Scene {
             .setDepth(10);
 
         this.messageText = this.add
-            .text(GAME_WIDTH / 2, GAME_HEIGHT / 2 + 40, "Chạm hoặc nhấn Space\nđể đổi hướng bay", {
+            .text(GAME_WIDTH / 2, GAME_HEIGHT / 2 + 40, "Tap or press Space\nto change flight direction", {
                 fontFamily: "Poppins, sans-serif",
                 fontSize: "18px",
                 color: "#f5f4fb",
@@ -306,7 +306,7 @@ class SwingCoptersScene extends Phaser.Scene {
         this.bestText.setText(`Best: ${this.best}`);
 
         if (this.mode !== "ai") {
-            this.messageText.setText(`Game Over!\nĐiểm: ${this.score}\nChạm để chơi lại`);
+            this.messageText.setText(`Game Over!\nScore: ${this.score}\nTap to play again`);
             this.messageText.setVisible(true);
         }
     }

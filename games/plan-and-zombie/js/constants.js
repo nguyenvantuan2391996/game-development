@@ -21,18 +21,18 @@ const ZOMBIE_SPAWN_INTERVAL_STEP = 150;
 const PLANT_TYPES = {
   sunflower: {
     id: "sunflower",
-    name: "Hướng Dương",
+    name: "Sunflower",
     emoji: "🌻",
     cost: 50,
     cooldown: 6000,
     hp: 70,
     produceInterval: 8000,
     produceAmount: 25,
-    desc: "Sản xuất thêm mặt trời",
+    desc: "Produces extra sun",
   },
   peashooter: {
     id: "peashooter",
-    name: "Đậu Bắn",
+    name: "Peashooter",
     emoji: "🌿",
     cost: 100,
     cooldown: 6000,
@@ -40,16 +40,16 @@ const PLANT_TYPES = {
     fireInterval: 1450,
     damage: 22,
     projectileSpeed: 260,
-    desc: "Bắn đậu tiêu diệt zombie",
+    desc: "Shoots peas to destroy zombies",
   },
   wallnut: {
     id: "wallnut",
-    name: "Hạt Óc Chó",
+    name: "Wall-nut",
     emoji: "🥜",
     cost: 50,
     cooldown: 22000,
     hp: 400,
-    desc: "Cản đường, hút đòn đánh",
+    desc: "Blocks the path and soaks up hits",
   },
 };
 

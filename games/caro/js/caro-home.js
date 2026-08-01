@@ -84,7 +84,7 @@ document.querySelectorAll(".type-card").forEach((card) => {
 
 function handleLetGo() {
   if (selectedType === "" || selectedRows === null || (!squareMode && selectedColumns === null)) {
-    AlertError("Vui lòng chọn kiểu chơi và kích thước bàn cờ");
+    AlertError("Please choose a game mode and board size");
     return;
   }
 

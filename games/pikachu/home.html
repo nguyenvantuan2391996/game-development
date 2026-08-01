@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pikachu - Ghép hình</title>
+    <title>Pikachu - Tile Match</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -15,24 +15,24 @@
     <div class="home-hero">
         <span class="home-hero__eyebrow">Memory match game</span>
         <h1 class="home-hero__title">PIKACHU</h1>
-        <p class="home-hero__subtitle">Nối 2 hình giống nhau bằng đường thẳng tối đa 2 khúc cua</p>
+        <p class="home-hero__subtitle">Connect two matching tiles with a line that bends at most twice</p>
     </div>
 
     <section class="select-section">
-        <h2 class="select-section__title">Chọn kích thước bàn chơi</h2>
+        <h2 class="select-section__title">Choose Board Size</h2>
 
         <label class="size-toggle">
             <input type="checkbox" id="square-toggle" checked>
-            Bàn vuông (số cột bằng số hàng)
+            Square board (columns equal rows)
         </label>
 
         <div class="size-block">
-            <div class="size-block__label">Số hàng</div>
+            <div class="size-block__label">Rows</div>
             <div class="card-grid size-grid" id="rows-grid"></div>
         </div>
 
         <div class="size-block" id="columns-block" hidden>
-            <div class="size-block__label">Số cột</div>
+            <div class="size-block__label">Columns</div>
             <div class="card-grid size-grid" id="columns-grid"></div>
         </div>
     </section>

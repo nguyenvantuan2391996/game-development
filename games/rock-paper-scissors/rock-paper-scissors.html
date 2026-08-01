@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kéo Búa Bao</title>
+    <title>Rock Paper Scissors</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/rock-paper-scissors.css">
@@ -16,16 +16,16 @@
 
     <div class="game-shell">
         <div class="hud-bar">
-            <div class="hud-chip">Bạn: <span id="hud-player-score">0</span></div>
-            <div class="hud-chip">Máy: <span id="hud-ai-score">0</span></div>
-            <div class="hud-chip">Hòa: <span id="hud-tie-score">0</span></div>
-            <div class="hud-chip">Chuỗi thắng: <span id="hud-streak">0</span></div>
+            <div class="hud-chip">You: <span id="hud-player-score">0</span></div>
+            <div class="hud-chip">CPU: <span id="hud-ai-score">0</span></div>
+            <div class="hud-chip">Ties: <span id="hud-tie-score">0</span></div>
+            <div class="hud-chip">Win streak: <span id="hud-streak">0</span></div>
             <div class="hud-chip">Best: <span id="hud-best">0</span></div>
         </div>
 
         <div class="arena">
             <div class="hand-panel">
-                <div class="hand-panel__label">Máy (AI)</div>
+                <div class="hand-panel__label">CPU (AI)</div>
                 <div class="hand-display" id="ai-hand">🤖</div>
                 <div class="hand-panel__note" id="ai-confidence"></div>
             </div>
@@ -33,7 +33,7 @@
             <div class="vs-badge">VS</div>
 
             <div class="hand-panel">
-                <div class="hand-panel__label">Bạn</div>
+                <div class="hand-panel__label">You</div>
                 <div class="hand-display" id="player-hand">❓</div>
                 <div class="hand-panel__note">&nbsp;</div>
             </div>
@@ -44,19 +44,19 @@
         <div class="choice-row">
             <button type="button" class="choice-btn" data-move="rock">
                 <span class="choice-btn__emoji">✊</span>
-                <span class="choice-btn__label">Búa</span>
+                <span class="choice-btn__label">Rock</span>
             </button>
             <button type="button" class="choice-btn" data-move="paper">
                 <span class="choice-btn__emoji">✋</span>
-                <span class="choice-btn__label">Bao</span>
+                <span class="choice-btn__label">Paper</span>
             </button>
             <button type="button" class="choice-btn" data-move="scissors">
                 <span class="choice-btn__emoji">✌️</span>
-                <span class="choice-btn__label">Kéo</span>
+                <span class="choice-btn__label">Scissors</span>
             </button>
         </div>
 
-        <button type="button" class="reset-btn" id="btn-reset-ai">Xoá học & học lại</button>
+        <button type="button" class="reset-btn" id="btn-reset-ai">Reset AI learning</button>
     </div>
 
     <script src="js/constants.js"></script>

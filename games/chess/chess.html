@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cờ Vua</title>
+    <title>Chess</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/chess.css">
@@ -16,18 +16,18 @@
 
     <div class="game-shell">
         <div class="hud-bar">
-            <div class="hud-chip" id="turn-chip">Lượt: <span id="hud-turn">Trắng</span></div>
-            <div class="hud-chip" id="thinking-chip" hidden>AI đang suy nghĩ...</div>
-            <button type="button" class="reset-btn" id="btn-restart">Chơi lại</button>
+            <div class="hud-chip" id="turn-chip">Turn: <span id="hud-turn">White</span></div>
+            <div class="hud-chip" id="thinking-chip" hidden>AI is thinking...</div>
+            <button type="button" class="reset-btn" id="btn-restart">Play Again</button>
         </div>
 
         <div class="canvas-wrap">
             <canvas id="game-canvas"></canvas>
             <div class="overlay" id="overlay" hidden>
                 <div class="overlay__inner">
-                    <div class="overlay__title" id="overlay-title">Kết thúc</div>
+                    <div class="overlay__title" id="overlay-title">Game Over</div>
                     <div class="overlay__desc" id="overlay-desc"></div>
-                    <button type="button" class="overlay__btn" id="overlay-btn">Chơi lại</button>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Play Again</button>
                 </div>
             </div>
         </div>

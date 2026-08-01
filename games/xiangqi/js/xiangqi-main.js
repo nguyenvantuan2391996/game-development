@@ -42,7 +42,7 @@
     let aiThinking = false;
 
     function colorLabel(color) {
-        return color === RED ? "Đỏ" : "Đen";
+        return color === RED ? "Red" : "Black";
     }
 
     function toPixel(r, c) {
@@ -198,8 +198,8 @@
             gameActive = false;
             const winner = opponent(turn);
             const inCheck = isInCheck(board, turn);
-            const reason = inCheck ? "Chiếu bí!" : `${colorLabel(turn)} không còn nước đi hợp lệ!`;
-            showOverlay("Kết thúc trận đấu", `${reason} ${colorLabel(winner)} thắng.`, "Chơi lại");
+            const reason = inCheck ? "Checkmate!" : `${colorLabel(turn)} has no legal moves left!`;
+            showOverlay("Game Over", `${reason} ${colorLabel(winner)} wins.`, "Play Again");
             return true;
         }
         return false;

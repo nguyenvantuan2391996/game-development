@@ -210,7 +210,7 @@
         if (invulnerable) return;
         lives -= 1;
         if (lives <= 0) {
-            triggerGameOver("Phi thuyền của bạn đã bị phá hủy!");
+            triggerGameOver("Your ship has been destroyed!");
         } else {
             invulnerable = true;
             weaponLevel = Math.max(1, weaponLevel - 1);
@@ -343,7 +343,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Game Over", `${reason} Điểm: ${score}. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `${reason} Score: ${score}. Press to play again.`, "Play Again");
     }
 
     function showOverlay(title, desc, btnLabel) {

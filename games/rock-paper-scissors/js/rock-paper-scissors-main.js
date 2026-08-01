@@ -23,9 +23,9 @@
     hudBest.textContent = best;
 
     function orderLabel(order) {
-        if (order === 0) return "chưa đủ dữ liệu, đoán ngẫu nhiên";
-        if (order === 1) return "dựa trên nước trước đó";
-        return "dựa trên " + order + " nước gần nhất";
+        if (order === 0) return "not enough data yet, guessing randomly";
+        if (order === 1) return "based on your previous move";
+        return "based on your last " + order + " moves";
     }
 
     function judge(playerMove, aiMove) {
@@ -44,13 +44,13 @@
         resultBanner.classList.remove("result-banner--win", "result-banner--lose", "result-banner--tie");
 
         if (outcome === "tie") {
-            resultBanner.textContent = "Hòa! Cả hai cùng ra " + MOVE_LABELS[playerMove];
+            resultBanner.textContent = "Tie! Both played " + MOVE_LABELS[playerMove];
             resultBanner.classList.add("result-banner--tie");
         } else if (outcome === "player") {
-            resultBanner.textContent = MOVE_LABELS[playerMove] + " thắng " + MOVE_LABELS[aiMove] + "! Bạn thắng ván này.";
+            resultBanner.textContent = MOVE_LABELS[playerMove] + " beats " + MOVE_LABELS[aiMove] + "! You win this round.";
             resultBanner.classList.add("result-banner--win");
         } else {
-            resultBanner.textContent = MOVE_LABELS[aiMove] + " thắng " + MOVE_LABELS[playerMove] + "! Máy thắng ván này.";
+            resultBanner.textContent = MOVE_LABELS[aiMove] + " beats " + MOVE_LABELS[playerMove] + "! CPU wins this round.";
             resultBanner.classList.add("result-banner--lose");
         }
     }
@@ -98,7 +98,7 @@
             }
 
             aiConfidenceEl.textContent =
-                "AI đoán bạn ra " + MOVE_LABELS[COUNTERS[aiMove]] +
+                "AI predicted you'd play " + MOVE_LABELS[COUNTERS[aiMove]] +
                 " (" + Math.round(predictedConfidence * 100) + "%, " + orderLabel(predictedOrder) + ")";
 
             showResult(outcome, playerMove, aiMove);

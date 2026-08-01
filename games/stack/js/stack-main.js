@@ -116,7 +116,7 @@
     function die() {
         state = "gameover";
         current = null;
-        showOverlay("Game Over", `Bạn đã xếp được ${score} khối. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `You stacked ${score} blocks. Press to play again.`, "Play Again");
     }
 
     function showOverlay(title, desc, btnLabel) {

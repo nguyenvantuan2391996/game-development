@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game caro</title>
+    <title>Caro Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -17,26 +17,26 @@
     </div>
 
     <div class="hud-bar">
-        <button type="button" class="icon-btn" title="Về trang chủ" onclick="window.location.href='/game-development/games/caro/home.html'">
+        <button type="button" class="icon-btn" title="Back to home" onclick="window.location.href='/game-development/games/caro/home.html'">
             <i class="fa-solid fa-house"></i>
         </button>
 
         <div class="hud-item">
-            <span class="hud-label">Lượt chơi</span>
+            <span class="hud-label">Turn</span>
             <span id="turn-indicator" class="hud-value turn x">X</span>
         </div>
 
         <div class="hud-item">
-            <span class="hud-label">Nước đi</span>
+            <span class="hud-label">Moves</span>
             <span id="move-count" class="hud-value">0</span>
         </div>
 
         <div class="hud-item">
-            <span class="hud-label">Bàn cờ</span>
+            <span class="hud-label">Board</span>
             <span id="board-size" class="hud-value board-size">-</span>
         </div>
 
-        <button type="button" class="icon-btn" id="btn-restart" title="Chơi lại">
+        <button type="button" class="icon-btn" id="btn-restart" title="Play again">
             <i class="fa-solid fa-rotate-right"></i>
         </button>
     </div>

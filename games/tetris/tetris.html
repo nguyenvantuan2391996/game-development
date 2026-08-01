@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +16,10 @@
 
     <div class="game-shell">
         <div class="hud-bar">
-            <div class="hud-chip">Điểm: <span id="hud-score">0</span></div>
+            <div class="hud-chip">Score: <span id="hud-score">0</span></div>
             <div class="hud-chip">Best: <span id="hud-best">0</span></div>
-            <div class="hud-chip">Cấp: <span id="hud-level">1</span></div>
-            <div class="hud-chip">Dòng: <span id="hud-lines">0</span></div>
+            <div class="hud-chip">Level: <span id="hud-level">1</span></div>
+            <div class="hud-chip">Lines: <span id="hud-lines">0</span></div>
         </div>
 
         <div class="canvas-wrap">
@@ -27,19 +27,19 @@
             <div class="overlay" id="overlay">
                 <div class="overlay__inner">
                     <div class="overlay__title" id="overlay-title">Tetris</div>
-                    <div class="overlay__desc" id="overlay-desc">Trái/Phải di chuyển, Xuống rơi nhanh, Lên xoay khối, Space rơi ngay. Xếp đầy một dòng để phá! Nhấn để bắt đầu.</div>
-                    <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
+                    <div class="overlay__desc" id="overlay-desc">Left/Right to move, Down for soft drop, Up to rotate, Space to hard drop. Clear a full line to score! Press to start.</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Start</button>
                 </div>
             </div>
         </div>
 
         <div class="touch-controls" id="touch-controls">
             <div class="dpad dpad--row3">
-                <button type="button" class="dpad-btn dpad-btn--left" data-dir="ArrowLeft" aria-label="Trái">◀</button>
-                <button type="button" class="dpad-btn dpad-btn--down" data-dir="ArrowDown" aria-label="Xuống">▼</button>
-                <button type="button" class="dpad-btn dpad-btn--right" data-dir="ArrowRight" aria-label="Phải">▶</button>
+                <button type="button" class="dpad-btn dpad-btn--left" data-dir="ArrowLeft" aria-label="Left">◀</button>
+                <button type="button" class="dpad-btn dpad-btn--down" data-dir="ArrowDown" aria-label="Down">▼</button>
+                <button type="button" class="dpad-btn dpad-btn--right" data-dir="ArrowRight" aria-label="Right">▶</button>
             </div>
-            <button type="button" class="fire-btn" id="rotate-btn" aria-label="Xoay">XOAY</button>
+            <button type="button" class="fire-btn" id="rotate-btn" aria-label="Rotate">ROTATE</button>
         </div>
     </div>
 

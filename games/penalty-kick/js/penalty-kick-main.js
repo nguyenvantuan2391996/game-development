@@ -123,7 +123,7 @@
 
     function triggerGameOver() {
         state = "gameover";
-        showOverlay("Bị cản phá!", `Bạn ghi được ${streak} quả liên tiếp. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Saved!", `You scored ${streak} in a row. Press to play again.`, "Play Again");
     }
 
     function showOverlay(title, desc, btnLabel) {
@@ -226,7 +226,7 @@
         ctx.fillStyle = lastResult === "goal" ? "#4dff88" : "#ff5252";
         ctx.font = "bold 30px 'Poppins', sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText(lastResult === "goal" ? "VÀO RỒI!" : "CẢN PHÁ!", GAME_WIDTH / 2, GAME_HEIGHT / 2 + 40);
+        ctx.fillText(lastResult === "goal" ? "GOAL!" : "SAVED!", GAME_WIDTH / 2, GAME_HEIGHT / 2 + 40);
     }
 
     function render() {

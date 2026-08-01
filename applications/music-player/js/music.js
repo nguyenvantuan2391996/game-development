@@ -488,7 +488,7 @@ function renderSearchResults(songs) {
 
 async function runSearch(keyword) {
   const requestId = ++searchRequestId;
-  renderSearchState('<i class="fa-solid fa-spinner fa-spin"></i>Đang tìm...');
+  renderSearchState('<i class="fa-solid fa-spinner fa-spin"></i>Searching...');
 
   const songs = await searchKey(keyword);
 
@@ -504,7 +504,7 @@ el.searchInput.addEventListener("input", (event) => {
 
   if (keyword === "") {
     searchRequestId++;
-    renderSearchState("Nhập tên bài hát để tìm kiếm");
+    renderSearchState("Enter a song name to search");
     return;
   }
 
@@ -516,7 +516,7 @@ el.searchInput.addEventListener("input", (event) => {
 // ---------------------------------------------------------------------------
 el.btnSearch.addEventListener("click", (event) => {
   event.preventDefault();
-  renderSearchState("Nhập tên bài hát để tìm kiếm");
+  renderSearchState("Enter a song name to search");
   el.searchInput.value = "";
   openSearchPanel();
 });

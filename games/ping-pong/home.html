@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bóng Bàn</title>
+    <title>Ping Pong</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/home.css">
@@ -15,29 +15,29 @@
     <div class="home-shell">
         <div class="home-hero">
             <span class="home-hero__eyebrow">Retro Brick Game</span>
-            <h1 class="home-hero__title">BÓNG BÀN</h1>
-            <p class="home-hero__subtitle">Chọn chế độ: đấu với máy hoặc so tài cùng bạn bè trên cùng bàn phím, đến 7 điểm trước!</p>
+            <h1 class="home-hero__title">PING PONG</h1>
+            <p class="home-hero__subtitle">Choose a mode: play against the CPU or challenge a friend on the same keyboard, first to 7 points wins!</p>
         </div>
 
         <div class="mode-grid">
             <div class="mode-card mode-card--active" data-mode="cpu">
                 <i class="mode-card__icon">🤖</i>
-                <div class="mode-card__title">Đấu với máy</div>
-                <div class="mode-card__desc">Trái/Phải để đỡ bóng</div>
+                <div class="mode-card__title">Vs CPU</div>
+                <div class="mode-card__desc">Left/Right to hit the ball</div>
             </div>
             <div class="mode-card" data-mode="2p">
                 <i class="mode-card__icon">🧑‍🤝‍🧑</i>
-                <div class="mode-card__title">2 người chơi</div>
-                <div class="mode-card__desc">Người 1: ◀▶ · Người 2: A/D</div>
+                <div class="mode-card__title">2 Players</div>
+                <div class="mode-card__desc">Player 1: ◀▶ · Player 2: A/D</div>
             </div>
         </div>
 
         <div class="best-score" id="best-score-block">
-            Điểm cao nhất: <span id="best-score-value">0</span>
+            Best score: <span id="best-score-value">0</span>
         </div>
 
-        <button type="button" class="button" id="btn-play">Bắt đầu</button>
-        <a class="back-link" href="/game-development/home.html">&larr; Về trang chủ</a>
+        <button type="button" class="button" id="btn-play">Start</button>
+        <a class="back-link" href="/game-development/home.html">&larr; Back to home</a>
     </div>
 
     <script src="js/ping-pong-home.js"></script>

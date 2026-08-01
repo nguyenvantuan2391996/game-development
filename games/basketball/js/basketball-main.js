@@ -105,7 +105,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Hết giờ!", `Điểm của bạn: ${score}. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Time's up!", `Your score: ${score}. Tap to play again.`, "Play again");
     }
 
     function showOverlay(title, desc, btnLabel) {

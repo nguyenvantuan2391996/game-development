@@ -103,7 +103,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Game Over", `${reason} Điểm: ${score}. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `${reason} Score: ${score}. Press to play again.`, "Play Again");
     }
 
     function showOverlay(title, desc, btnLabel) {
@@ -140,7 +140,7 @@
         if (gap) {
             player.onGround = false;
             if (player.y > GAME_HEIGHT) {
-                die("Bạn đã rơi xuống hố!");
+                die("You fell into a pit!");
                 return;
             }
         } else if (player.y + PLAYER_SIZE >= GROUND_Y) {
@@ -167,7 +167,7 @@
                         sx + 4, GROUND_Y - SPIKE_SIZE + 6, SPIKE_SIZE - 8, SPIKE_SIZE - 6
                     )
                 ) {
-                    die("Bạn đã đâm vào chông!");
+                    die("You hit a spike!");
                     return;
                 }
             } else if (o.type === "block") {
@@ -177,7 +177,7 @@
                         sx, GROUND_Y - o.height, o.width, o.height
                     )
                 ) {
-                    die("Bạn đã va vào khối chắn!");
+                    die("You crashed into a block!");
                     return;
                 }
             }

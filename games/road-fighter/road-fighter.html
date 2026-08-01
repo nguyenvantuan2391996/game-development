@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,22 +16,22 @@
 
     <div class="game-shell">
         <div class="hud-bar">
-            <div class="hud-chip">Điểm: <span id="hud-score">0</span></div>
+            <div class="hud-chip">Score: <span id="hud-score">0</span></div>
             <div class="hud-chip">Best: <span id="hud-best">0</span></div>
-            <div class="hud-chip">Tốc độ: <span id="hud-speed">0</span></div>
+            <div class="hud-chip">Speed: <span id="hud-speed">0</span></div>
         </div>
 
         <div class="canvas-wrap">
             <canvas id="game-canvas"></canvas>
             <div class="fuel-bar-wrap">
-                <div class="fuel-bar-label">XĂNG</div>
+                <div class="fuel-bar-label">FUEL</div>
                 <div class="fuel-bar-track"><div class="fuel-bar-fill" id="fuel-bar-fill"></div></div>
             </div>
             <div class="overlay" id="overlay">
                 <div class="overlay__inner">
                     <div class="overlay__title" id="overlay-title">Road Fighter</div>
-                    <div class="overlay__desc" id="overlay-desc">Trái/Phải để lái, Lên/Xuống để tăng/giảm tốc. Nhấn để bắt đầu.</div>
-                    <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
+                    <div class="overlay__desc" id="overlay-desc">Left/Right to steer, Up/Down to accelerate/brake. Tap to start.</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Start</button>
                 </div>
             </div>
         </div>

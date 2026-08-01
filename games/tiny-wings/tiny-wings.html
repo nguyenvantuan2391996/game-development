@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +16,9 @@
 
     <div class="game-shell">
         <div class="hud-bar">
-            <div class="hud-chip">Điểm: <span id="hud-score">0</span></div>
+            <div class="hud-chip">Score: <span id="hud-score">0</span></div>
             <div class="hud-chip">Best: <span id="hud-best">0</span></div>
-            <div class="hud-chip">Ngày: <span id="hud-time">55</span>s</div>
+            <div class="hud-chip">Time: <span id="hud-time">55</span>s</div>
         </div>
 
         <div class="canvas-wrap">
@@ -26,16 +26,16 @@
             <div class="overlay" id="overlay">
                 <div class="overlay__inner">
                     <div class="overlay__title" id="overlay-title">Tiny Wings</div>
-                    <div class="overlay__desc" id="overlay-desc">Giữ Space / chạm màn hình để lao xuống dốc lấy đà, thả ra để lượn qua đồi. Nhặt ngọc và bay thật xa trước khi hết ngày!</div>
-                    <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
+                    <div class="overlay__desc" id="overlay-desc">Hold Space / tap the screen to dive down and build up speed, release to glide over hills. Collect gems and fly as far as you can before the day ends!</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Start</button>
                 </div>
             </div>
         </div>
 
-        <p class="hint">Giữ Space / chạm màn hình để bổ nhào lấy đà xuống dốc</p>
+        <p class="hint">Hold Space / tap the screen to dive and build up speed downhill</p>
 
         <div class="touch-controls" id="touch-controls">
-            <button type="button" class="dpad-btn" data-dir="dive" aria-label="Bổ nhào">GIỮ ĐỂ LAO XUỐNG</button>
+            <button type="button" class="dpad-btn" data-dir="dive" aria-label="Dive">HOLD TO DIVE</button>
         </div>
     </div>
 

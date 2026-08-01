@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bóng Bàn</title>
+    <title>Ping Pong</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/ping-pong.css">
@@ -16,8 +16,8 @@
 
     <div class="game-shell">
         <div class="hud-bar">
-            <div class="hud-chip"><span id="hud-player-label">Bạn</span>: <span id="hud-player-score">0</span></div>
-            <div class="hud-chip"><span id="hud-cpu-label">Máy</span>: <span id="hud-cpu-score">0</span></div>
+            <div class="hud-chip"><span id="hud-player-label">You</span>: <span id="hud-player-score">0</span></div>
+            <div class="hud-chip"><span id="hud-cpu-label">CPU</span>: <span id="hud-cpu-score">0</span></div>
             <div class="hud-chip" id="hud-best-chip">Best: <span id="hud-best">0</span></div>
         </div>
 
@@ -25,20 +25,20 @@
             <canvas id="game-canvas"></canvas>
             <div class="overlay" id="overlay">
                 <div class="overlay__inner">
-                    <div class="overlay__title" id="overlay-title">Bóng Bàn</div>
-                    <div class="overlay__desc" id="overlay-desc">Trái/Phải để đỡ bóng, đấu với máy đến 7 điểm trước. Đánh trúng rìa vợt để bẻ góc hiểm! Nhấn để bắt đầu.</div>
-                    <button type="button" class="overlay__btn" id="overlay-btn">Bắt đầu</button>
+                    <div class="overlay__title" id="overlay-title">Ping Pong</div>
+                    <div class="overlay__desc" id="overlay-desc">Use Left/Right to hit the ball, first to 7 points against the CPU wins. Hit the edge of the paddle for a tricky angle! Press to start.</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Start</button>
                 </div>
             </div>
         </div>
 
         <div class="touch-controls" id="touch-controls">
             <div class="dpad dpad--horizontal">
-                <button type="button" class="dpad-btn dpad-btn--left" data-dir="ArrowLeft" aria-label="Trái">◀</button>
-                <button type="button" class="dpad-btn dpad-btn--right" data-dir="ArrowRight" aria-label="Phải">▶</button>
+                <button type="button" class="dpad-btn dpad-btn--left" data-dir="ArrowLeft" aria-label="Left">◀</button>
+                <button type="button" class="dpad-btn dpad-btn--right" data-dir="ArrowRight" aria-label="Right">▶</button>
             </div>
         </div>
-        <div class="two-player-note" id="two-player-note" hidden>Chế độ 2 người: Người 1 dùng ◀ ▶, Người 2 dùng phím A / D</div>
+        <div class="two-player-note" id="two-player-note" hidden>2-player mode: Player 1 uses ◀ ▶, Player 2 uses A / D</div>
     </div>
 
     <script src="js/constants.js"></script>

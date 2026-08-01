@@ -113,9 +113,9 @@ function showGameOverModal(title, icon) {
     icon,
     title,
     actions: [
-      { label: "Chơi lại", onClick: () => location.reload() },
+      { label: "Play Again", onClick: () => location.reload() },
       {
-        label: "Về trang chủ",
+        label: "Home",
         ghost: true,
         onClick: () => {
           window.location.href = "/game-development/games/caro/home.html";
@@ -130,13 +130,13 @@ function handleClick(id) {
     case WIN:
       updateHUD();
       setTimeout(function () {
-        showGameOverModal("Người chơi " + player.toUpperCase() + " chiến thắng!", "success");
+        showGameOverModal("Player " + player.toUpperCase() + " wins!", "success");
       }, 100);
       break;
     case DRAW:
       updateHUD();
       setTimeout(function () {
-        showGameOverModal("Hòa cờ!", "draw");
+        showGameOverModal("Draw!", "draw");
       }, 100);
       break;
     default:
@@ -454,12 +454,12 @@ window.addEventListener("load", (event) => {
       switch (state) {
         case WIN:
           setTimeout(function () {
-            showGameOverModal("Người chơi " + player.toUpperCase() + " chiến thắng!", "success");
+            showGameOverModal("Player " + player.toUpperCase() + " wins!", "success");
           }, 100);
           break;
         case DRAW:
           setTimeout(function () {
-            showGameOverModal("Hòa cờ!", "draw");
+            showGameOverModal("Draw!", "draw");
           }, 100);
           break;
       }

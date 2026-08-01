@@ -192,14 +192,14 @@
                 if (t.value >= WIN_VALUE) {
                     wonShown = true;
                     state = "won";
-                    showOverlay("Chiến thắng!", `Bạn đã đạt ${WIN_VALUE}! Điểm: ${score}.`, "Chơi tiếp");
+                    showOverlay("You win!", `You reached ${WIN_VALUE}! Score: ${score}.`, "Keep playing");
                     return;
                 }
             }
         }
         if (!canMove()) {
             state = "gameover";
-            showOverlay("Game Over", `Hết nước đi! Điểm: ${score}.`, "Chơi lại");
+            showOverlay("Game Over", `No more moves! Score: ${score}.`, "Play again");
         }
     }
 
@@ -329,5 +329,5 @@
     resetGame();
     render(true);
     state = "ready";
-    showOverlay("2048", "Gộp các ô số giống nhau để đạt 2048! Dùng phím mũi tên hoặc vuốt để di chuyển.", "Bắt đầu");
+    showOverlay("2048", "Merge matching tiles to reach 2048! Use the arrow keys or swipe to move.", "Start");
 })();

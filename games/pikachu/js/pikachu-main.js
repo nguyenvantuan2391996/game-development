@@ -248,7 +248,7 @@ function showToast(message, actionLabel, onAction) {
 function checkStuck() {
   if (pairsMatched >= pairsTotal) return;
   if (findHintPair()) return;
-  showToast("Không còn cặp nào ghép được!", "Xáo bài", () => shuffleBoard(false));
+  showToast("No more matches available!", "Shuffle", () => shuffleBoard(false));
 }
 
 // ---------------------------------------------------------------------------
@@ -259,7 +259,7 @@ function useHint() {
 
   const hint = findHintPair();
   if (!hint) {
-    showToast("Không còn cặp nào ghép được!", "Xáo bài", () => shuffleBoard(false));
+    showToast("No more matches available!", "Shuffle", () => shuffleBoard(false));
     return;
   }
 
@@ -318,14 +318,14 @@ function showWinModal() {
 
   showModal({
     icon: "success",
-    title: "Chúc mừng, bạn đã ghép hết!",
+    title: "Congratulations, you matched them all!",
     html:
-      `Hoàn thành trong <strong>${formatTime(finalTime)}</strong> với ${moveCount} lượt chọn.` +
-      (isNewRecord ? "<br><span style=\"color:var(--accent-a)\">🏆 Kỷ lục mới!</span>" : ""),
+      `Completed in <strong>${formatTime(finalTime)}</strong> with ${moveCount} moves.` +
+      (isNewRecord ? "<br><span style=\"color:var(--accent-a)\">🏆 New record!</span>" : ""),
     actions: [
-      { label: "Chơi lại", onClick: () => location.reload() },
+      { label: "Play Again", onClick: () => location.reload() },
       {
-        label: "Về trang chủ",
+        label: "Back to Home",
         ghost: true,
         onClick: () => {
           window.location.href = "/game-development/games/pikachu/home.html";

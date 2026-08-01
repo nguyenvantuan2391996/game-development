@@ -127,7 +127,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Game Over", `${reason} Độ sâu: ${score}m. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `${reason} Depth: ${score}m. Tap to play again.`, "Play again");
     }
 
     function showOverlay(title, desc, btnLabel) {
@@ -168,7 +168,7 @@
                 const ballBottomNew = ball.worldY + BALL_RADIUS;
                 if (ballBottomPrev <= p.worldY && ballBottomNew >= p.worldY && ball.x + BALL_RADIUS > p.x && ball.x - BALL_RADIUS < p.x + p.width) {
                     if (p.type === "spike") {
-                        triggerGameOver("Bạn đã trúng bẫy gai!");
+                        triggerGameOver("You hit a spike trap!");
                         return;
                     }
                     ball.worldY = p.worldY - BALL_RADIUS;
@@ -193,7 +193,7 @@
 
         const screenY = ball.worldY - camera.y;
         if (maxDepth > DEATH_CHECK_MIN_DEPTH && screenY < -BALL_RADIUS * 2) {
-            triggerGameOver("Bạn đã bị bỏ lại phía sau!");
+            triggerGameOver("You got left behind!");
             return;
         }
 

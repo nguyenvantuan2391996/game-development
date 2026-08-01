@@ -304,7 +304,7 @@
             if (map.isSolidForBullet(col, row)) {
                 const result = map.damageTile(col, row);
                 b.alive = false;
-                if (result === "base") triggerGameOver("Cứ điểm bị phá hủy!");
+                if (result === "base") triggerGameOver("Base destroyed!");
             }
         });
 
@@ -351,7 +351,7 @@
     function hitPlayer() {
         player.lives -= 1;
         if (player.lives <= 0) {
-            triggerGameOver("Bạn đã hết mạng!");
+            triggerGameOver("You're out of lives!");
         } else {
             respawnPlayer();
         }
@@ -375,7 +375,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Game Over", `${reason} Điểm: ${score}. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `${reason} Score: ${score}. Press to play again.`, "Play Again");
     }
 
     function showOverlay(title, desc, btnLabel) {
@@ -436,7 +436,7 @@
         updateBullets(dt);
 
         if (map.baseAlive === false && state === "playing") {
-            triggerGameOver("Cứ điểm bị phá hủy!");
+            triggerGameOver("Base destroyed!");
         }
 
         updateHud();

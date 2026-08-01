@@ -121,7 +121,7 @@
 
         if (fuel <= 0) {
             fuel = 0;
-            triggerGameOver("Hết xăng!");
+            triggerGameOver("Out of fuel!");
             return;
         }
 
@@ -151,7 +151,7 @@
             }
 
             if (rectsOverlap(playerLeft, playerTop, PLAYER_WIDTH, PLAYER_HEIGHT, t.x - TRAFFIC_WIDTH / 2, carTop, TRAFFIC_WIDTH, TRAFFIC_HEIGHT)) {
-                triggerGameOver("Bạn đã đâm xe!");
+                triggerGameOver("You crashed into a car!");
             }
         });
         traffic = traffic.filter((t) => GAME_HEIGHT - t.relativeDistance <= DESPAWN_SCREEN_Y);
@@ -173,7 +173,7 @@
         const roadLeft = roadCenter - ROAD_WIDTH / 2;
         const roadRight = roadCenter + ROAD_WIDTH / 2;
         if (playerX - PLAYER_WIDTH / 2 < roadLeft - 4 || playerX + PLAYER_WIDTH / 2 > roadRight + 4) {
-            triggerGameOver("Bạn đã lao ra ngoài đường!");
+            triggerGameOver("You drove off the road!");
         }
     }
 
@@ -185,7 +185,7 @@
             best = finalScore;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Game Over", `${reason} Điểm: ${finalScore}. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `${reason} Score: ${finalScore}. Tap to play again.`, "Play again");
     }
 
     function showOverlay(title, desc, btnLabel) {

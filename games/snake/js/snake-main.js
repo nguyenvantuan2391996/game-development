@@ -87,7 +87,7 @@
             clearInterval(timer);
             saveBestIfNeeded();
             updateHud();
-            showOverlay("Game Over", `Điểm của bạn: ${engine.score}. Nhấn để chơi lại.`, "Chơi lại");
+            showOverlay("Game Over", `Your score: ${engine.score}. Tap to play again.`, "Play again");
             return;
         }
         render();
@@ -216,7 +216,7 @@
         render();
     } else {
         setupAiControls();
-        showOverlay("AI Q-learning", "AI sẽ tự chơi và tự học qua từng lượt. Nhấn để bắt đầu huấn luyện.", "Bắt đầu");
+        showOverlay("AI Q-learning", "The AI will play and learn on its own, episode by episode. Tap to start training.", "Start");
         overlayBtn.addEventListener("click", startAi);
         render();
     }

@@ -136,7 +136,7 @@
             best = score;
             localStorage.setItem(BEST_SCORE_KEY, String(best));
         }
-        showOverlay("Game Over", `Bạn đã vượt qua ${score} tầng. Nhấn để chơi lại.`, "Chơi lại");
+        showOverlay("Game Over", `You cleared ${score} floors. Press to play again.`, "Play Again");
     }
 
     function showOverlay(title, desc, btnLabel) {

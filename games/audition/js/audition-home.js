@@ -87,7 +87,7 @@ async function handleLetGo() {
   const typeDance = danceSelect.value;
 
   if (music === "" || typeDance === "") {
-    AlertError("Vui lòng chọn nhạc và kiểu nhảy");
+    AlertError("Please choose a song and a dance mode");
     return;
   }
   previewAudio.pause();
@@ -186,7 +186,7 @@ async function fetchJamendoTracks(query) {
 
 async function runSongSearch(query) {
   const requestId = ++songSearchRequestId;
-  songSearchStatus.textContent = "Đang tìm...";
+  songSearchStatus.textContent = "Searching...";
   try {
     // Jamendo's API returns an empty result set for a real query surprisingly
     // often (~30% of the time in testing, even on identical back-to-back
@@ -201,14 +201,14 @@ async function runSongSearch(query) {
     }
     searchResultsGrid.innerHTML = "";
     if (tracks.length === 0) {
-      songSearchStatus.textContent = "Không tìm thấy bài nào";
+      songSearchStatus.textContent = "No songs found";
     } else {
       tracks.forEach((track) => {
         searchResultsGrid.appendChild(
           buildSongCard(track.name, track.artist_name, track.audio)
         );
       });
-      songSearchStatus.textContent = tracks.length + " kết quả";
+      songSearchStatus.textContent = tracks.length + " results";
     }
     suggestedGrid.hidden = true;
     searchResultsGrid.hidden = false;
@@ -217,7 +217,7 @@ async function runSongSearch(query) {
     if (requestId !== songSearchRequestId) {
       return;
     }
-    songSearchStatus.textContent = "Lỗi tìm kiếm, thử lại sau";
+    songSearchStatus.textContent = "Search error, please try again later";
   }
 }
 
@@ -262,7 +262,7 @@ function buildLocalSongCard(file) {
   titleEl.textContent = file.name.replace(/\.mp3$/i, "");
   const artistEl = document.createElement("div");
   artistEl.className = "song-card__artist";
-  artistEl.textContent = "Từ máy tính";
+  artistEl.textContent = "From your computer";
   text.append(titleEl, artistEl);
 
   const badge = document.createElement("span");
@@ -277,11 +277,11 @@ function buildLocalSongCard(file) {
 function renderLocalMp3Files(files) {
   localGrid.innerHTML = "";
   if (files.length === 0) {
-    localFolderStatus.textContent = "Không tìm thấy file .mp3 nào trong folder";
+    localFolderStatus.textContent = "No .mp3 files found in the folder";
     return;
   }
   files.forEach((file) => localGrid.appendChild(buildLocalSongCard(file)));
-  localFolderStatus.textContent = files.length + " file mp3";
+  localFolderStatus.textContent = files.length + " mp3 file(s)";
   songSearchInput.value = "";
   songSearchStatus.textContent = "";
   suggestedGrid.hidden = true;
@@ -312,11 +312,11 @@ if (localFolderApiSupported) {
     try {
       const dirHandle = await window.showDirectoryPicker();
       await saveLocalFolderHandle(dirHandle);
-      localFolderStatus.textContent = "Đang đọc folder...";
+      localFolderStatus.textContent = "Reading folder...";
       renderLocalMp3Files(await listMp3FilesFromDirectoryHandle(dirHandle));
     } catch (error) {
       if (error.name !== "AbortError") {
-        localFolderStatus.textContent = "Không thể đọc folder";
+        localFolderStatus.textContent = "Unable to read the folder";
       }
     }
   });
@@ -334,7 +334,7 @@ if (localFolderApiSupported) {
     try {
       const permission = await savedHandle.queryPermission({ mode: "read" });
       if (permission === "granted") {
-        localFolderStatus.textContent = "Đang tải lại folder đã lưu...";
+        localFolderStatus.textContent = "Reloading saved folder...";
         renderLocalMp3Files(await listMp3FilesFromDirectoryHandle(savedHandle));
         return;
       }
@@ -346,17 +346,17 @@ if (localFolderApiSupported) {
       reuseBtn.type = "button";
       reuseBtn.className = "local-folder-btn";
       reuseBtn.innerHTML =
-        '<i class="fa-solid fa-rotate-left"></i> Dùng lại folder đã lưu (' +
+        '<i class="fa-solid fa-rotate-left"></i> Reuse saved folder (' +
         savedHandle.name +
         ")";
       reuseBtn.addEventListener("click", async () => {
         const granted = await savedHandle.requestPermission({ mode: "read" });
         if (granted !== "granted") {
-          localFolderStatus.textContent = "Chưa được cấp quyền đọc folder";
+          localFolderStatus.textContent = "Folder read permission was not granted";
           return;
         }
         reuseBtn.remove();
-        localFolderStatus.textContent = "Đang đọc folder...";
+        localFolderStatus.textContent = "Reading folder...";
         renderLocalMp3Files(await listMp3FilesFromDirectoryHandle(savedHandle));
       });
       btnPickLocalFolder.insertAdjacentElement("afterend", reuseBtn);
