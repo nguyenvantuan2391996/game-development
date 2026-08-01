@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <rect width="360" height="360" fill="#12102a"/>
+  <rect x="177" y="0" width="6" height="360" fill="rgba(255,255,255,0.05)"/>
+
+  <g transform="translate(180,90)">
+    <path d="M0,0 L-140,0 A140,34 0 0 1 140,0 Z" fill="#4ade80" stroke="rgba(11,10,31,0.6)" stroke-width="2"/>
+  </g>
+
+  <g transform="translate(180,190)">
+    <path d="M0,0 L-140,0 A140,34 0 0 0 -70,29 Z" fill="#e63946" stroke="rgba(11,10,31,0.6)" stroke-width="2"/>
+    <path d="M0,0 L140,0 A140,34 0 0 1 70,29 Z" fill="#4ade80" stroke="rgba(11,10,31,0.6)" stroke-width="2"/>
+  </g>
+
+  <g transform="translate(180,290)">
+    <path d="M0,0 L-140,0 A140,34 0 0 1 140,0 Z" fill="#4ade80" stroke="rgba(11,10,31,0.6)" stroke-width="2"/>
+  </g>
+
+  <circle cx="180" cy="140" r="14" fill="#ffcf4d"/>
+  <circle cx="176" cy="136" r="4" fill="rgba(255,255,255,0.6)"/>
+</svg>

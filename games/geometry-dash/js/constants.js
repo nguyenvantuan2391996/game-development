@@ -1,0 +1,28 @@
+const GAME_WIDTH = 360;
+const GAME_HEIGHT = 560;
+
+const GROUND_HEIGHT = 70;
+const GROUND_Y = GAME_HEIGHT - GROUND_HEIGHT;
+
+const PLAYER_X = 70;
+const PLAYER_SIZE = 30;
+const GRAVITY = 1900;
+const JUMP_VELOCITY = -650;
+
+const BASE_SCROLL_SPEED = 220;
+const MAX_SCROLL_SPEED = 380;
+const SPEED_RAMP_PER_SEC = 3.2;
+
+const SPIKE_SIZE = 34;
+const BLOCK_WIDTH = 40;
+const BLOCK_HEIGHT_MIN = 40;
+const BLOCK_HEIGHT_MAX = 76;
+const GAP_WIDTH_MIN = 78;
+const GAP_WIDTH_MAX = 110;
+
+const OBSTACLE_GAP_MIN = 230;
+const OBSTACLE_GAP_MAX = 360;
+
+const ROTATION_SPEED = 6.2;
+
+const BEST_SCORE_KEY = "geometryDashBestScore";

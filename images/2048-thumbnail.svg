@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <rect width="360" height="360" fill="#0b0a1f"/>
+  <rect x="30" y="30" width="300" height="300" rx="16" fill="#3c3a55"/>
+
+  <rect x="48" y="48" width="128" height="128" rx="10" fill="#f2b179"/>
+  <text x="112" y="128" font-family="Poppins, sans-serif" font-size="42" font-weight="800" fill="#fff8f0" text-anchor="middle">2</text>
+
+  <rect x="184" y="48" width="128" height="128" rx="10" fill="#f65e3b"/>
+  <text x="248" y="128" font-family="Poppins, sans-serif" font-size="42" font-weight="800" fill="#fff8f0" text-anchor="middle">64</text>
+
+  <rect x="48" y="184" width="128" height="128" rx="10" fill="#edc850"/>
+  <text x="112" y="264" font-family="Poppins, sans-serif" font-size="38" font-weight="800" fill="#fff8f0" text-anchor="middle">512</text>
+
+  <rect x="184" y="184" width="128" height="128" rx="10" fill="#edc22e"/>
+  <text x="248" y="264" font-family="Poppins, sans-serif" font-size="32" font-weight="800" fill="#fff8f0" text-anchor="middle">2048</text>
+</svg>

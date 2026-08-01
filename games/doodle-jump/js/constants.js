@@ -1,0 +1,26 @@
+const GAME_WIDTH = 360;
+const GAME_HEIGHT = 560;
+
+const PLAYER_SIZE = 34;
+const MOVE_SPEED = 260;
+const GRAVITY = 1500;
+const JUMP_VELOCITY = 620;
+
+const CAMERA_MARGIN = 300;
+const CAMERA_LERP = 0.14;
+
+const PLATFORM_WIDTH = 70;
+const PLATFORM_HEIGHT = 16;
+const ROW_GAP_MIN = 55;
+const ROW_GAP_MAX = 112;
+
+const MOVING_PLATFORM_SPEED_MIN = 55;
+const MOVING_PLATFORM_SPEED_MAX = 95;
+
+const MOVING_UNLOCK_SCORE = 3;
+const BREAKABLE_UNLOCK_SCORE = 6;
+const MONSTER_UNLOCK_SCORE = 10;
+const MONSTER_CHANCE = 0.12;
+const MONSTER_SIZE = 30;
+
+const BEST_SCORE_KEY = "doodleJumpBestScore";

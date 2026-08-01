@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff8a3d"/>
+      <stop offset="100%" stop-color="#12102a"/>
+    </linearGradient>
+    <linearGradient id="hill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3fae4a"/>
+      <stop offset="100%" stop-color="#245c2c"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="360" fill="url(#sky)"/>
+
+  <path d="M0,360 L0,260 Q60,190 120,250 T240,240 Q300,210 360,260 L360,360 Z" fill="url(#hill)"/>
+
+  <rect x="255" y="170" width="18" height="18" fill="#4dc3ff" transform="rotate(45 264 179)" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+
+  <g transform="translate(150,150) rotate(-15)">
+    <ellipse rx="20" ry="16" fill="#ff8a3d"/>
+    <path d="M-4,2 L-40,-8 L-8,10 Z" fill="#ffcf4d"/>
+    <circle cx="8" cy="-6" r="5" fill="#fff"/>
+    <circle cx="9.5" cy="-6" r="2.2" fill="#1a1330"/>
+    <path d="M18,-3 L32,0 L18,5 Z" fill="#e63946"/>
+  </g>
+</svg>

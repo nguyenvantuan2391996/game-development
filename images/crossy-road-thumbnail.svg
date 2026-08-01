@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <rect width="360" height="360" fill="#0b0a1f"/>
+  <rect width="360" height="80" y="0" fill="#3fae4a"/>
+  <rect width="360" height="90" y="80" fill="#3a3a46"/>
+  <rect width="360" height="90" y="170" fill="#2f6fb5"/>
+  <rect width="360" height="100" y="260" fill="#3fae4a"/>
+
+  <rect x="0" y="118" width="360" height="4" fill="rgba(255,255,255,0.35)"/>
+  <rect x="0" y="163" width="360" height="4" fill="rgba(255,255,255,0.35)"/>
+
+  <rect x="60" y="95" width="56" height="30" rx="5" fill="#e63946"/>
+  <rect x="240" y="95" width="56" height="30" rx="5" fill="#e63946"/>
+
+  <rect x="130" y="188" width="110" height="32" rx="8" fill="#8a5a2f"/>
+  <rect x="10" y="188" width="90" height="32" rx="8" fill="#8a5a2f"/>
+
+  <circle cx="90" cy="300" r="18" fill="#2c8a3a"/>
+  <circle cx="270" cy="310" r="14" fill="#2c8a3a"/>
+
+  <g transform="translate(180,318)">
+    <rect x="-14" y="-14" width="28" height="28" fill="#ffcf4d"/>
+    <rect x="-14" y="-14" width="28" height="8" fill="#e63946"/>
+  </g>
+</svg>

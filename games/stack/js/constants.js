@@ -1,0 +1,18 @@
+const GAME_WIDTH = 360;
+const GAME_HEIGHT = 560;
+
+const BLOCK_HEIGHT = 34;
+const INITIAL_BLOCK_WIDTH = 200;
+const MIN_OVERLAP = 4;
+const PERFECT_TOLERANCE = 6;
+
+const BASE_SPEED = 130;
+const MAX_SPEED = 340;
+const SPEED_INCREMENT_PER_ROW = 4.5;
+
+const FIXED_ROWS_BEFORE_SCROLL = 7;
+const CAMERA_LERP = 0.12;
+
+const DEBRIS_GRAVITY = 900;
+
+const BEST_SCORE_KEY = "stackBestScore";

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <div class="home-shell">
+        <div class="home-hero">
+            <span class="home-hero__eyebrow">Puzzle</span>
+            <h1 class="home-hero__title">2048</h1>
+            <p class="home-hero__subtitle">Gộp các ô số giống nhau bằng phím mũi tên hoặc vuốt, cố gắng đạt ô 2048!</p>
+        </div>
+
+        <div class="best-score">
+            Điểm cao nhất: <span id="best-score-value">0</span>
+        </div>
+
+        <a class="button" id="btn-play" href="2048.html">Bắt đầu</a>
+        <a class="back-link" href="/game-development/home.html">&larr; Về trang chủ</a>
+    </div>
+
+    <script src="js/2048-home.js"></script>
+</body>
+</html>
