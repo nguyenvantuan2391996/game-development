@@ -501,8 +501,8 @@ function triggerLose() {
   gameOver = true;
   sfxLose();
   showOverlay(
-    "Khu vườn đã thất thủ! 🧟",
-    "Bạn đã tiêu diệt " + killedCount + " / " + TOTAL_ZOMBIES_TO_WIN + " zombie trước khi gục ngã.",
+    "Your garden has fallen! 🧟",
+    "You defeated " + killedCount + " / " + TOTAL_ZOMBIES_TO_WIN + " zombies before going down.",
     false
   );
 }
@@ -511,8 +511,8 @@ function triggerWin() {
   hasWon = true;
   sfxWin();
   showOverlay(
-    "Bạn đã bảo vệ thành công khu vườn! 🎉",
-    "Toàn bộ " + TOTAL_ZOMBIES_TO_WIN + " zombie đã bị đánh bại.",
+    "You successfully defended your garden! 🎉",
+    "All " + TOTAL_ZOMBIES_TO_WIN + " zombies have been defeated.",
     true
   );
 }
