@@ -1,0 +1,176 @@
+:root {
+    --bg-deep: #0b0a1f;
+    --accent-a: #ffd23d;
+    --accent-b: #7c5cff;
+    --accent-c: #4dc3ff;
+    --accent-gradient: linear-gradient(135deg, var(--accent-a), var(--accent-b) 55%, var(--accent-c));
+    --text-main: #f5f4fb;
+    --text-dim: rgba(245, 244, 251, 0.65);
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.14);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-deep);
+    color: var(--text-main);
+    margin: 0;
+    height: 100vh;
+    height: 100dvh;
+    font-family: 'Poppins', 'Comic Sans', cursive;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 0.6rem;
+}
+
+.bg-glow {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(45rem 45rem at 15% 10%, rgba(255, 210, 61, 0.18), transparent 60%),
+        radial-gradient(35rem 35rem at 90% 15%, rgba(124, 92, 255, 0.22), transparent 60%),
+        linear-gradient(180deg, rgba(11, 10, 31, 0.9), rgba(11, 10, 31, 0.98));
+}
+
+.back-link {
+    position: fixed;
+    top: 1.25rem;
+    left: 1.25rem;
+    z-index: 2;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    backdrop-filter: blur(10px);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--text-main);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.game-shell {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.4rem, 1.6vh, 0.9rem);
+}
+
+.hud-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.hud-chip {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.hud-chip span {
+    color: var(--accent-a);
+}
+
+.canvas-wrap {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: auto;
+    max-width: min(92vw, 460px);
+    max-height: 100%;
+    aspect-ratio: 360 / 560;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    touch-action: none;
+    box-shadow: 0 25px 60px -25px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.14);
+    cursor: pointer;
+}
+
+#game-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hint {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    text-align: center;
+    max-width: 20rem;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(11, 10, 31, 0.78);
+    backdrop-filter: blur(4px);
+    z-index: 5;
+}
+
+.overlay[hidden] {
+    display: none;
+}
+
+.overlay__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    gap: 0.6rem;
+}
+
+.overlay__title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.overlay__desc {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    max-width: 16rem;
+}
+
+.overlay__btn {
+    margin-top: 0.5rem;
+    background: var(--accent-gradient);
+    color: #0b0a1f;
+    border: none;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.65rem 1.8rem;
+    border-radius: 0.85rem;
+    cursor: pointer;
+}
