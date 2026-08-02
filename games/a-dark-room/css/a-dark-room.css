@@ -1,0 +1,238 @@
+:root {
+    --bg-deep: #0e0c0a;
+    --bg-panel: #17140f;
+    --ember: #e0834f;
+    --ember-dim: #a85f36;
+    --text-main: #e8ddc9;
+    --text-dim: rgba(232, 221, 201, 0.6);
+    --card-border: rgba(224, 131, 79, 0.22);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-deep);
+    color: var(--text-main);
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 4.5rem 1rem 2.5rem;
+}
+
+.back-link,
+.reset-link {
+    position: fixed;
+    top: 1.25rem;
+    z-index: 2;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
+    padding: 0.45rem 0.9rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.back-link {
+    left: 1.25rem;
+}
+
+.reset-link {
+    right: 1.25rem;
+}
+
+.back-link:hover,
+.reset-link:hover {
+    color: var(--ember);
+    border-color: var(--ember-dim);
+}
+
+.reset-link.confirming {
+    color: #ff6b5e;
+    border-color: #ff6b5e;
+}
+
+.room-shell {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 34rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.room-title {
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    color: var(--ember);
+    margin: 0 0 0.25rem;
+    text-transform: uppercase;
+}
+
+.fire-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    background: var(--bg-panel);
+    border: 1px solid var(--card-border);
+    border-radius: 0.6rem;
+    padding: 0.85rem 1rem;
+}
+
+.fire-label {
+    font-style: italic;
+    color: var(--text-main);
+}
+
+.resource-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    padding: 0 0.25rem;
+}
+
+.resource-bar strong {
+    color: var(--text-main);
+}
+
+.resource-bar .full {
+    color: var(--ember);
+}
+
+.log-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--card-border);
+    border-radius: 0.6rem;
+    padding: 0.85rem 1rem;
+    height: 11rem;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--text-dim);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.log-box p {
+    margin: 0;
+}
+
+.log-box p:last-child {
+    color: var(--text-main);
+}
+
+.panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--card-border);
+    border-radius: 0.6rem;
+    padding: 0.85rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.panel[hidden] {
+    display: none;
+}
+
+.panel-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ember-dim);
+}
+
+.action-btn {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--card-border);
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 0.55rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.action-btn:hover:not(:disabled) {
+    border-color: var(--ember);
+    color: var(--ember);
+}
+
+.action-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.action-btn--fire {
+    border-color: var(--ember-dim);
+    color: var(--ember);
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.row-label {
+    color: var(--text-main);
+}
+
+.row-sub {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    display: block;
+}
+
+.row-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.step-btn {
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--card-border);
+    background: transparent;
+    color: var(--text-main);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.step-btn:hover:not(:disabled) {
+    border-color: var(--ember);
+    color: var(--ember);
+}
+
+.step-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.row-count {
+    min-width: 1.4rem;
+    text-align: center;
+}

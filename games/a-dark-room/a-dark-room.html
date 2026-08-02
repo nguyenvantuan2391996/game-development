@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Dark Room</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/a-dark-room.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+</head>
+<body>
+    <a class="back-link" href="home.html">&larr; Menu</a>
+    <button type="button" class="reset-link" id="reset-btn">Reset</button>
+
+    <div class="room-shell">
+        <h1 class="room-title">A Dark Room</h1>
+
+        <div class="fire-row">
+            <span class="fire-label" id="fire-label">the fire is dead</span>
+            <button type="button" class="action-btn action-btn--fire" id="stoke-btn">Stoke Fire</button>
+        </div>
+
+        <div class="resource-bar" id="resource-bar"></div>
+
+        <div class="log-box" id="log-box"></div>
+
+        <div class="panel" id="gather-panel" hidden>
+            <button type="button" class="action-btn" id="gather-btn">Gather Wood</button>
+        </div>
+
+        <div class="panel" id="jobs-panel" hidden>
+            <div class="panel-title">Villagers</div>
+            <div id="jobs-list"></div>
+        </div>
+
+        <div class="panel" id="build-panel" hidden>
+            <div class="panel-title">Build</div>
+            <div id="build-list"></div>
+        </div>
+
+        <div class="panel" id="craft-panel" hidden>
+            <div class="panel-title">Workshop</div>
+            <div id="craft-list"></div>
+        </div>
+    </div>
+
+    <script src="js/a-dark-room-main.js"></script>
+</body>
+</html>

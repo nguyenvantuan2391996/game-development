@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N++</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/n-plus-plus.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+    <script src="https://unpkg.com/kaplay@3001.0.19/dist/kaplay.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <a class="back-link" href="home.html">&larr; Menu</a>
+
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip">Level: <span id="hud-score">1</span></div>
+            <div class="hud-chip">Best: <span id="hud-best">0</span></div>
+            <div class="hud-chip" id="hud-lives">❤❤❤</div>
+        </div>
+
+        <div class="canvas-wrap">
+            <canvas id="game-canvas"></canvas>
+            <div class="overlay" id="overlay">
+                <div class="overlay__inner">
+                    <div class="overlay__title" id="overlay-title">N++</div>
+                    <div class="overlay__desc" id="overlay-desc">Arrow keys / A D to move, Space to jump. Jump off walls to climb. One touch of a mine costs a life. Reach the green exit. Press to start.</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Start</button>
+                </div>
+            </div>
+        </div>
+
+        <p class="hint">← → / A D move &middot; Space / ↑ jump &middot; hold into a wall to slide, jump again to wall-jump</p>
+
+        <div class="touch-controls" id="touch-controls">
+            <button type="button" class="dpad-btn" data-dir="left" aria-label="Left">◀</button>
+            <button type="button" class="dpad-btn dpad-btn--jump" data-dir="jump" aria-label="Jump">▲</button>
+            <button type="button" class="dpad-btn" data-dir="right" aria-label="Right">▶</button>
+        </div>
+    </div>
+
+    <script src="js/n-plus-plus-main.js"></script>
+</body>
+</html>

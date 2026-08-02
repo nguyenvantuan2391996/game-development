@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <defs>
+    <linearGradient id="night" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#150f2e"/>
+      <stop offset="100%" stop-color="#231a45"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="360" fill="url(#night)"/>
+
+  <g fill="#ffffff">
+    <circle cx="40" cy="50" r="2"/>
+    <circle cx="90" cy="30" r="1.5"/>
+    <circle cx="150" cy="60" r="2"/>
+    <circle cx="210" cy="35" r="1.5"/>
+    <circle cx="270" cy="55" r="2"/>
+    <circle cx="320" cy="40" r="1.5"/>
+    <circle cx="60" cy="110" r="1.5"/>
+    <circle cx="300" cy="120" r="2"/>
+    <circle cx="180" cy="90" r="1.5"/>
+  </g>
+
+  <g transform="translate(120,150) rotate(20)">
+    <rect x="-14" y="-14" width="28" height="28" fill="#ffd23d" stroke="rgba(120,90,10,0.6)" stroke-width="3"/>
+  </g>
+  <g transform="translate(250,210) rotate(15)">
+    <rect x="-11" y="-11" width="22" height="22" fill="#ffd23d" stroke="rgba(120,90,10,0.6)" stroke-width="3"/>
+  </g>
+
+  <circle cx="90" cy="230" r="16" fill="#ff5a5a" stroke="rgba(60,12,12,0.6)" stroke-width="3"/>
+
+  <g transform="translate(190,290)">
+    <ellipse rx="30" ry="26" fill="#8ce6b0"/>
+    <circle cx="-10" cy="-4" r="6" fill="#1a1330"/>
+    <circle cx="10" cy="-4" r="6" fill="#1a1330"/>
+    <path d="M-10,10 Q0,18 10,10" stroke="#1a1330" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>
