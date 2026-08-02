@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canabalt</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/canabalt.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <a class="back-link" href="home.html">&larr; Menu</a>
+
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip">Score: <span id="hud-score">0</span></div>
+            <div class="hud-chip">Best: <span id="hud-best">0</span></div>
+        </div>
+
+        <div class="canvas-wrap">
+            <canvas id="game-canvas"></canvas>
+            <div class="overlay" id="overlay">
+                <div class="overlay__inner">
+                    <div class="overlay__title" id="overlay-title">Canabalt</div>
+                    <div class="overlay__desc" id="overlay-desc">Hold Space or tap and hold the screen to charge a jump, release to leap the gap. Press to start.</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Start</button>
+                </div>
+            </div>
+        </div>
+
+        <p class="hint">Hold Space / tap and hold to charge a jump, release to leap across rooftops</p>
+
+        <div class="touch-controls" id="touch-controls">
+            <button type="button" class="dpad-btn" data-dir="jump" aria-label="Jump">JUMP</button>
+        </div>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/canabalt-main.js"></script>
+</body>
+</html>
