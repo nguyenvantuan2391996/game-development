@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <rect width="360" height="360" fill="#0b0710"/>
+
+  <g stroke="#241a30" stroke-width="2">
+    <line x1="60" y1="0" x2="60" y2="360"/>
+    <line x1="120" y1="0" x2="120" y2="360"/>
+    <line x1="180" y1="0" x2="180" y2="360"/>
+    <line x1="240" y1="0" x2="240" y2="360"/>
+    <line x1="300" y1="0" x2="300" y2="360"/>
+    <line x1="0" y1="60" x2="360" y2="60"/>
+    <line x1="0" y1="120" x2="360" y2="120"/>
+    <line x1="0" y1="180" x2="360" y2="180"/>
+    <line x1="0" y1="240" x2="360" y2="240"/>
+    <line x1="0" y1="300" x2="360" y2="300"/>
+  </g>
+
+  <rect x="60" y="60" width="56" height="56" fill="#f97316"/>
+  <rect x="240" y="120" width="56" height="56" fill="#f97316"/>
+  <rect x="120" y="240" width="56" height="56" fill="#f97316"/>
+
+  <rect x="184" y="184" width="46" height="46" fill="#dc2626" stroke="#5a0a0a" stroke-width="3"/>
+
+  <rect x="98" y="278" width="42" height="42" fill="#fbbf24" stroke="#785a10" stroke-width="3" transform="rotate(45 119 299)"/>
+</svg>
