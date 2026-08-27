@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <rect width="360" height="360" fill="#0d0608"/>
+
+  <rect x="40" y="60" width="70" height="14" fill="#604a3a"/>
+  <rect x="220" y="110" width="70" height="14" fill="#38bdf8"/>
+  <rect x="120" y="170" width="70" height="14" fill="#604a3a"/>
+  <rect x="60" y="240" width="70" height="14" fill="#dc2626"/>
+  <rect x="240" y="290" width="70" height="14" fill="#604a3a"/>
+
+  <circle cx="255" cy="98" r="11" fill="#d94656" stroke="#3c0a14" stroke-width="2"/>
+
+  <rect x="167" y="130" width="26" height="26" fill="#ef4444" stroke="#500a0a" stroke-width="2"/>
+  <rect x="185" y="152" width="4" height="12" fill="#38bdf8"/>
+
+  <circle cx="90" cy="210" r="5" fill="#fbbf24"/>
+  <circle cx="280" cy="260" r="5" fill="#fbbf24"/>
+
+  <text x="20" y="330" font-family="Poppins, sans-serif" font-size="24" font-weight="800" fill="#ef4444" opacity="0.7">DOWNWELL</text>
+</svg>

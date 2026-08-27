@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathos</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/pathos.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+    <script src="https://unpkg.com/kaplay@3001.0.19/dist/kaplay.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <a class="back-link" href="home.html">&larr; Menu</a>
+
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip">Depth: <span id="hud-depth">1</span></div>
+            <div class="hud-chip">HP: <span id="hud-hp">20/20</span></div>
+            <div class="hud-chip">Hunger: <span id="hud-hunger">Fine</span></div>
+            <div class="hud-chip">Best: <span id="hud-best">0</span></div>
+        </div>
+
+        <div class="canvas-wrap">
+            <canvas id="game-canvas"></canvas>
+            <div class="overlay" id="overlay">
+                <div class="overlay__inner">
+                    <div class="overlay__title" id="overlay-title">PATHOS</div>
+                    <div class="overlay__desc" id="overlay-desc">Arrow keys / WASD to move — walk into monsters (letters) to fight. Space, or tap yourself, to wait. Potions and scrolls are unidentified until used — quaff or read at your own risk. Watch your hunger. Find the stairs down. Choose your class to begin — one life.</div>
+                    <div class="overlay__class-row" id="class-row">
+                        <button type="button" class="class-btn" data-class="valkyrie">Valkyrie<span>tough, armored</span></button>
+                        <button type="button" class="class-btn" data-class="ranger">Ranger<span>balanced striker</span></button>
+                        <button type="button" class="class-btn" data-class="wizard">Wizard<span>frail, high damage</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="hint">Arrows / WASD move &middot; walk into letters to fight &middot; space to wait</p>
+
+        <div class="mode-bar" id="mode-bar">
+            <button type="button" class="mode-btn" id="wait-btn">⏳ Wait</button>
+        </div>
+    </div>
+
+    <script src="js/pathos-main.js"></script>
+</body>
+</html>
