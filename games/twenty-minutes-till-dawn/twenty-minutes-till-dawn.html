@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20 Minutes Till Dawn</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/twenty-minutes-till-dawn.css">
+    <script src="/game-development/js/block-devtools.js"></script>
+    <script src="https://unpkg.com/kaplay@3001.0.19/dist/kaplay.js"></script>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <a class="back-link" href="home.html">&larr; Menu</a>
+
+    <div class="game-shell">
+        <div class="hud-bar">
+            <div class="hud-chip">Till Dawn: <span id="hud-time">20:00</span></div>
+            <div class="hud-chip">HP: <span id="hud-hp">5/5</span></div>
+            <div class="hud-chip">Ammo: <span id="hud-ammo">8/8</span></div>
+            <div class="hud-chip">Best: <span id="hud-best">0</span></div>
+        </div>
+
+        <div class="canvas-wrap">
+            <canvas id="game-canvas"></canvas>
+
+            <div class="overlay" id="overlay">
+                <div class="overlay__inner">
+                    <div class="overlay__title" id="overlay-title">20 MINUTES TILL DAWN</div>
+                    <div class="overlay__desc" id="overlay-desc">Move with the pad or arrow keys/WASD. Hold Fire to shoot the nearest foe — you have a limited clip, so press Reload before it runs dry. Level up to swap weapons or boost your stats. Survive the full 20 minutes to see dawn.</div>
+                    <button type="button" class="overlay__btn" id="overlay-btn">Start</button>
+                </div>
+            </div>
+
+            <div class="overlay overlay--levelup" id="levelup-overlay" hidden>
+                <div class="overlay__inner">
+                    <div class="overlay__title">LEVEL UP!</div>
+                    <div class="overlay__desc">Choose one:</div>
+                    <div class="choice-row" id="choice-row"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="touch-controls">
+            <div class="dpad-grid">
+                <div></div>
+                <button type="button" class="dpad-btn" data-dir="up" aria-label="Up">▲</button>
+                <div></div>
+                <button type="button" class="dpad-btn" data-dir="left" aria-label="Left">◀</button>
+                <div></div>
+                <button type="button" class="dpad-btn" data-dir="right" aria-label="Right">▶</button>
+                <div></div>
+                <button type="button" class="dpad-btn" data-dir="down" aria-label="Down">▼</button>
+                <div></div>
+            </div>
+            <div class="action-col">
+                <button type="button" class="action-btn action-btn--fire" id="btn-fire">FIRE</button>
+                <button type="button" class="action-btn action-btn--reload" id="btn-reload">RELOAD</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/twenty-minutes-till-dawn-main.js"></script>
+</body>
+</html>
